@@ -46,11 +46,11 @@
                 <form id="newcharacterform">
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="text" name="charactername" placeholder="Character Name">
-                            <input class="newcharacterinput" type="text" name="playername" placeholder="Player Name">
+                            <input class="newcharacterinput" type="text" name="charactername" placeholder="Character Name" required>
+                            <input class="newcharacterinput" type="text" name="playername" placeholder="Player Name" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <select class="newcharacterinput" name="race">
+                            <select class="newcharacterinput" name="race" required>
                                 <option value="" disabled selected>Race</option>
                                 <option value="Dragonborn">Dragonborn</option>
                                 <option value="Dwarf">Dwarf</option>
@@ -62,7 +62,7 @@
                                 <option value="Human">Human</option>
                                 <option value="Tiefling">Tiefling</option>
                             </select>
-                            <select class="newcharacterinput" name="characterclass">
+                            <select class="newcharacterinput" name="characterclass" required>
                                 <option value="" disabled selected>Class</option>
                                 <option value="Barbarian">Barbarian</option>
                                 <option value="Bard">Bard</option>
@@ -79,7 +79,7 @@
                             </select>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <select class="newcharacterinput" name="background">
+                            <select class="newcharacterinput" name="background" required>
                                 <option value="" disabled selected>Background</option>
                                 <option value="Acolyte">Acolyte</option>
                                 <option value="Charlatan">Charlatan</option>
@@ -95,7 +95,7 @@
                                 <option value="Soldier">Soldier</option>
                                 <option value="Urchin">Urchin</option>
                             </select>
-                            <select class="newcharacterinput" name="alignment">
+                            <select class="newcharacterinput" name="alignment" required>
                                 <option value="" disabled selected>Alignment</option>
                                 <option value="Lawful Good">Lawful Good</option>
                                 <option value="Neutral Good">Neutral Good</option>
@@ -109,101 +109,101 @@
                             </select>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="level" min="1" max="20" placeholder="Level">
-                            <input class="newcharacterinput" type="number" name="experience" min="0" max="355000" placeholder="Experience">
+                            <input class="newcharacterinput" type="number" name="level" min="1" max="20" placeholder="Level" required>
+                            <input class="newcharacterinput" type="number" name="experience" min="0" max="355000" placeholder="Experience" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="strength" min="1" max="20" placeholder="Strength">
-                            <input class="newcharacterinput" type="number" name="strengthmod" min="-10" max="10" placeholder="Strength Mod">
+                            <input class="newcharacterinput" type="number" name="strength" min="1" max="20" placeholder="Strength" required>
+                            <input class="newcharacterinput" type="number" name="strengthmod" min="-10" max="10" placeholder="Strength Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="dexterity" min="1" max="20" placeholder="Dexterity">
-                            <input class="newcharacterinput" type="number" name="dexterity mod" min="-10" max="10" placeholder="Dexterity Mod">
+                            <input class="newcharacterinput" type="number" name="dexterity" min="1" max="20" placeholder="Dexterity" required>
+                            <input class="newcharacterinput" type="number" name="dexterity mod" min="-10" max="10" placeholder="Dexterity Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="constitution" min="1" max="20" placeholder="Constitution">
-                            <input class="newcharacterinput" type="number" name="constitutionmod" min="-10" max="10" placeholder="Constitution Mod">
+                            <input class="newcharacterinput" type="number" name="constitution" min="1" max="20" placeholder="Constitution" required>
+                            <input class="newcharacterinput" type="number" name="constitutionmod" min="-10" max="10" placeholder="Constitution Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="intelligence" min="1" max="20" placeholder="Intelligence">
-                            <input class="newcharacterinput" type="number" name="intelligencemod" min="-10" max="10" placeholder="Intelligence Mod">
+                            <input class="newcharacterinput" type="number" name="intelligence" min="1" max="20" placeholder="Intelligence" required>
+                            <input class="newcharacterinput" type="number" name="intelligencemod" min="-10" max="10" placeholder="Intelligence Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="wisdom" min="1" max="20" placeholder="Wisdom">
-                            <input class="newcharacterinput" type="number" name="wisdommod" min="-10" max="10" placeholder="Wisdom Mod">
+                            <input class="newcharacterinput" type="number" name="wisdom" min="1" max="20" placeholder="Wisdom" required>
+                            <input class="newcharacterinput" type="number" name="wisdommod" min="-10" max="10" placeholder="Wisdom Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="charisma" min="1" max="20" placeholder="Charisma">
-                            <input class="newcharacterinput" type="number" name="charismamod" min="-10" max="10" placeholder="Charisma Mod">
+                            <input class="newcharacterinput" type="number" name="charisma" min="1" max="20" placeholder="Charisma" required>
+                            <input class="newcharacterinput" type="number" name="charismamod" min="-10" max="10" placeholder="Charisma Mod" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="maxhp" min="1" max="440" placeholder="Max HP">
-                            <input class="newcharacterinput" type="number" name="armorclass" min="0" max="31" placeholder="Armor Class">
+                            <input class="newcharacterinput" type="number" name="maxhp" min="1" max="440" placeholder="Max HP" required>
+                            <input class="newcharacterinput" type="number" name="armorclass" min="0" max="31" placeholder="Armor Class" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="text" name="hitdice" placeholder="Hit Dice">
-                            <input class="newcharacterinput" type="number" name="hitdicetotal" min="1" max="20" placeholder="Hit Dice Total">
+                            <input class="newcharacterinput" type="text" name="hitdice" placeholder="Hit Dice" required>
+                            <input class="newcharacterinput" type="number" name="hitdicetotal" min="1" max="20" placeholder="Hit Dice Total" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="proficiencybonus" min="2" max="6" step="2" placeholder="Proficiency Bonus">
-                            <input class="newcharacterinput" type="number" name="passiveperception" min="0" max="30" placeholder="Passive Perception">
+                            <input class="newcharacterinput" type="number" name="proficiencybonus" min="2" max="6" step="2" placeholder="Proficiency Bonus" required>
+                            <input class="newcharacterinput" type="number" name="passiveperception" min="0" max="30" placeholder="Passive Perception" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="initiative" min="-10" max="10" placeholder="Initiative">
-                            <input class="newcharacterinput" type="number" name="speed" min="0" placeholder="Speed">
+                            <input class="newcharacterinput" type="number" name="initiative" min="-10" max="10" placeholder="Initiative" required>
+                            <input class="newcharacterinput" type="number" name="speed" min="0" placeholder="Speed" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" name="personalitytraits" maxlength="300" placeholder="Personality Traits"></textarea>
-                        <textarea class="newcharactertextarea" name="ideals" maxlength="300" placeholder="Ideals"></textarea>
+                        <textarea class="newcharactertextarea" name="personalitytraits" maxlength="300" placeholder="Personality Traits" required></textarea>
+                        <textarea class="newcharactertextarea" name="ideals" maxlength="300" placeholder="Ideals" required></textarea>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" name="bonds" maxlength="300" placeholder="Bonds"></textarea>
-                        <textarea class="newcharactertextarea" name="flaws" maxlength="300" placeholder="Flaws"></textarea>
+                        <textarea class="newcharactertextarea" name="bonds" maxlength="300" placeholder="Bonds" required></textarea>
+                        <textarea class="newcharactertextarea" name="flaws" maxlength="300" placeholder="Flaws" required></textarea>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" name="additionalfeatures" maxlength="300" placeholder="Additional Features"></textarea>
-                        <textarea class="newcharactertextarea" name="languages" maxlength="300" placeholder="Languages"></textarea>
+                        <textarea class="newcharactertextarea" name="additionalfeatures" maxlength="300" placeholder="Additional Features" required></textarea>
+                        <textarea class="newcharactertextarea" name="languages" maxlength="300" placeholder="Languages" required></textarea>
                     </div>
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
                             <ul class="newcharactercheckboxwrapper">
-                                <li><input type="checkbox" name="acrobatics" value="1"> Acrobatics</li>
-                                <li><input type="checkbox" name="animalhandling" value="1"> Animal Handling</li>
-                                <li><input type="checkbox" name="arcana" value="1"> Arcana</li>
-                                <li><input type="checkbox" name="athletics" value="1"> Athletics</li>
-                                <li><input type="checkbox" name="deception" value="1"> Deception</li>
-                                <li><input type="checkbox" name="history" value="1"> History</li>
-                                <li><input type="checkbox" name="insight" value="1"> Insight</li>
-                                <li><input type="checkbox" name="intimidation" value="1"> Intimidation</li>
-                                <li><input type="checkbox" name="investigation" value="1"> Investigation</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="acrobatics" value="1"> Acrobatics</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="animalhandling" value="1"> Animal Handling</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="arcana" value="1"> Arcana</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="athletics" value="1"> Athletics</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="deception" value="1"> Deception</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="history" value="1"> History</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="insight" value="1"> Insight</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="intimidation" value="1"> Intimidation</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="investigation" value="1"> Investigation</li>
                             </ul>
                         </div>
                         <div class="newcharacterformcolumn">
                             <ul class="newcharactercheckboxwrapper">
-                                <li><input type="checkbox" name="medicine" value="1"> Medicine</li>
-                                <li><input type="checkbox" name="nature" value="1"> Nature</li>
-                                <li><input type="checkbox" name="perception" value="1"> Perception</li>
-                                <li><input type="checkbox" name="performance" value="1"> Performance</li>
-                                <li><input type="checkbox" name="persuasion" value="1"> Persuasion</li>
-                                <li><input type="checkbox" name="religion" value="1"> Religion</li>
-                                <li><input type="checkbox" name="sleightofhand" value="1"> Sleight of Hand</li>
-                                <li><input type="checkbox" name="stealth" value="1"> Stealth</li>
-                                <li><input type="checkbox" name="survival" value="1"> Survival</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="medicine" value="1"> Medicine</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="nature" value="1"> Nature</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="perception" value="1"> Perception</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="performance" value="1"> Performance</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="persuasion" value="1"> Persuasion</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="religion" value="1"> Religion</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="sleightofhand" value="1"> Sleight of Hand</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="stealth" value="1"> Stealth</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="survival" value="1"> Survival</li>
                             </ul>
                         </div>
                         <div class="newcharacterformcolumn">
                             <ul class="newcharactercheckboxwrapper">
-                                <li><input type="checkbox" name="strengthsave" value="1"> Strength Save</li>
-                                <li><input type="checkbox" name="dexteritysave" value="1"> Dexterity Save</li>
-                                <li><input type="checkbox" name="constitutionsave" value="1"> Constitution Save</li>
-                                <li><input type="checkbox" name="intelligencesave" value="1"> Intelligence Save</li>
-                                <li><input type="checkbox" name="wisdomsave" value="1"> Wisdom Save</li>
-                                <li><input type="checkbox" name="charismasave" value="1"> Charisma Save</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="strengthsave" value="1"> Strength Save</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="dexteritysave" value="1"> Dexterity Save</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="constitutionsave" value="1"> Constitution Save</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="intelligencesave" value="1"> Intelligence Save</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="wisdomsave" value="1"> Wisdom Save</li>
+                                <li><input class="newcharactercheckbox" type="checkbox" name="charismasave" value="1"> Charisma Save</li>
                             </ul>
                             <input class="submitbutton" type="submit" value="Create Character">
                         </div>

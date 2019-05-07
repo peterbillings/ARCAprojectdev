@@ -40,5 +40,31 @@ function togglePageDisplay() {
     //console.log("togglePageDisplay called");
 
 };
-
 // END functionality for allowing menu buttons to toggle between pages
+
+
+// BEGIN functionality for new character form submission/validation
+
+var newCharacterForm = document.getElementById("newcharacterform");
+
+newCharacterForm.addEventListener("submit", interceptFormSubmit);
+
+function interceptFormSubmit(event) {
+
+    event.preventDefault();
+
+    var formData = new FormData(newCharacterForm);
+
+    var entries = formData.entries();
+
+    var entriesObject = Object.fromEntries(entries);
+
+    var jsonEntries = JSON.stringify(entriesObject);
+
+    console.log(jsonEntries);
+
+    newCharacterForm.reset();
+}
+
+
+// END functionality for new character form submission/validation
