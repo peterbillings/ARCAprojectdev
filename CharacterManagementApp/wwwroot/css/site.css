@@ -1,0 +1,130 @@
+﻿* {
+  border-radius: 5px;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 5px;
+  overflow: hidden;
+}
+
+:root {
+    overflow: scroll;
+}
+
+:focus {
+    outline: none;
+}
+
+body {
+    background-color: #f0e6d6;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: auto;
+}
+
+.menuitem {
+    color: #f0e6d6;
+    background-color: #314977;
+    min-width: 265px;
+    max-width: 350px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+    box-shadow: 2px 3px 3px black;
+}
+
+.page {
+    display: none;
+    max-width: 950px;
+    min-height: 500px;
+    text-align: center;
+    color: black;
+    background-color: lightgray;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 2px 3px 3px black;
+    border-top: solid 1px darkgray;
+    border-left: solid 1px darkgray;
+}
+
+#mainpage {
+    display: block;
+    padding-top: 50px;
+}
+
+#mainpage > ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#mainpage > ul > li {
+    padding: 10px;
+}
+
+.newcharacterformrow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.newcharacterformcolumn {
+    display: flex;
+    flex-direction: column;
+    min-width: 25%;
+}
+
+.newcharacterinput {
+    margin: 5px;
+    min-width: 200px;
+    border-color: initial; 
+}
+
+select {
+    border-style: inset;
+    border-width: 2px;
+    border-color: initial;
+}
+
+.newcharactertextarea {
+    resize: none;
+    border-style: inset;
+    border-width: 2px;
+    border-color: initial;
+    margin: 5px;
+    width: 435px;
+    min-width: 225px;
+    min-height: 80px;
+}
+
+.newcharactercheckboxwrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 18px;
+    background-color: white;
+    border-style: inset;
+    border-color: initial;
+    min-width: 270px;
+
+}
+
+.submitbutton {
+    border: none;
+    color: #f0e6d6;
+    background-color: #314977;
+    height: 60px;
+    min-width: 265px;
+    max-width: 350px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20px;
+    box-shadow: 2px 3px 3px black;
+}

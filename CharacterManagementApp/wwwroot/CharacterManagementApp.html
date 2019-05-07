@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="A D&D Character Detail Managment App">
+        <meta name="keywords" content="dungeons, dragons, roll20, nerdalert">
+        <meta name="author" content="barfhorse">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./css/site.css">
+    </head>
+    <body>
+        <header class="menu">
+                    <p class="menuitem main" id="mainbutton">MAIN</p>
+                    <p class="menuitem new" id="newbutton">NEW CHARACTER</p>
+                    <p class="menuitem view" id="viewbutton">VIEW CHARACTER</p>
+                    <p class="menuitem update" id="updatebutton">UPDATE CHARACTER</p>
+                    <p class="menuitem inventory" id="inventorybutton">INVENTORY</p>
+                    <p class="menuitem spells" id="spellsbutton">SPELLS</p>
+        </header>
+        <main>
+            <section class="page main" id="mainpage">
+                <p style="font-size: 35px; font-weight: bold">Dungeons & Dragons 5e Character Management App</p>
+                <ul>
+                    <li>
+                        <b>New Character:</b> Fill out and submit the character creation form 
+                        to add a new character to the database.
+                    </li>
+                    <li>
+                        <b>View Character:</b> Select an existing character from the drop down menu
+                        to view its information.
+                    </li>
+                    <li>
+                        <b>Update Character:</b> Choose a character and create a custom form for 
+                        updating specific details about it.
+                    </li>
+                    <li>
+                        <b>Inventory:</b> View a character's inventory and add or remove items.
+                    </li>
+                    <li>
+                        <b>Spells:</b> View a character's spell list and add or remove spells.
+                    </li>
+                </ul>
+            </section>
+            <section class="page new" id="newpage"> <!--BEGIN: new character input form section-->
+                <form id="newcharacterform">
+                    <div class="newcharacterformrow">
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="text" name="charactername" placeholder="Character Name">
+                            <input class="newcharacterinput" type="text" name="playername" placeholder="Player Name">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <select class="newcharacterinput" name="race">
+                                <option value="" disabled selected>Race</option>
+                                <option value="Dragonborn">Dragonborn</option>
+                                <option value="Dwarf">Dwarf</option>
+                                <option value="Elf">Elf</option>
+                                <option value="Gnome">Gnome</option>
+                                <option value="Half Elf">Half Elf</option>
+                                <option value="Half Orc">Half Orc</option>
+                                <option value="Halfling">Halfling</option>
+                                <option value="Human">Human</option>
+                                <option value="Tiefling">Tiefling</option>
+                            </select>
+                            <select class="newcharacterinput" name="characterclass">
+                                <option value="" disabled selected>Class</option>
+                                <option value="Barbarian">Barbarian</option>
+                                <option value="Bard">Bard</option>
+                                <option value="Cleric">Cleric</option>
+                                <option value="Druid">Druid</option>
+                                <option value="Fighter">Fighter</option>
+                                <option value="Monk">Monk</option>
+                                <option value="Paladin">Paladin</option>
+                                <option value="Ranger">Ranger</option>
+                                <option value="Rogue">Rogue</option>
+                                <option value="Sorcerer">Sorcerer</option>
+                                <option value="Warlock">Warlock</option>
+                                <option value="Wizard">Wizard</option>
+                            </select>
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <select class="newcharacterinput" name="background">
+                                <option value="" disabled selected>Background</option>
+                                <option value="Acolyte">Acolyte</option>
+                                <option value="Charlatan">Charlatan</option>
+                                <option value="Criminal">Criminal</option>
+                                <option value="Entertainer">Entertainer</option>
+                                <option value="Folk Hero">Folk Hero</option>
+                                <option value="Guild Artisan">Guild Artisan</option>
+                                <option value="Hermit">Hermit</option>
+                                <option value="Noble">Noble</option>
+                                <option value="Outlander">Outlander</option>
+                                <option value="Sage">Sage</option>
+                                <option value="Sailor">Sailor</option>
+                                <option value="Soldier">Soldier</option>
+                                <option value="Urchin">Urchin</option>
+                            </select>
+                            <select class="newcharacterinput" name="alignment">
+                                <option value="" disabled selected>Alignment</option>
+                                <option value="Lawful Good">Lawful Good</option>
+                                <option value="Neutral Good">Neutral Good</option>
+                                <option value="Chaotic Good">Chaotic Good</option>
+                                <option value="Lawful Neutral">Lawful Neutral</option>
+                                <option value="Neutral">Neutral</option>
+                                <option value="Chaotic Neutral">Chaotic Neutral</option>
+                                <option value="Lawful Evil">Lawful Evil</option>
+                                <option value="Neutral Evil">Neutral Evil</option>
+                                <option value="Chaotic Evil">Chaotic Evil</option>
+                            </select>
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="level" min="1" max="20" placeholder="Level">
+                            <input class="newcharacterinput" type="number" name="experience" min="0" max="355000" placeholder="Experience">
+                        </div>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="strength" min="1" max="20" placeholder="Strength">
+                            <input class="newcharacterinput" type="number" name="strengthmod" min="-10" max="10" placeholder="Strength Mod">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="dexterity" min="1" max="20" placeholder="Dexterity">
+                            <input class="newcharacterinput" type="number" name="dexterity mod" min="-10" max="10" placeholder="Dexterity Mod">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="constitution" min="1" max="20" placeholder="Constitution">
+                            <input class="newcharacterinput" type="number" name="constitutionmod" min="-10" max="10" placeholder="Constitution Mod">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="intelligence" min="1" max="20" placeholder="Intelligence">
+                            <input class="newcharacterinput" type="number" name="intelligencemod" min="-10" max="10" placeholder="Intelligence Mod">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="wisdom" min="1" max="20" placeholder="Wisdom">
+                            <input class="newcharacterinput" type="number" name="wisdommod" min="-10" max="10" placeholder="Wisdom Mod">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="charisma" min="1" max="20" placeholder="Charisma">
+                            <input class="newcharacterinput" type="number" name="charismamod" min="-10" max="10" placeholder="Charisma Mod">
+                        </div>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="maxhp" min="1" max="440" placeholder="Max HP">
+                            <input class="newcharacterinput" type="number" name="armorclass" min="0" max="31" placeholder="Armor Class">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="text" name="hitdice" placeholder="Hit Dice">
+                            <input class="newcharacterinput" type="number" name="hitdicetotal" min="1" max="20" placeholder="Hit Dice Total">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="proficiencybonus" min="2" max="6" step="2" placeholder="Proficiency Bonus">
+                            <input class="newcharacterinput" type="number" name="passiveperception" min="0" max="30" placeholder="Passive Perception">
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <input class="newcharacterinput" type="number" name="initiative" min="-10" max="10" placeholder="Initiative">
+                            <input class="newcharacterinput" type="number" name="speed" min="0" placeholder="Speed">
+                        </div>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <textarea class="newcharactertextarea" name="personalitytraits" maxlength="300" placeholder="Personality Traits"></textarea>
+                        <textarea class="newcharactertextarea" name="ideals" maxlength="300" placeholder="Ideals"></textarea>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <textarea class="newcharactertextarea" name="bonds" maxlength="300" placeholder="Bonds"></textarea>
+                        <textarea class="newcharactertextarea" name="flaws" maxlength="300" placeholder="Flaws"></textarea>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <textarea class="newcharactertextarea" name="additionalfeatures" maxlength="300" placeholder="Additional Features"></textarea>
+                        <textarea class="newcharactertextarea" name="languages" maxlength="300" placeholder="Languages"></textarea>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <div class="newcharacterformcolumn">
+                            <ul class="newcharactercheckboxwrapper">
+                                <li><input type="checkbox" name="acrobatics" value="1"> Acrobatics</li>
+                                <li><input type="checkbox" name="animalhandling" value="1"> Animal Handling</li>
+                                <li><input type="checkbox" name="arcana" value="1"> Arcana</li>
+                                <li><input type="checkbox" name="athletics" value="1"> Athletics</li>
+                                <li><input type="checkbox" name="deception" value="1"> Deception</li>
+                                <li><input type="checkbox" name="history" value="1"> History</li>
+                                <li><input type="checkbox" name="insight" value="1"> Insight</li>
+                                <li><input type="checkbox" name="intimidation" value="1"> Intimidation</li>
+                                <li><input type="checkbox" name="investigation" value="1"> Investigation</li>
+                            </ul>
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <ul class="newcharactercheckboxwrapper">
+                                <li><input type="checkbox" name="medicine" value="1"> Medicine</li>
+                                <li><input type="checkbox" name="nature" value="1"> Nature</li>
+                                <li><input type="checkbox" name="perception" value="1"> Perception</li>
+                                <li><input type="checkbox" name="performance" value="1"> Performance</li>
+                                <li><input type="checkbox" name="persuasion" value="1"> Persuasion</li>
+                                <li><input type="checkbox" name="religion" value="1"> Religion</li>
+                                <li><input type="checkbox" name="sleightofhand" value="1"> Sleight of Hand</li>
+                                <li><input type="checkbox" name="stealth" value="1"> Stealth</li>
+                                <li><input type="checkbox" name="survival" value="1"> Survival</li>
+                            </ul>
+                        </div>
+                        <div class="newcharacterformcolumn">
+                            <ul class="newcharactercheckboxwrapper">
+                                <li><input type="checkbox" name="strengthsave" value="1"> Strength Save</li>
+                                <li><input type="checkbox" name="dexteritysave" value="1"> Dexterity Save</li>
+                                <li><input type="checkbox" name="constitutionsave" value="1"> Constitution Save</li>
+                                <li><input type="checkbox" name="intelligencesave" value="1"> Intelligence Save</li>
+                                <li><input type="checkbox" name="wisdomsave" value="1"> Wisdom Save</li>
+                                <li><input type="checkbox" name="charismasave" value="1"> Charisma Save</li>
+                            </ul>
+                            <input class="submitbutton" type="submit" value="Create Character">
+                        </div>
+                    </div>
+                </form>
+            </section> <!--END: new character input form section-->
+            <section class="page view" id="viewpage">VIEWCHARACTER(add drop list of existing characters and display selected character data</section>
+            <section class="page update" id="updatepage">UPDATECHARACTER (dynamic update form)</section>
+            <section class="page inventory" id="inventorypage">INVENTORY (view party inventory, individual inventory, update individual inventory)</section>
+            <section class="page spells" id="spellspage">SPELLS (view individual spells, update individual spells)</section>
+        </main>
+    </body>
+    <script type="text/javascript" src="./js/site.js"></script>
+</html>
