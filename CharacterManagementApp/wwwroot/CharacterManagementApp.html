@@ -54,12 +54,15 @@
             <section class="page new" id="newpage"> 
                 <form id="newcharacterform">
                     <div class="newcharacterformrow">
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="text" name="CharacterName" placeholder="Character Name" required>
-                            <input class="newcharacterinput" type="text" name="PlayerName" placeholder="Player Name" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="characternamefield">Character Name</label>
+                            <input class="newcharacterinput" id="characternamefield" type="text" name="CharacterName" placeholder="Character Name" required>
+                            <label for="playernamefield">Player Name</label>
+                            <input class="newcharacterinput" id="playernamefield" type="text" name="PlayerName" placeholder="Player Name" required>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <select class="newcharacterinput" name="Race" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="racefield">Race</label>
+                            <select class="newcharacterinput" id="racefield" name="Race" required>
                                 <option value="" disabled selected>Race</option>
                                 <option value="Dragonborn">Dragonborn</option>
                                 <option value="Dwarf">Dwarf</option>
@@ -71,7 +74,8 @@
                                 <option value="Human">Human</option>
                                 <option value="Tiefling">Tiefling</option>
                             </select>
-                            <select class="newcharacterinput" name="CharacterClass" required>
+                            <label for="characterclassfield">Class</label>
+                            <select class="newcharacterinput" id="characterclassfield" name="CharacterClass" required>
                                 <option value="" disabled selected>Class</option>
                                 <option value="Barbarian">Barbarian</option>
                                 <option value="Bard">Bard</option>
@@ -87,8 +91,9 @@
                                 <option value="Wizard">Wizard</option>
                             </select>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <select class="newcharacterinput" name="Background" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="backgroundfield">Background</label>
+                            <select class="newcharacterinput" id="backgroundfield" name="Background" required>
                                 <option value="" disabled selected>Background</option>
                                 <option value="Acolyte">Acolyte</option>
                                 <option value="Charlatan">Charlatan</option>
@@ -104,7 +109,8 @@
                                 <option value="Soldier">Soldier</option>
                                 <option value="Urchin">Urchin</option>
                             </select>
-                            <select class="newcharacterinput" name="Alignment" required>
+                            <label for="alignmentfield">Alignment</label>
+                            <select class="newcharacterinput" id="alignmentfield" name="Alignment" required>
                                 <option value="" disabled selected>Alignment</option>
                                 <option value="Lawful Good">Lawful Good</option>
                                 <option value="Neutral Good">Neutral Good</option>
@@ -117,62 +123,84 @@
                                 <option value="Chaotic Evil">Chaotic Evil</option>
                             </select>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Level" min="1" max="20" placeholder="Level" required>
-                            <input class="newcharacterinput" type="number" name="Experience" min="0" max="355000" placeholder="Experience" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="levelfield">Level</label>
+                            <input class="newcharacterinput" id="levelfield" type="number" name="Level" min="1" max="20" placeholder="Level" required>
+                            <label for="experiencefield">Experience</label>
+                            <input class="newcharacterinput" id="experiencefield" type="number" name="Experience" min="0" max="355000" placeholder="Experience" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Strength" min="1" max="20" placeholder="Strength" required>
-                            <input class="newcharacterinput" type="number" name="StrengthMod" min="-10" max="10" placeholder="Strength Mod" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="strengthfield">Strength</label>
+                            <input class="newcharacterinput" id="strengthfield" type="number" name="Strength" min="1" max="20" placeholder="Strength" required>
+                            <label for="strengthmodfield">Strength Modifier</label>
+                            <input class="newcharacterinput" id="strengthmodfield" type="number" name="StrengthMod" min="-10" max="10" placeholder="Strength Mod" required>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Dexterity" min="1" max="20" placeholder="Dexterity" required>
-                            <input class="newcharacterinput" type="number" name="DexterityMod" min="-10" max="10" placeholder="Dexterity Mod" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="dexterityfield">Dexterity</label>
+                            <input class="newcharacterinput" id="dexterityfield" type="number" name="Dexterity" min="1" max="20" placeholder="Dexterity" required>
+                            <label for="dexteritymodfield">Dexterity Modifier</label>
+                            <input class="newcharacterinput" id="dexteritymodfield" type="number" name="DexterityMod" min="-10" max="10" placeholder="Dexterity Mod" required>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Constitution" min="1" max="20" placeholder="Constitution" required>
-                            <input class="newcharacterinput" type="number" name="ConstitutionMod" min="-10" max="10" placeholder="Constitution Mod" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="constitutionfield">Constitution</label>
+                            <input class="newcharacterinput" id="constitutionfield" type="number" name="Constitution" min="1" max="20" placeholder="Constitution" required>
+                            <label for="constitutionmodfield">Constitution Modifier</label>
+                            <input class="newcharacterinput" id="constitutionmodfield" type="number" name="ConstitutionMod" min="-10" max="10" placeholder="Constitution Mod" required>
                         </div>
-                        <div class="newcharacterformcolumn"> 
-                            <input class="newcharacterinput" type="number" name="Intelligence" min="1" max="20" placeholder="Intelligence" required>
-                            <input class="newcharacterinput" type="number" name="IntelligenceMod" min="-10" max="10" placeholder="Intelligence Mod" required>
+                        <div class="newcharacterformcolumn field-column"> 
+                            <label for="intelligencefield">Intelligence</label>
+                            <input class="newcharacterinput" id="intelligencefield" type="number" name="Intelligence" min="1" max="20" placeholder="Intelligence" required>
+                            <label for="intelligencemodfield">Intelligence Modifier</label>
+                            <input class="newcharacterinput" id="intelligencemodfield" type="number" name="IntelligenceMod" min="-10" max="10" placeholder="Intelligence Mod" required>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Wisdom" min="1" max="20" placeholder="Wisdom" required>
-                            <input class="newcharacterinput" type="number" name="WisdomMod" min="-10" max="10" placeholder="Wisdom Mod" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="wisdomfield">Wisdom</label>
+                            <input class="newcharacterinput" id="wisdomfield" type="number" name="Wisdom" min="1" max="20" placeholder="Wisdom" required>
+                            <label for="wisdommodfield">Wisdom Modifier</label>
+                            <input class="newcharacterinput" id="wisdommodfield" type="number" name="WisdomMod" min="-10" max="10" placeholder="Wisdom Mod" required>
                         </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Charisma" min="1" max="20" placeholder="Charisma" required>
-                            <input class="newcharacterinput" type="number" name="CharismaMod" min="-10" max="10" placeholder="Charisma Mod" required>
-                        </div>
-                    </div>
-                    <div class="newcharacterformrow">
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="MaxHp" min="1" max="440" placeholder="Max HP" required>
-                            <input class="newcharacterinput" type="number" name="ArmorClass" min="0" max="31" placeholder="Armor Class" required>
-                        </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="text" name="HitDice" placeholder="Hit Dice" required>
-                            <input class="newcharacterinput" type="number" name="HitDiceTotal" min="1" max="20" placeholder="Hit Dice Total" required>
-                        </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="ProficiencyBonus" min="2" max="6" step="2" placeholder="Proficiency Bonus" required>
-                            <input class="newcharacterinput" type="number" name="PassivePerception" min="0" max="30" placeholder="Passive Perception" required>
-                        </div>
-                        <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="Initiative" min="-10" max="10" placeholder="Initiative" required>
-                            <input class="newcharacterinput" type="number" name="Speed" min="0" placeholder="Speed" required>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="charismafield">Charisma</label>
+                            <input class="newcharacterinput" id="charismafield" type="number" name="Charisma" min="1" max="20" placeholder="Charisma" required>
+                            <label for="charismamodfield">Charisma Modifier</label>
+                            <input class="newcharacterinput" id="charismamodfield" type="number" name="CharismaMod" min="-10" max="10" placeholder="Charisma Mod" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" name="PersonalityTraits" maxlength="300" placeholder="Personality Traits" required></textarea>
-                        <textarea class="newcharactertextarea" name="Ideals" maxlength="300" placeholder="Ideals" required></textarea>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="maxhp">Max HP</label>
+                            <input class="newcharacterinput" id="maxhp" type="number" name="MaxHp" min="1" max="440" placeholder="Max HP" required>
+                            <label for="armorclass">Armor Class</label>
+                            <input class="newcharacterinput" id="armorclass" type="number" name="ArmorClass" min="0" max="31" placeholder="Armor Class" required>
+                        </div>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="hitdice">Hit Dice</label>
+                            <input class="newcharacterinput" id="hitdice" type="text" name="HitDice" placeholder="Hit Dice" required>
+                            <label for="hitdicetotal">Hit Dice Total</label>
+                            <input class="newcharacterinput" id="hitdicetotal" type="number" name="HitDiceTotal" min="1" max="20" placeholder="Hit Dice Total" required>
+                        </div>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="proficiencybonus">Proficiency Bonus</label>
+                            <input class="newcharacterinput" id="proficiencybonus" type="number" name="ProficiencyBonus" min="2" max="6" step="2" placeholder="Proficiency Bonus" required>
+                            <label for="passiveperception">Passive Perception</label>
+                            <input class="newcharacterinput" id="passiveperception" type="number" name="PassivePerception" min="0" max="30" placeholder="Passive Perception" required>
+                        </div>
+                        <div class="newcharacterformcolumn field-column">
+                            <label for="initiative">Initiative</label>
+                            <input class="newcharacterinput" id="initiative" type="number" name="Initiative" min="-10" max="10" placeholder="Initiative" required>
+                            <label for="speed">Speed</label>
+                            <input class="newcharacterinput" id="speed" type="number" name="Speed" min="0" placeholder="Speed" required>
+                        </div>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" name="Bonds" maxlength="300" placeholder="Bonds" required></textarea>
-                        <textarea class="newcharactertextarea" name="Flaws" maxlength="300" placeholder="Flaws" required></textarea>
+                        <textarea class="newcharactertextarea" id="personalitytraits" name="PersonalityTraits" maxlength="300" placeholder="Personality Traits" required></textarea>
+                        <textarea class="newcharactertextarea" id="ideals" name="Ideals" maxlength="300" placeholder="Ideals" required></textarea>
+                    </div>
+                    <div class="newcharacterformrow">
+                        <textarea class="newcharactertextarea" id="bonds" name="Bonds" maxlength="300" placeholder="Bonds" required></textarea>
+                        <textarea class="newcharactertextarea" id="flaws" name="Flaws" maxlength="300" placeholder="Flaws" required></textarea>
                     </div>
                     <div class="newcharacterformrow">
                         <textarea class="newcharactertextarea" name="AdditionalFeatures" maxlength="300" placeholder="Additional Features" required></textarea>

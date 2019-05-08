@@ -78,7 +78,13 @@ body {
 .newcharacterformcolumn {
     display: flex;
     flex-direction: column;
+    align-content: space-between;
     min-width: 25%;
+    padding-top: 0px;
+}
+
+.field-column {
+    height: 170px;
 }
 
 .newcharacterinput {
@@ -87,11 +93,18 @@ body {
     border-color: initial; 
 }
 
+label {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
 select {
     background-color: white;
     border-style: inset;
     border-width: 2px;
     border-color: initial;
+    max-height: 30px;
 }
 
 .newcharactertextarea {
