@@ -15,7 +15,7 @@ namespace CharacterManagementApi.Controllers
         [HttpPost]
         public ActionResult<string> Post([FromBody] NewCharacterFormData newCharacter)
         {
-            return "";
+            return "You reached the CharacterManagementAPI";
         }
 
     }

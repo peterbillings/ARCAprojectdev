@@ -55,6 +55,7 @@ namespace CharacterManagementApi
                 app.UseHsts();
             }
 
+            app.UseCors(AllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseMvc();
         }

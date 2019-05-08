@@ -49,15 +49,33 @@ var newCharacterForm = document.getElementById("newcharacterform");
 
 newCharacterForm.addEventListener("submit", sendNewCharacterInfoToApi);
 
+// The sendNewCharacterInfoToApi function below makes an AJAX call to the character
+// management API to post the submitted new character form info for entry into the database.
+// Upon successful entry into the database, the function notifies the client of success, or on failure
+// gives the reason why.
+
 function sendNewCharacterInfoToApi(event) {
 
-    interceptFormSubmit(event);
-    // var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
 
-    // xhr.open('POST', 'https://localhost:5003/api/values');
+    var request = interceptFormSubmit(event);
 
-    // xhr.setRequestHeader("Content-Type", "application/JSON");
+    xhr.open('POST', 'https://localhost:5003/api/values');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        console.log(this.response); // ***change this once database connection and other backend code is finished***
+    }
+
+    xhr.send(request);
 }
+
+// The interceptFormSubmit function below disables the default behavior of 
+// the new character form and captures its entries in a form-data object,
+// which it converts to JSON and returns.  Prior to returning it resets the form
+// fields to their default values.
 
 function interceptFormSubmit(event) {
 
@@ -71,9 +89,9 @@ function interceptFormSubmit(event) {
 
     var jsonEntries = JSON.stringify(entriesObject);
 
-    return jsonEntries;
-
     newCharacterForm.reset();
+
+    return jsonEntries;
 }
 
 

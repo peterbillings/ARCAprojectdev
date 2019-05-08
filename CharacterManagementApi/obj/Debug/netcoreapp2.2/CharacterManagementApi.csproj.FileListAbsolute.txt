@@ -1,0 +1,14 @@
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\bin\Debug\netcoreapp2.2\CharacterManagementApi.deps.json
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\bin\Debug\netcoreapp2.2\CharacterManagementApi.runtimeconfig.json
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\bin\Debug\netcoreapp2.2\CharacterManagementApi.runtimeconfig.dev.json
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\bin\Debug\netcoreapp2.2\CharacterManagementApi.dll
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\bin\Debug\netcoreapp2.2\CharacterManagementApi.pdb
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.csprojAssemblyReference.cache
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.csproj.CoreCompileInputs.cache
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.RazorAssemblyInfo.cache
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.RazorAssemblyInfo.cs
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.AssemblyInfoInputs.cache
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.AssemblyInfo.cs
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.RazorTargetAssemblyInfo.cache
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.dll
+C:\Users\peter\Documents\code\ARCAProjectDev\CharacterManagementApi\obj\Debug\netcoreapp2.2\CharacterManagementApi.pdb
