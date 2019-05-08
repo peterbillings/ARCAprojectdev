@@ -10,6 +10,8 @@
         <link rel="stylesheet" type="text/css" href="./css/site.css">
     </head>
     <body>
+
+        <!--BEGIN: top menu-->
         <header class="menu">
                     <p class="menuitem main" id="mainbutton">MAIN</p>
                     <p class="menuitem new" id="newbutton">NEW CHARACTER</p>
@@ -18,7 +20,11 @@
                     <p class="menuitem inventory" id="inventorybutton">INVENTORY</p>
                     <p class="menuitem spells" id="spellsbutton">SPELLS</p>
         </header>
+        <!--END: top menu-->
+
         <main>
+            
+            <!--BEGIN: main page instructions-->
             <section class="page main" id="mainpage">
                 <p style="font-size: 35px; font-weight: bold">Dungeons & Dragons 5e Character Management App</p>
                 <ul>
@@ -42,15 +48,18 @@
                     </li>
                 </ul>
             </section>
-            <section class="page new" id="newpage"> <!--BEGIN: new character input form section-->
+            <!--END: main page instructions-->
+
+            <!--BEGIN: new character input form section-->
+            <section class="page new" id="newpage"> 
                 <form id="newcharacterform">
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="text" name="charactername" placeholder="Character Name" required>
-                            <input class="newcharacterinput" type="text" name="playername" placeholder="Player Name" required>
+                            <input class="newcharacterinput" type="text" name="CharacterName" placeholder="Character Name" required>
+                            <input class="newcharacterinput" type="text" name="PlayerName" placeholder="Player Name" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <select class="newcharacterinput" name="race" required>
+                            <select class="newcharacterinput" name="Race" required>
                                 <option value="" disabled selected>Race</option>
                                 <option value="Dragonborn">Dragonborn</option>
                                 <option value="Dwarf">Dwarf</option>
@@ -62,7 +71,7 @@
                                 <option value="Human">Human</option>
                                 <option value="Tiefling">Tiefling</option>
                             </select>
-                            <select class="newcharacterinput" name="characterclass" required>
+                            <select class="newcharacterinput" name="CharacterClass" required>
                                 <option value="" disabled selected>Class</option>
                                 <option value="Barbarian">Barbarian</option>
                                 <option value="Bard">Bard</option>
@@ -79,7 +88,7 @@
                             </select>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <select class="newcharacterinput" name="background" required>
+                            <select class="newcharacterinput" name="Background" required>
                                 <option value="" disabled selected>Background</option>
                                 <option value="Acolyte">Acolyte</option>
                                 <option value="Charlatan">Charlatan</option>
@@ -95,7 +104,7 @@
                                 <option value="Soldier">Soldier</option>
                                 <option value="Urchin">Urchin</option>
                             </select>
-                            <select class="newcharacterinput" name="alignment" required>
+                            <select class="newcharacterinput" name="Alignment" required>
                                 <option value="" disabled selected>Alignment</option>
                                 <option value="Lawful Good">Lawful Good</option>
                                 <option value="Neutral Good">Neutral Good</option>
@@ -109,24 +118,24 @@
                             </select>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="level" min="1" max="20" placeholder="Level" required>
-                            <input class="newcharacterinput" type="number" name="experience" min="0" max="355000" placeholder="Experience" required>
+                            <input class="newcharacterinput" type="number" name="Level" min="1" max="20" placeholder="Level" required>
+                            <input class="newcharacterinput" type="number" name="Experience" min="0" max="355000" placeholder="Experience" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="strength" min="1" max="20" placeholder="Strength" required>
-                            <input class="newcharacterinput" type="number" name="strengthmod" min="-10" max="10" placeholder="Strength Mod" required>
+                            <input class="newcharacterinput" type="number" name="Strength" min="1" max="20" placeholder="Strength" required>
+                            <input class="newcharacterinput" type="number" name="StrengthMod" min="-10" max="10" placeholder="Strength Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="dexterity" min="1" max="20" placeholder="Dexterity" required>
-                            <input class="newcharacterinput" type="number" name="dexterity mod" min="-10" max="10" placeholder="Dexterity Mod" required>
+                            <input class="newcharacterinput" type="number" name="Dexterity" min="1" max="20" placeholder="Dexterity" required>
+                            <input class="newcharacterinput" type="number" name="DexterityMod" min="-10" max="10" placeholder="Dexterity Mod" required>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <input class="newcharacterinput" type="number" name="constitution" min="1" max="20" placeholder="Constitution" required>
-                            <input class="newcharacterinput" type="number" name="constitutionmod" min="-10" max="10" placeholder="Constitution Mod" required>
+                            <input class="newcharacterinput" type="number" name="Constitution" min="1" max="20" placeholder="Constitution" required>
+                            <input class="newcharacterinput" type="number" name="ConstitutionMod" min="-10" max="10" placeholder="Constitution Mod" required>
                         </div>
-                        <div class="newcharacterformcolumn">
+                        <div class="newcharacterformcolumn"> <!--resume work here!!!-->
                             <input class="newcharacterinput" type="number" name="intelligence" min="1" max="20" placeholder="Intelligence" required>
                             <input class="newcharacterinput" type="number" name="intelligencemod" min="-10" max="10" placeholder="Intelligence Mod" required>
                         </div>
@@ -209,7 +218,10 @@
                         </div>
                     </div>
                 </form>
-            </section> <!--END: new character input form section-->
+            </section>
+            <!--END: new character input form section-->
+            
+            <!--BEGIN: character view page-->
             <section class="page view" id="viewpage">VIEWCHARACTER(add drop list of existing characters and display selected character data</section>
             <section class="page update" id="updatepage">UPDATECHARACTER (dynamic update form)</section>
             <section class="page inventory" id="inventorypage">INVENTORY (view party inventory, individual inventory, update individual inventory)</section>

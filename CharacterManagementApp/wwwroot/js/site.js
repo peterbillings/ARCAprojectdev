@@ -61,7 +61,7 @@ function interceptFormSubmit(event) {
 
     var jsonEntries = JSON.stringify(entriesObject);
 
-    console.log(jsonEntries);
+    //console.log(jsonEntries);
 
     newCharacterForm.reset();
 }
