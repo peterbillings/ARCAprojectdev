@@ -47,7 +47,17 @@ function togglePageDisplay() {
 
 var newCharacterForm = document.getElementById("newcharacterform");
 
-newCharacterForm.addEventListener("submit", interceptFormSubmit);
+newCharacterForm.addEventListener("submit", sendNewCharacterInfoToApi);
+
+function sendNewCharacterInfoToApi(event) {
+
+    interceptFormSubmit(event);
+    // var xhr = new XMLHttpRequest();
+
+    // xhr.open('POST', 'https://localhost:5003/api/values');
+
+    // xhr.setRequestHeader("Content-Type", "application/JSON");
+}
 
 function interceptFormSubmit(event) {
 
@@ -61,7 +71,7 @@ function interceptFormSubmit(event) {
 
     var jsonEntries = JSON.stringify(entriesObject);
 
-    //console.log(jsonEntries);
+    return jsonEntries;
 
     newCharacterForm.reset();
 }
