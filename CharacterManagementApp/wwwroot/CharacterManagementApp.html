@@ -149,6 +149,8 @@
                             <label for="constitutionmodfield">Constitution Modifier</label>
                             <input class="newcharacterinput" id="constitutionmodfield" type="number" name="ConstitutionMod" min="-10" max="10" placeholder="Constitution Mod" required>
                         </div>
+                    </div>
+                    <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn field-column"> 
                             <label for="intelligencefield">Intelligence</label>
                             <input class="newcharacterinput" id="intelligencefield" type="number" name="Intelligence" min="1" max="20" placeholder="Intelligence" required>
@@ -195,20 +197,33 @@
                         </div>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" id="personalitytraits" name="PersonalityTraits" maxlength="300" placeholder="Personality Traits" required></textarea>
-                        <textarea class="newcharactertextarea" id="ideals" name="Ideals" maxlength="300" placeholder="Ideals" required></textarea>
+                        <label for="personalitytraits">Personality Traits <br>
+                            <textarea class="newcharactertextarea" id="personalitytraits" name="PersonalityTraits" maxlength="300" placeholder="Personality Traits" required></textarea>
+                        </label>
+                        <label for="ideals">Ideals <br>
+                            <textarea class="newcharactertextarea" id="ideals" name="Ideals" maxlength="300" placeholder="Ideals" required></textarea>
+                        </label>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" id="bonds" name="Bonds" maxlength="300" placeholder="Bonds" required></textarea>
-                        <textarea class="newcharactertextarea" id="flaws" name="Flaws" maxlength="300" placeholder="Flaws" required></textarea>
+                        <label for="bonds">Bonds <br>
+                            <textarea class="newcharactertextarea" id="bonds" name="Bonds" maxlength="300" placeholder="Bonds" required></textarea>
+                        </label>
+                        <label for="flaws">Flaws <br>
+                            <textarea class="newcharactertextarea" id="flaws" name="Flaws" maxlength="300" placeholder="Flaws" required></textarea>
+                        </label>
                     </div>
                     <div class="newcharacterformrow">
-                        <textarea class="newcharactertextarea" name="AdditionalFeatures" maxlength="300" placeholder="Additional Features" required></textarea>
-                        <textarea class="newcharactertextarea" name="Languages" maxlength="300" placeholder="Languages" required></textarea>
+                        <label for="additionalfeatures">Additional Features <br>
+                            <textarea class="newcharactertextarea" id="additionalfeatures" name="AdditionalFeatures" maxlength="300" placeholder="Additional Features" required></textarea>
+                        </label>
+                        <label for="languages">Languages <br>
+                            <textarea class="newcharactertextarea" name="Languages" maxlength="300" placeholder="Languages" required></textarea>
+                        </label>
                     </div>
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn">
-                            <ul class="newcharactercheckboxwrapper">
+                            <label for="skills1">Skills</label>
+                            <ul class="newcharactercheckboxwrapper" id="skills1">
                                 <li><input class="newcharactercheckbox" type="checkbox" name="Acrobatics" value="1"> Acrobatics</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="AnimalHandling" value="1"> Animal Handling</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="Arcana" value="1"> Arcana</li>
@@ -221,7 +236,8 @@
                             </ul>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <ul class="newcharactercheckboxwrapper">
+                            <label for="skills2">Skills cont.</label>
+                            <ul class="newcharactercheckboxwrapper" id="skills2">
                                 <li><input class="newcharactercheckbox" type="checkbox" name="Medicine" value="1"> Medicine</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="Nature" value="1"> Nature</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="Perception" value="1"> Perception</li>
@@ -234,7 +250,8 @@
                             </ul>
                         </div>
                         <div class="newcharacterformcolumn">
-                            <ul class="newcharactercheckboxwrapper">
+                            <label for="savingthrows">Saving Throws</label>
+                            <ul class="newcharactercheckboxwrapper" id="savingthrows">
                                 <li><input class="newcharactercheckbox" type="checkbox" name="StrengthSave" value="1"> Strength Save</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="DexteritySave" value="1"> Dexterity Save</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="ConstitutionSave" value="1"> Constitution Save</li>

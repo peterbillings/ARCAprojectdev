@@ -73,6 +73,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding-top: 0px;
 }
 
 .newcharacterformcolumn {
@@ -127,7 +128,6 @@ select {
     border-style: inset;
     border-color: initial;
     min-width: 270px;
-
 }
 
 .submitbutton {
