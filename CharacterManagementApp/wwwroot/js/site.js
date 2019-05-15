@@ -37,13 +37,11 @@ function togglePageDisplay() {
 
     document.getElementsByClassName(pageClass)[1].style.display = "block";
 
-    //console.log("togglePageDisplay called");
-
 };
 // END functionality for allowing menu buttons to toggle between pages
 
 
-// BEGIN functionality for new character form submission/validation
+// BEGIN functionality for new character form submission
 
 var newCharacterForm = document.getElementById("newcharacterform");
 
@@ -66,7 +64,7 @@ function sendNewCharacterInfoToApi(event) {
 
     xhr.onload = function() {
 
-        console.log(this.response); // ***change this once database connection and other backend code is finished***
+        alert(this.response); // ***change this once database connection and other backend code is finished***
     }
 
     xhr.send(request);
@@ -95,4 +93,4 @@ function interceptFormSubmit(event) {
 }
 
 
-// END functionality for new character form submission/validation
+// END functionality for new character form submission

@@ -1,6 +1,6 @@
 using System;
 
-namespace CharacterManagementApi
+namespace CharacterManagementApi.HttpRequestDataClasses
 {
     public class NewCharacterFormData
     {
@@ -11,10 +11,10 @@ namespace CharacterManagementApi
         public string CharacterClass {get; set;}
         public string Background {get; set;}
         public string Alignment {get; set;}
-        public int Level {get; set;}
+        public int CharacterLevel {get; set;}
         public int Experience {get; set;}
         public int Strength {get; set;}
-        public int StengthMod {get; set;}
+        public int StrengthMod {get; set;}
         public int Dexterity {get; set;}
         public int DexterityMod {get; set;}
         public int Constitution {get; set;}
