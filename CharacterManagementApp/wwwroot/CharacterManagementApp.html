@@ -266,7 +266,7 @@
                                 <li><input class="newcharactercheckbox" type="checkbox" name="WisdomSave" value="true"> Wisdom Save</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="CharismaSave" value="true"> Charisma Save</li>
                             </ul>
-                            <input class="submitbutton" type="submit" value="Create Character">
+                            <input class="submitbutton" id="newcharactersubmit" type="submit" value="Create Character">
                         </div>
                     </div>
                 </form>
@@ -274,7 +274,19 @@
             <!--END: new character input form section-->
             
             <!--BEGIN: character view page-->
-            <section class="page view" id="viewpage">VIEWCHARACTER(add drop list of existing characters and display selected character data</section>
+            <section class="page view" id="viewpage">
+                <form id="viewcharacterform">
+                    <div class="viewcharacterformrow" id="viewcharactertoprow">
+                        <label for="allexistingcharacters">Choose a character<br>
+                            <select class="viewcharacterinput" id="viewexistingcharacters" name="CharacterName" required>
+                                    <option value="" disabled selected>Existing Characters</option>
+                            </select>
+                        </label>
+                        <input class="submitbutton" id="viewcharactersubmit" type="submit" value="View Character">
+                    </div>
+                </form>
+
+            </section>
             <!--END: character view page-->
             <section class="page update" id="updatepage">UPDATECHARACTER (dynamic update form)</section>
             <section class="page inventory" id="inventorypage">INVENTORY (view party inventory, individual inventory, update individual inventory)</section>

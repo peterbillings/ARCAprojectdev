@@ -58,13 +58,19 @@ function sendNewCharacterInfoToApi(event) {
 
     var request = interceptFormSubmit(event);
 
-    xhr.open('POST', 'https://localhost:5003/api/values');
+    xhr.open('POST', 'https://localhost:5003/api/newcharacter');
 
     xhr.setRequestHeader("Content-Type", "application/JSON");
 
     xhr.onload = function() {
 
         alert(this.response); // ***change this once database connection and other backend code is finished***
+        
+        viewExistingCharactersDropDown.innerHTML = ('<option value="" disabled selected>' +
+                                                   'Existing Characters' +
+                                                   '</option>');
+                                                   
+        populateExistingCharactersDropDown();
     }
 
     xhr.send(request);
@@ -94,3 +100,40 @@ function interceptFormSubmit(event) {
 
 
 // END functionality for new character form submission
+
+// BEGIN functionality for populating existing character dropdown on view page
+
+var viewExistingCharactersDropDown = document.getElementById('viewexistingcharacters');
+
+window.onload = populateExistingCharactersDropDown;
+
+function populateExistingCharactersDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/viewcharacterdropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var characterNameArray = JSON.parse(this.response);
+
+        for (var name of characterNameArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = name;
+
+            newSelectInput.innerHTML = name;
+
+            viewExistingCharactersDropDown.appendChild(newSelectInput);
+
+        }
+    }
+
+    xhr.send()
+}
+
+
+// END functionality for populating existing character dropdown on view page

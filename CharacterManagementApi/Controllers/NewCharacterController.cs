@@ -4,14 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CharacterManagementApi.HttpRequestDataClasses;
 using CharacterManagementApi.CharacterManagementDBModel;
 
 namespace CharacterManagementApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class NewCharacterController : ControllerBase
     {
         // dotnet ef dbcontext scaffold "Server=LAPTOP-F2RUMMJU\SQLEXPRESS;Database=CharacterManagementDB;Trusted_Connection=True;MultipleActiveResultSets=True" Microsoft.EntityFrameworkCore.SqlServer -o CharacterManagementDBModel -c "CharacterManagementDBContext"
         // POST api/values
@@ -26,14 +25,15 @@ namespace CharacterManagementApi.Controllers
                     context.SaveChanges();
                 }
             }
-            catch(DbUpdateException e)
+            catch(DbUpdateException)
             {
-                return "Oops! Something went rong. You should tell Peter to be a better programmar.";
+                return "Character could not be added to the database. Please try again.";
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                return "Fail";
+                return "Character addition failed.";
             }
+
             return $"{newCharacter.CharacterName} added successfully!";
         }
 

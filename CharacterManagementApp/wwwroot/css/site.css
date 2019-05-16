@@ -4,6 +4,7 @@
   box-sizing: border-box;
   padding: 5px;
   overflow: hidden;
+  font-family: serif;
 }
 
 :root {
@@ -68,7 +69,7 @@ body {
     padding: 10px;
 }
 
-.newcharacterformrow {
+.newcharacterformrow, .viewcharacterformrow {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -76,7 +77,11 @@ body {
     padding-top: 0px;
 }
 
-.newcharacterformcolumn {
+#viewcharactertoprow {
+    justify-content: center;
+}
+
+.newcharacterformcolumn, .viewcharacterformcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -88,7 +93,7 @@ body {
     height: 170px;
 }
 
-.newcharacterinput {
+.newcharacterinput, .viewcharacterinput {
     margin: 5px;
     min-width: 200px;
     border-color: initial; 
