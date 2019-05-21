@@ -278,13 +278,171 @@
                 <form id="viewcharacterform">
                     <div class="viewcharacterformrow" id="viewcharactertoprow">
                         <label for="allexistingcharacters">Choose a character<br>
-                            <select class="viewcharacterinput" id="viewexistingcharacters" name="CharacterName" required>
+                            <select class="viewcharacterinput" id="viewexistingcharacters" name="characterName" required>
                                     <option value="" disabled selected>Existing Characters</option>
                             </select>
                         </label>
                         <input class="submitbutton" id="viewcharactersubmit" type="submit" value="View Character">
                     </div>
                 </form>
+                <div class="viewcharacterformrow">
+                    <div class="viewcharacterformcolumn view-column">
+                        <label for="characterNameView">Character Name</label>
+                        <p class="characterdetailvaluedisplay" id="characterNameView">CharacterName</p>
+                        <label for="playerNameView">Player Name</label>
+                        <p class="characterdetailvaluedisplay" id="playerNameView">PlayerName</p>
+                    </div>
+                    <div class="viewcharacterformcolumn view-column">
+                        <label for="raceView">Race</label>
+                        <p class="characterdetailvaluedisplay" id="raceView">Race</p>
+                        <label for="characterClassView">Class</label>
+                        <p class="characterdetailvaluedisplay" id="characterClassView">Class</p>
+                    </div>
+                    <div class="viewcharacterformcolumn view-column">
+                            <label for="backgroundView">Background</label>
+                            <p class="characterdetailvaluedisplay" id="backgroundView">Background</p>
+                            <label for="alignmentView">Alignment</label>
+                            <p class="characterdetailvaluedisplay" id="alignmentView">Alignment</p>
+                    </div>
+                    <div class="viewcharacterformcolumn view-column">
+                            <label for="levelView">Level</label>
+                            <p class="characterdetailvaluedisplay" id="levelView">Level</p>
+                            <label for="experienceView">Experience</label>
+                            <p class="characterdetailvaluedisplay" id="experienceView">Experience</p>
+                    </div>
+                </div>
+                <div class="viewcharacterformrow">
+                    <div class="viewcharacterformcolumn view-column">
+                        <label for="strengthView">Strength</label>
+                        <p class="characterdetailvaluedisplay" id="strengthView">Strength</p>
+                        <label for="strengthModView">Strength Modifier</label>
+                        <p class="characterdetailvaluedisplay" id="strengthModView">Strength Modifier</p>
+                    </div>
+                    <div class="viewcharacterformcolumn view-column">
+                        <label for="dexterityView">Dexterity</label>
+                        <p class="characterdetailvaluedisplay" id="dexterityView">Dexterity</p>
+                        <label for="dexterityModView">Dexterity Modifier</label>
+                        <p class="characterdetailvaluedisplay" id="dexterityModView">Dexterity Modifier</p>
+                    </div>
+                    <div class="viewcharacterformcolumn view-column">
+                        <label for="constitutionView">Constitution</label>
+                        <p class="characterdetailvaluedisplay" id="constitutionView">Constitution</p>
+                        <label for="constitutionModView">Constitution Modifier</label>
+                        <p class="characterdetailvaluedisplay" id="constitutionModView">Constitution Mod</p>
+                    </div>
+                </div>
+                <div class="viewcharacterformrow">
+                        <div class="viewcharacterformcolumn view-column">
+                            <label for="intelligenceView">Intelligence</label>
+                            <p class="characterdetailvaluedisplay" id="intelligenceView">Intelligence</p>
+                            <label for="intelligenceModView">Intelligence Modifier</label>
+                            <p class="characterdetailvaluedisplay" id="intelligenceModView">Intelligence Modifier</p>
+                        </div>
+                        <div class="viewcharacterformcolumn view-column">
+                            <label for="wisdomView">Wisdom</label>
+                            <p class="characterdetailvaluedisplay" id="wisdomView">Wisdom</p>
+                            <label for="wisdomModView">Wisdom Modifier</label>
+                            <p class="characterdetailvaluedisplay" id="wisdomModView">Wisdom Modifier</p>
+                        </div>
+                        <div class="viewcharacterformcolumn view-column">
+                            <label for="charismaView">Charisma</label>
+                            <p class="characterdetailvaluedisplay" id="charismaView">Charisma</p>
+                            <label for="charismaModView">Charisma Modifier</label>
+                            <p class="characterdetailvaluedisplay" id="constitutionModView">Charisma Modifier</p>
+                        </div>
+                    </div>
+                    <div class="viewcharacterformrow">
+                        <div class="viewcharacterformcolumn view-column">
+                            <label for="maxHpView">Max HP</label>
+                            <p class="characterdetailvaluedisplay" id="maxHpView">Max HP</p>
+                            <label for="armorClassView">Armor Class</label>
+                            <p class="characterdetailvaluedisplay" id="armorClassView">Armor Class</p>
+                        </div>
+                        <div class="viewcharacterformcolumn view-column">
+                            <label for="hitDiceView">Hit Dice</label>
+                            <p class="characterdetailvaluedisplay" id="hitDiceView">Hit Dice</p>
+                            <label for="hitDiceTotalView">Hit Dice Total</label>
+                            <p class="characterdetailvaluedisplay" id="hitDiceTotalView">Hit Dice</p>
+                        </div>
+                        <div class="viewcharacterformcolumn view-column">
+                                <label for="proficiencyBonusView">Proficiency Bonus</label>
+                                <p class="characterdetailvaluedisplay" id="proficiencyBonusView">Proficiency Bonus</p>
+                                <label for="passivePerceptionView">Passive Perception</label>
+                                <p class="characterdetailvaluedisplay" id="passivePerceptionView">Passive Perception</p>
+                        </div>
+                        <div class="viewcharacterformcolumn view-column">
+                                <label for="initiativeView">Initiative</label>
+                                <p class="characterdetailvaluedisplay" id="initiativeView">Initiative</p>
+                                <label for="speedView">Speed</label>
+                                <p class="characterdetailvaluedisplay" id="speedView">Speed</p>
+                        </div>
+                    </div>
+                    <div class="viewcharacterformrow">
+                        <label for="personalityTraitsView">Personality Traits <br>
+                            <p class="viewcharactertextarea" id="personalityTraitsView">Personality Traits</p>
+                        </label>
+                        <label for="idealsView">Ideals <br>
+                            <p class="viewcharactertextarea" id="idealsView">Ideals</p>
+                        </label>
+                    </div>
+                    <div class="viewcharacterformrow">
+                        <label for="bondsView">Bonds <br>
+                            <p class="viewcharactertextarea" id="bondsView">Bonds</p>
+                        </label>
+                        <label for="flawsView">Flaws <br>
+                            <p class="viewcharactertextarea" id="flawsView">Flaws</p>
+                        </label>
+                    </div>
+                    <div class="viewcharacterformrow">
+                        <label for="additionalFeaturesView">Additional Features <br>
+                            <p class="viewcharactertextarea" id="additionalFeaturesView">Additional Features</p>
+                        </label>
+                        <label for="languagesView">Languages <br>
+                            <p class="viewcharactertextarea" id="languagesView">Languages</p>
+                        </label>
+                    </div>
+                    <div class="viewcharacterformrow">
+                        <div class="viewcharacterformcolumn">
+                            <label for="skills1view">Skills</label>
+                            <ul class="viewcharactercheckboxwrapper" id="skills1view">
+                                <li><input class="viewcharactercheckbox" id="acrobaticsView" type="checkbox" disabled> Acrobatics</li>
+                                <li><input class="viewcharactercheckbox" id="animalHandlingView" type="checkbox" disabled> Animal Handling</li>
+                                <li><input class="viewcharactercheckbox" id="arcanaView" type="checkbox" disabled> Arcana</li>
+                                <li><input class="viewcharactercheckbox" id="athleticsView" type="checkbox" disabled> Athletics</li>
+                                <li><input class="viewcharactercheckbox" id="deceptionView" type="checkbox" disabled> Deception</li>
+                                <li><input class="viewcharactercheckbox" id="historyView" type="checkbox" disabled> History</li>
+                                <li><input class="viewcharactercheckbox" id="insightView" type="checkbox" disabled> Insight</li>
+                                <li><input class="viewcharactercheckbox" id="intimidationView" type="checkbox" disabled> Intimidation</li>
+                                <li><input class="viewcharactercheckbox" id="investigationView" type="checkbox" disabled> Investigation</li>
+                            </ul>
+                        </div>
+                        <div class="viewcharacterformcolumn">
+                            <label for="skills2view">Skills cont.</label>
+                            <ul class="viewcharactercheckboxwrapper" id="skills2field">
+                                <li><input class="viewcharactercheckbox" id="medicineView" type="checkbox" disabled> Medicine</li>
+                                <li><input class="viewcharactercheckbox" id="natureView" type="checkbox" disabled> Nature</li>
+                                <li><input class="viewcharactercheckbox" id="perceptionView" type="checkbox" disabled> Perception</li>
+                                <li><input class="viewcharactercheckbox" id="performanceView" type="checkbox" disabled> Performance</li>
+                                <li><input class="viewcharactercheckbox" id="persuasionView" type="checkbox" disabled> Persuasion</li>
+                                <li><input class="viewcharactercheckbox" id="religionView" type="checkbox" disabled> Religion</li>
+                                <li><input class="viewcharactercheckbox" id="sleightOfHandView" type="checkbox" disabled> Sleight of Hand</li>
+                                <li><input class="viewcharactercheckbox" id="stealthView" type="checkbox" disabled> Stealth</li>
+                                <li><input class="viewcharactercheckbox" id="survivalView" type="checkbox" disabled> Survival</li>
+                            </ul>
+                        </div>
+                        <div class="viewcharacterformcolumn">
+                            <label for="savingthrowsview">Saving Throws</label>
+                            <ul class="viewcharactercheckboxwrapper" id="savingthrowsfield">
+                                <li><input class="viewcharactercheckbox" id="strengthSaveView" type="checkbox" disabled> Strength Save</li>
+                                <li><input class="viewcharactercheckbox" id="dexteritySaveView" type="checkbox" disabled> Dexterity Save</li>
+                                <li><input class="viewcharactercheckbox" id="constitutionSaveView" type="checkbox" disabled> Constitution Save</li>
+                                <li><input class="viewcharactercheckbox" id="intelligenceSaveView" type="checkbox" disabled> Intelligence Save</li>
+                                <li><input class="viewcharactercheckbox" id="wisdomSaveView" type="checkbox" disabled> Wisdom Save</li>
+                                <li><input class="viewcharactercheckbox" id="charismaSaveView" type="checkbox" disabled> Charisma Save</li>
+                            </ul>
+                            <button class="resetviewbutton" id="viewcharacterreset">Reset</button>
+                        </div>
+                    </div>
 
             </section>
             <!--END: character view page-->

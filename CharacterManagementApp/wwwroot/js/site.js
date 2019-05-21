@@ -56,7 +56,7 @@ function sendNewCharacterInfoToApi(event) {
 
     var xhr = new XMLHttpRequest();
 
-    var request = interceptFormSubmit(event);
+    var request = interceptFormSubmit(event, newCharacterForm);
 
     xhr.open('POST', 'https://localhost:5003/api/newcharacter');
 
@@ -81,11 +81,11 @@ function sendNewCharacterInfoToApi(event) {
 // which it converts to JSON and returns.  Prior to returning it resets the form
 // fields to their default values.
 
-function interceptFormSubmit(event) {
+function interceptFormSubmit(event, formName) {
 
     event.preventDefault();
 
-    var formData = new FormData(newCharacterForm);
+    var formData = new FormData(formName);
 
     var entries = formData.entries();
 
@@ -93,7 +93,7 @@ function interceptFormSubmit(event) {
 
     var jsonEntries = JSON.stringify(entriesObject);
 
-    newCharacterForm.reset();
+    formName.reset();
 
     return jsonEntries;
 }
@@ -137,3 +137,36 @@ function populateExistingCharactersDropDown() {
 
 
 // END functionality for populating existing character dropdown on view page
+
+// BEGIN functionality for displaying selected character information on view page
+
+var viewCharacterForm = document.getElementById("viewcharacterform");
+
+viewCharacterForm.addEventListener("submit", getSelectedCharacterInfo);
+
+function getSelectedCharacterInfo(event) {
+
+    var xhr = new XMLHttpRequest();
+
+    var characterNameJSON = interceptFormSubmit(event, viewCharacterForm);
+
+    var characterNameString = JSON.parse(characterNameJSON).characterName;
+
+    xhr.open('GET', `https://localhost:5003/api/selectedcharacterinfo?characterName=${characterNameString}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+    var characterInfoObject = JSON.parse(this.response);
+    
+    console.log(this.response);
+    // implement added response values to view page display html
+        
+    }
+
+    xhr.send();
+}
+
+
+// END functionality for displaying selected character information on view page

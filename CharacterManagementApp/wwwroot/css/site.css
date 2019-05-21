@@ -37,6 +37,7 @@ body {
     font-size: 25px;
     margin-top: 10px;
     box-shadow: 2px 3px 3px black;
+    cursor: pointer;
 }
 
 .page {
@@ -79,6 +80,7 @@ body {
 
 #viewcharactertoprow {
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .newcharacterformcolumn, .viewcharacterformcolumn {
@@ -89,7 +91,7 @@ body {
     padding-top: 0px;
 }
 
-.field-column {
+.field-column, .view-column {
     height: 170px;
 }
 
@@ -97,6 +99,18 @@ body {
     margin: 5px;
     min-width: 200px;
     border-color: initial; 
+}
+
+.characterdetailvaluedisplay {          /*-->view page*/
+    background-color: #314977;
+    margin: 5px;
+    min-width: 200px;
+    color: #f0e6d6;
+    font-size: 25px;
+    height: 45px;
+    line-height: 1;
+    vertical-align: middle;
+    box-shadow: 2px 3px 3px black;
 }
 
 label {
@@ -124,7 +138,20 @@ select {
     min-height: 80px;
 }
 
-.newcharactercheckboxwrapper {
+.viewcharactertextarea {
+    background-color: #314977;
+    margin: 5px;
+    width: 435px;
+    min-width: 200px;
+    color: #f0e6d6;
+    font-size: 25px;
+    min-height: 80px;
+    vertical-align: middle;
+    box-shadow: 2px 3px 3px black;
+}
+
+
+.newcharactercheckboxwrapper, .viewcharactercheckboxwrapper {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -135,7 +162,7 @@ select {
     min-width: 270px;
 }
 
-.submitbutton {
+.submitbutton, .resetviewbutton {
     border: none;
     color: #f0e6d6;
     background-color: #314977;
