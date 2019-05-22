@@ -95,7 +95,7 @@ body {
     height: 170px;
 }
 
-.newcharacterinput, .viewcharacterinput {
+.newcharacterinput, .viewcharacterinput, .updatecharacterinput {
     margin: 5px;
     min-width: 200px;
     border-color: initial; 

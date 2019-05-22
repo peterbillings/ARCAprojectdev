@@ -1,3 +1,13 @@
+// functions that are called when the page loads (to dynamically populate certain dropdown menus)
+
+window.onload = function() {
+
+    populateExistingCharactersDropDown();
+    populateAttributeToUpdateDropdown();
+}
+
+// END onload functions
+
 //BEGIN functionality for allowing menu buttons to toggle between pages
 
 var mainButton = document.getElementById("mainbutton");
@@ -66,9 +76,12 @@ function sendNewCharacterInfoToApi(event) {
 
         alert(this.response); // ***change this once database connection and other backend code is finished***
         
-        viewExistingCharactersDropDown.innerHTML = ('<option value="" disabled selected>' +
-                                                   'Existing Characters' +
-                                                   '</option>');
+        for (var dropdown of existingCharactersDropDown) {
+
+            dropdown.innerHTML = ('<option value="" disabled selected>' +
+                                                    'Existing Characters' +
+                                                    '</option>');
+        }
                                                    
         populateExistingCharactersDropDown();
     }
@@ -101,11 +114,11 @@ function interceptFormSubmit(event, formName) {
 
 // END functionality for new character form submission
 
-// BEGIN functionality for populating existing character dropdown on view page
+// BEGIN functionality for populating existing character dropdown menus on all pages
 
-var viewExistingCharactersDropDown = document.getElementById('viewexistingcharacters');
+var existingCharactersDropDown = document.getElementsByClassName('characternamedropdown');
 
-window.onload = populateExistingCharactersDropDown;
+//window.onload = populateExistingCharactersDropDown, populateAttributeToUpdateDropdown;
 
 function populateExistingCharactersDropDown() {
 
@@ -121,21 +134,21 @@ function populateExistingCharactersDropDown() {
 
         for (var name of characterNameArray){
 
-            var newSelectInput = document.createElement("option");
+            for (var dropdown of existingCharactersDropDown) {
 
-            newSelectInput.value = name;
+                var newSelectInput = document.createElement("option");
 
-            newSelectInput.innerHTML = name;
+                newSelectInput.value = name;
 
-            viewExistingCharactersDropDown.appendChild(newSelectInput);
+                newSelectInput.innerHTML = name;
 
+                dropdown.appendChild(newSelectInput);
+            }
         }
     }
 
     xhr.send()
 }
-
-
 // END functionality for populating existing character dropdown on view page
 
 // BEGIN functionality for displaying selected character information on view page
@@ -158,15 +171,66 @@ function getSelectedCharacterInfo(event) {
 
     xhr.onload = function() {
 
-    var characterInfoObject = JSON.parse(this.response);
+        var characterInfoObject = JSON.parse(this.response);
     
-    console.log(this.response);
-    // implement added response values to view page display html
+        for (var property in characterInfoObject) {
+
+            if (property !== "characterInventory" && property !== "characterSpells") {
+
+                var targetElement = document.getElementById(`${property}View`);
+
+                if (targetElement.className !== "viewcharactercheckbox") {
+
+                    targetElement.innerHTML = characterInfoObject[property];
+                }
+                else if (characterInfoObject[property] === true) {
+
+                    targetElement.checked = true;
+                }
+            }
+        }
         
     }
 
     xhr.send();
 }
 
-
 // END functionality for displaying selected character information on view page
+
+// BEGIN functionality for populating updatable attributes dropdown on update page
+
+var characterAttributesDropdown = document.getElementById('attributetoupdatedropdown');
+
+//window.onload = populateAttributeToUpdateDropdown;
+
+function populateAttributeToUpdateDropdown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/getUpdatableCharacterAttributes');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+        console.log(this.response);
+        var emptyCharacterDetailsObject = JSON.parse(this.response);
+
+        for (var property in emptyCharacterDetailsObject){
+
+            if (property !== "characterInventory" && property !== "characterSpells") {
+
+                var newSelectInput = document.createElement("option");
+
+                newSelectInput.value = property;
+
+                newSelectInput.innerHTML = property;
+
+                characterAttributesDropdown.appendChild(newSelectInput);
+            }
+        }
+    }
+
+    xhr.send()
+}
+
+// END functionality for populating updatable attributes dropdown on updates page

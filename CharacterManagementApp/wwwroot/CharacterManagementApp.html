@@ -277,8 +277,8 @@
             <section class="page view" id="viewpage">
                 <form id="viewcharacterform">
                     <div class="viewcharacterformrow" id="viewcharactertoprow">
-                        <label for="allexistingcharacters">Choose a character<br>
-                            <select class="viewcharacterinput" id="viewexistingcharacters" name="characterName" required>
+                        <label for="viewexistingcharacters">Choose a character<br>
+                            <select class="viewcharacterinput characternamedropdown" id="viewexistingcharacters" name="characterName" required>
                                     <option value="" disabled selected>Existing Characters</option>
                             </select>
                         </label>
@@ -305,8 +305,8 @@
                             <p class="characterdetailvaluedisplay" id="alignmentView">Alignment</p>
                     </div>
                     <div class="viewcharacterformcolumn view-column">
-                            <label for="levelView">Level</label>
-                            <p class="characterdetailvaluedisplay" id="levelView">Level</p>
+                            <label for="characterLevelView">Level</label>
+                            <p class="characterdetailvaluedisplay" id="characterLevelView">Level</p>
                             <label for="experienceView">Experience</label>
                             <p class="characterdetailvaluedisplay" id="experienceView">Experience</p>
                     </div>
@@ -348,7 +348,7 @@
                             <label for="charismaView">Charisma</label>
                             <p class="characterdetailvaluedisplay" id="charismaView">Charisma</p>
                             <label for="charismaModView">Charisma Modifier</label>
-                            <p class="characterdetailvaluedisplay" id="constitutionModView">Charisma Modifier</p>
+                            <p class="characterdetailvaluedisplay" id="charismaModView">Charisma Modifier</p>
                         </div>
                     </div>
                     <div class="viewcharacterformrow">
@@ -446,7 +446,24 @@
 
             </section>
             <!--END: character view page-->
-            <section class="page update" id="updatepage">UPDATECHARACTER (dynamic update form)</section>
+
+            <!--BEGIN: character update page-->
+            <section class="page update" id="updatepage">
+                <form class="characterupdateform" id="characterupdateformbuilder">
+                    <select class="updatecharacterinput characternamedropdown" id="charactertoupdatedropdown" name="characterName" required>
+                        <option value="" disabled selected>Character Name</option>
+                    </select>
+                    <select class="updatecharacterinput" id="attributetoupdatedropdown" name="characterAttribute" required>
+                        <option value="" disabled selected>Attribute</option>
+                    </select>  
+                    <input class="submitbutton" id="addsectiontoupdateform" type="submit" value="Add To Form">
+                </form>
+                <form class="characterupdateform" id="characterupdatesubmitform">
+
+                </form>
+
+            </section>
+            <!--END: character update page-->
             <section class="page inventory" id="inventorypage">INVENTORY (view party inventory, individual inventory, update individual inventory)</section>
             <section class="page spells" id="spellspage">SPELLS (view individual spells, update individual spells)</section>
         </main>

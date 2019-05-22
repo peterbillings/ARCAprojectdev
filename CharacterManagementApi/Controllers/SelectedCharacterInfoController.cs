@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CharacterManagementApi.CharacterManagementDBModel;
+using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace CharacterManagementApi.Controllers
 {
@@ -16,13 +14,19 @@ namespace CharacterManagementApi.Controllers
         [HttpGet]
         public ActionResult<CharacterDetails> Get([FromQuery] string characterName)
         {
-
-            using (var context = new CharacterManagementDBContext())
+            try 
             {
-                var selectedCharacterInfo = context.CharacterDetails
-                                            .FirstOrDefault(details => details.CharacterName == characterName);
+                using (var context = new CharacterManagementDBContext())
+                {
+                    var selectedCharacterInfo = context.CharacterDetails
+                                                .FirstOrDefault(details => details.CharacterName == characterName);
 
-                return selectedCharacterInfo;
+                    return selectedCharacterInfo;
+                }
+            }
+            catch(DbException)
+            {
+                return new CharacterDetails();
             }
 
             //return characterDetails;
