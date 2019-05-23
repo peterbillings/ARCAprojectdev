@@ -118,8 +118,6 @@ function interceptFormSubmit(event, formName) {
 
 var existingCharactersDropDown = document.getElementsByClassName('characternamedropdown');
 
-//window.onload = populateExistingCharactersDropDown, populateAttributeToUpdateDropdown;
-
 function populateExistingCharactersDropDown() {
 
     var xhr = new XMLHttpRequest();
@@ -172,6 +170,8 @@ function getSelectedCharacterInfo(event) {
     xhr.onload = function() {
 
         var characterInfoObject = JSON.parse(this.response);
+
+        resetViewCharacterCheckBoxes();
     
         for (var property in characterInfoObject) {
 
@@ -195,13 +195,23 @@ function getSelectedCharacterInfo(event) {
     xhr.send();
 }
 
+// Below: helper function for resetting the character skill checkboxes each time a new character if viewed
+
+function resetViewCharacterCheckBoxes() {
+
+    var allViewCheckBoxes = document.getElementsByClassName("viewcharactercheckbox");
+
+    for (var checkbox of allViewCheckBoxes) {
+
+        checkbox.checked = false;
+    }
+}
+
 // END functionality for displaying selected character information on view page
 
 // BEGIN functionality for populating updatable attributes dropdown on update page
 
 var characterAttributesDropdown = document.getElementById('attributetoupdatedropdown');
-
-//window.onload = populateAttributeToUpdateDropdown;
 
 function populateAttributeToUpdateDropdown() {
 
@@ -212,7 +222,7 @@ function populateAttributeToUpdateDropdown() {
     xhr.setRequestHeader("Content-Type", "application/JSON");
 
     xhr.onload = function() {
-        console.log(this.response);
+
         var emptyCharacterDetailsObject = JSON.parse(this.response);
 
         for (var property in emptyCharacterDetailsObject){
@@ -220,6 +230,8 @@ function populateAttributeToUpdateDropdown() {
             if (property !== "characterInventory" && property !== "characterSpells") {
 
                 var newSelectInput = document.createElement("option");
+
+                property = convertFirstLetterToUpper(property);
 
                 newSelectInput.value = property;
 
@@ -233,4 +245,97 @@ function populateAttributeToUpdateDropdown() {
     xhr.send()
 }
 
+// below: helper function for capitalizing the first letter of each property for C# object property formatting
+
+function convertFirstLetterToUpper(string) {
+
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 // END functionality for populating updatable attributes dropdown on updates page
+
+// BEGIN functionality for dynamically generating fields for the character update form
+
+var characterUpdateFormBuilder = document.getElementById("characterupdateformbuilder");
+
+var characterUpdateForm = document.getElementById("characterupdatesubmitform");
+
+characterUpdateFormBuilder.addEventListener("submit", generateUpdateFormField);
+
+function generateUpdateFormField(event) {
+
+    var xhr = new XMLHttpRequest();
+
+    var characterNameAndAttributeJSON = interceptFormSubmit(event, characterUpdateFormBuilder);
+
+    var characterNameString = JSON.parse(characterNameAndAttributeJSON).characterName;
+
+    var characterAttributeString = JSON.parse(characterNameAndAttributeJSON).characterAttribute;
+
+    xhr.open('GET', `https://localhost:5003/api/getCurrentValueOfSelectedAttribute?characterName=${characterNameString}&characterAttribute=${characterAttributeString}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var currentValue = this.response;
+
+        if (characterUpdateForm.children.length === 1)
+        {
+            characterUpdateForm.style.display = "block";
+        }
+
+        var newUpdateFormRow = document.createElement("div");
+
+        var removableUpdateRows = document.getElementsByClassName("removeupdateformrow");
+
+        newUpdateFormRow.classList.add("updatecharacterrow");
+
+        newUpdateFormRow.innerHTML = ('<div class="updatecharactersubmitformcolumn">' +
+                                          '<label for="charactertoupdate">Character Name</label>' +
+                                          `<p class="updatecharacterinput characterdetailvaluedisplay" id="charactertoupdate">${characterNameString}</p>` +
+                                      '</div>' +
+                                      '<div class="updatecharactersubmitformcolumn">' +
+                                          '<label for="attributetoupdate">Attribute</label>' +
+                                          `<p class="updatecharacterinput characterdetailvaluedisplay" id="attributetoupdate">${characterAttributeString}</p>`  +
+                                      '</div>' +
+                                      '<div class="updatecharactersubmitformcolumn">' +
+                                          '<label for="currentvalueofattributetoupdate">Current Value</label>' +
+                                          `<p class="updatecharacterinput characterdetailvaluedisplay" id="">${currentValue}</p>` +
+                                      '</div>' +
+                                      '<div class="updatecharactersubmitformcolumn">' +
+                                          '<label for="newcharacterupdatevalue">New Value</label>' +
+                                          '<input class="updatecharacterinput" id="newcharacterupdatevalue" type="text">' +
+                                      '</div>' +
+                                      '<p class="removeupdateformrow" style="border: solid 1px black; background-color: white; height: 30px; width: 30px;">X</p>'
+                                      );
+
+        var lastChildIndex = characterUpdateForm.children.length - 1;
+        
+        characterUpdateForm.insertBefore(newUpdateFormRow, characterUpdateForm.children[lastChildIndex]);
+
+        for (var i = 0; i < removableUpdateRows.length; i++) {
+
+            removableUpdateRows[i].addEventListener('click', removeUpdateRow);
+        }
+
+        //console.log(currentValueOfSelectedAttribute);
+    }
+
+    xhr.send()
+
+}
+
+//Below: helper function to remove a row from the dynamic update form
+
+function removeUpdateRow() { 
+
+    this.parentNode.parentNode.removeChild(this.parentNode);
+
+    if (characterUpdateForm.children.length === 1)
+        {
+            characterUpdateForm.style.display = "none";
+        }
+}
+
+// END functionality for dynamically generating fields for the character update form

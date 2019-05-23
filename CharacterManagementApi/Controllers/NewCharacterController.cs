@@ -12,7 +12,15 @@ namespace CharacterManagementApi.Controllers
     [ApiController]
     public class NewCharacterController : ControllerBase
     {
+        // dotnet CLI commands for db first model scaffolding
         // dotnet ef dbcontext scaffold "Server=LAPTOP-F2RUMMJU\SQLEXPRESS;Database=CharacterManagementDB;Trusted_Connection=True;MultipleActiveResultSets=True" Microsoft.EntityFrameworkCore.SqlServer -o CharacterManagementDBModel -c "CharacterManagementDBContext"
+
+        // dotnet CLI commands for adding ef core packages
+        // dotnet add package Microsoft.EntityFrameworkCore --version 2.2.4
+        // dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 2.2.4
+        // dotnet add package Microsoft.EntityFrameworkCore.Tools --version 2.2.4
+        // dotnet add package Microsoft.EntityFrameworkCore.Design --version 2.2.4
+
         // POST api/values
         [HttpPost]
         public ActionResult<string> Post([FromBody] CharacterDetails newCharacter)

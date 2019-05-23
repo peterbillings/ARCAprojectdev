@@ -70,7 +70,7 @@ body {
     padding: 10px;
 }
 
-.newcharacterformrow, .viewcharacterformrow {
+.newcharacterformrow, .viewcharacterformrow, .updatecharacterrow {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -83,11 +83,19 @@ body {
     margin-bottom: 20px;
 }
 
-.newcharacterformcolumn, .viewcharacterformcolumn {
+.newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
     min-width: 25%;
+    padding-top: 0px;
+}
+
+.updatecharactersubmitformcolumn {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    min-width: 20%;
     padding-top: 0px;
 }
 
@@ -108,7 +116,6 @@ body {
     color: #f0e6d6;
     font-size: 25px;
     height: 45px;
-    line-height: 1;
     vertical-align: middle;
     box-shadow: 2px 3px 3px black;
 }
@@ -142,7 +149,7 @@ select {
     background-color: #314977;
     margin: 5px;
     width: 435px;
-    min-width: 200px;
+    min-width: 225px;
     color: #f0e6d6;
     font-size: 25px;
     min-height: 80px;
@@ -173,4 +180,8 @@ select {
     font-size: 25px;
     margin-top: 20px;
     box-shadow: 2px 3px 3px black;
+}
+
+#characterupdatesubmitform {
+    display: none;
 }

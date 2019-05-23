@@ -26,10 +26,9 @@ namespace CharacterManagementApi.Controllers
             }
             catch(DbException)
             {
-                return new CharacterDetails();
+                return new CharacterDetails(); //figure out a better way to handle this instead of sending a blank object
             }
 
-            //return characterDetails;
         }
     }
 }
