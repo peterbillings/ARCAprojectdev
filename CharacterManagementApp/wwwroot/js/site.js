@@ -303,12 +303,22 @@ function generateUpdateFormField(event) {
                                           '<label for="currentvalueofattributetoupdate">Current Value</label>' +
                                           `<p class="updatecharacterinput characterdetailvaluedisplay" id="">${currentValue}</p>` +
                                       '</div>' +
-                                      '<div class="updatecharactersubmitformcolumn">' +
-                                          '<label for="newcharacterupdatevalue">New Value</label>' +
-                                          '<input class="updatecharacterinput" id="newcharacterupdatevalue" type="text">' +
-                                      '</div>' +
+                                    //   '<div class="updatecharactersubmitformcolumn">' +
+                                    //       '<label for="newcharacterupdatevalue">New Value</label>' +
+                                    //       '<input class="updatecharacterinput" id="newcharacterupdatevalue" type="text">' +
+                                    //   '</div>' +
                                       '<p class="removeupdateformrow" style="border: solid 1px black; background-color: white; height: 30px; width: 30px;">X</p>'
                                       );
+
+        var matchingInputField = document.getElementsByName(characterAttributeString)[0];
+
+        var cloneInputField = matchingInputField.cloneNode(true);
+
+        cloneInputField.classList.remove("newcharacterinput");
+
+        cloneInputField.classList.add("updatecharacterinput");
+
+        newUpdateFormRow.insertBefore(cloneInputField, newUpdateFormRow.children[3]);
 
         var lastChildIndex = characterUpdateForm.children.length - 1;
         
