@@ -254,7 +254,8 @@ function convertFirstLetterToUpper(string) {
 
 // END functionality for populating updatable attributes dropdown on updates page
 
-// BEGIN functionality for dynamically generating fields for the character update form
+// BEGIN functionality for dynamically generating fields for the character update form with 'constrained' fields
+//    eventually, figure out serverside technique for scrubbing textarea entries against SQL injection (whitelist characters?)
 
 var characterUpdateFormBuilder = document.getElementById("characterupdateformbuilder");
 
@@ -291,34 +292,48 @@ function generateUpdateFormField(event) {
 
         newUpdateFormRow.classList.add("updatecharacterrow");
 
-        newUpdateFormRow.innerHTML = ('<div class="updatecharactersubmitformcolumn">' +
-                                          '<label for="charactertoupdate">Character Name</label>' +
-                                          `<p class="updatecharacterinput characterdetailvaluedisplay" id="charactertoupdate">${characterNameString}</p>` +
-                                      '</div>' +
-                                      '<div class="updatecharactersubmitformcolumn">' +
-                                          '<label for="attributetoupdate">Attribute</label>' +
-                                          `<p class="updatecharacterinput characterdetailvaluedisplay" id="attributetoupdate">${characterAttributeString}</p>`  +
-                                      '</div>' +
-                                      '<div class="updatecharactersubmitformcolumn">' +
-                                          '<label for="currentvalueofattributetoupdate">Current Value</label>' +
-                                          `<p class="updatecharacterinput characterdetailvaluedisplay" id="">${currentValue}</p>` +
-                                      '</div>' +
-                                    //   '<div class="updatecharactersubmitformcolumn">' +
-                                    //       '<label for="newcharacterupdatevalue">New Value</label>' +
-                                    //       '<input class="updatecharacterinput" id="newcharacterupdatevalue" type="text">' +
-                                    //   '</div>' +
-                                      '<p class="removeupdateformrow" style="border: solid 1px black; background-color: white; height: 30px; width: 30px;">X</p>'
-                                      );
+        var matchingInputField = document.getElementsByName(characterAttributeString)[0];
+
+        if (matchingInputField.type === "textarea") {
+
+            newUpdateFormRow.innerHTML = ''; // TODO: create custom HTML for textarea update rows, to account for size of textfields
+        }
+
+        else {
+
+            newUpdateFormRow.innerHTML = (
+            
+                '<div class="updatecharactersubmitformcolumn">' +
+                    '<label for="charactertoupdate">Name (Click to remove)</label>' +
+                    `<p class="updatecharacterinput characterdetailvaluedisplay removeupdateformrow" id="charactertoupdate">${characterNameString}</p>` +
+                '</div>' +
+                '<div class="updatecharactersubmitformcolumn">' +
+                    '<label for="attributetoupdate">Attribute</label>' +
+                    `<p class="updatecharacterinput characterdetailvaluedisplay" id="attributetoupdate">${characterAttributeString}</p>`  +
+                '</div>' +
+                '<div class="updatecharactersubmitformcolumn">' +
+                    '<label for="currentvalueofattributetoupdate">Current Value</label>' +
+                    `<p class="updatecharacterinput characterdetailvaluedisplay" id="">${currentValue}</p>` +
+                '</div>' +
+                '<div class="updatecharactersubmitformcolumn">' +
+                    `<label for="${characterNameString}${characterAttributeString}updatefield">New Value</label>` +
+                '</div>'
+            );
+        }
 
         var matchingInputField = document.getElementsByName(characterAttributeString)[0];
 
-        var cloneInputField = matchingInputField.cloneNode(true);
+        var cloneInputField = matchingInputField.cloneNode(true); // TODO: use an if statement to screen for and generate a custom field for type=checkbox inputs
 
         cloneInputField.classList.remove("newcharacterinput");
 
         cloneInputField.classList.add("updatecharacterinput");
 
-        newUpdateFormRow.insertBefore(cloneInputField, newUpdateFormRow.children[3]);
+        cloneInputField.name = `${characterNameString}_${characterAttributeString}`;
+
+        cloneInputField.id = `${characterNameString}${characterAttributeString}updatefield`;
+
+        newUpdateFormRow.children[3].appendChild(cloneInputField);
 
         var lastChildIndex = characterUpdateForm.children.length - 1;
         
@@ -340,7 +355,7 @@ function generateUpdateFormField(event) {
 
 function removeUpdateRow() { 
 
-    this.parentNode.parentNode.removeChild(this.parentNode);
+    this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
 
     if (characterUpdateForm.children.length === 1)
         {

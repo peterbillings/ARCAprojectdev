@@ -118,6 +118,7 @@ body {
     height: 45px;
     vertical-align: middle;
     box-shadow: 2px 3px 3px black;
+    padding-top: 8px;
 }
 
 label {
