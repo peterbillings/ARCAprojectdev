@@ -135,7 +135,7 @@ select {
     max-height: 30px;
 }
 
-.newcharactertextarea {
+.newcharactertextarea, .updatecharactertextarea {
     resize: none;
     border-style: inset;
     border-width: 2px;

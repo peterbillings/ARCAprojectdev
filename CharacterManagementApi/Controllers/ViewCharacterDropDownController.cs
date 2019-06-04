@@ -23,7 +23,7 @@ namespace CharacterManagementApi.Controllers
             {
                 var allCharacterNames = context.CharacterDetails
                                         .OrderBy(names => names.CharacterName)
-                                        .Select(names => new {names.CharacterName});
+                                        .Select(names => new {names.CharacterName}); //??projection??
                                         
                 
                 foreach (var name in allCharacterNames)
@@ -32,7 +32,8 @@ namespace CharacterManagementApi.Controllers
                 }
             }
 
-            return listOfCharacterNames.ToArray();
+            //return listOfCharacterNames.ToArray();
+            return listOfCharacterNames;
         }
 
     }
