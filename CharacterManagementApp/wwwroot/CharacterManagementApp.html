@@ -56,9 +56,9 @@
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn field-column">
                             <label for="characternamefield">Character Name</label>
-                            <input class="newcharacterinput" id="characternamefield" type="text" name="CharacterName" placeholder="Character Name" required>
+                            <input class="newcharacterinput" id="characternamefield" type="text" name="CharacterName" maxlength="50" placeholder="Character Name" required>
                             <label for="playernamefield">Player Name</label>
-                            <input class="newcharacterinput" id="playernamefield" type="text" name="PlayerName" placeholder="Player Name" required>
+                            <input class="newcharacterinput" id="playernamefield" type="text" name="PlayerName" maxlength="50" placeholder="Player Name" required>
                         </div>
                         <div class="newcharacterformcolumn field-column">
                             <label for="racefield">Race</label>
@@ -473,10 +473,67 @@
                 <form class="characterupdateform" id="characterupdatesubmitform">
                     <input class="submitbutton" id="submitCharacterUpdateInfo" type="submit" value="Update">
                 </form>
-
             </section>
             <!--END: character update page-->
-            <section class="page inventory" id="inventorypage">INVENTORY (view party inventory, individual inventory, update individual inventory)</section>
+
+            <!--BEGIN: inventory page-->
+            <section class="page inventory" id="inventorypage">
+                <div class="inventoryformrow" id="inventorymenutoggle">
+                        <p class="menuitem updateinventory inventorytoggle" id="updateinventorybutton">UPDATE INVENTORY</p>
+                        <p class="menuitem viewinventory inventorytoggle" id="viewinventorybutton">VIEW INVENTORY</p>
+                </div>
+                <form class="inventoryform updateinventory" id="updateinventoryform">
+                    <div class="inventoryformrow">
+                        <div class="inventoryformcolumn">
+                            <label for="characterinventorytoupdate">Character Name</label>
+                            <select class="updateinventoryinput characternamedropdown" id="characterinventorytoupdate" name="CharacterName" required>
+                                <option value="" disabled selected>Character Name</option>
+                            </select>
+                        </div>
+                        <div class="inventoryformcolumn">
+                            <label for="itemnamefield">Item Name</label>
+                            <input class="updateinventoryinput" id="itemnamefield" type="text" name="ItemName" maxlength="50" placeholder="Item Name" required>
+                        </div>
+                        <div class="inventoryformcolumn">
+                            <label for="itemvaluefield">Item Value</label>
+                            <input class="updateinventoryinput" id="itemvaluefield" type="number" name="ItemValue" min="0" placeholder="Item Value" required>
+                        </div>
+                        <div class="inventoryformcolumn">
+                            <label for="itemvaluefield">Quantity</label>
+                            <input class="updateinventoryinput" id="itemquantityfield" type="number" name="ItemQuantity" min="1" placeholder="Quantity" required>
+                        </div>
+                    </div>
+                    <div class="inventoryformrow">
+                        <div class="inventoryformcolumn">
+                            <label for="itemdescriptionfield">Item Description</label>
+                            <textarea class="itemdescriptiontextarea" id="itemdescriptionfield" name="ItemDescription" maxlength="300" placeholder="Description"></textarea>
+                        </div>
+                        <div class="inventoryformcolumn">
+                            <input class="submitbutton" id="updateinventorysubmit" type="submit" value="Update Inventory">
+                        </div>
+                    </div> 
+                </form>
+                <form class="inventoryform viewinventory" id="viewinventoryform">
+                    <div class="inventoryformrow">
+                        <div class="inventoryformcolumn">
+                            <label for="characterinventorytoview">Character Name</label>
+                            <select class="updateinventoryinput characternamedropdown" id="characterinventorytoupdate" name="CharacterName" required>
+                                <option value="" disabled selected>Character Name</option>
+                            </select>
+                        </div>
+                        <div class="inventoryformcolumn">
+                            <label for="currentcharacterinventory">Inventory</label>
+                            <select class="updateinventoryinput characterinventorydropdown" id="currentcharacterinventory" name="ItemName" required>
+                                <option value="" disabled selected>Inventory</option>
+                            </select>
+                        </div>
+                        <div class="inventoryformcolumn">
+                            <input class="submitbutton" id="viewitemdetailssubmit" type="submit" value="View Item Details">
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <!--END: inventory page-->
             <section class="page spells" id="spellspage">SPELLS (view individual spells, update individual spells)</section>
         </main>
     </body>

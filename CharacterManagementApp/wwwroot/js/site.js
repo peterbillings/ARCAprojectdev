@@ -37,15 +37,27 @@ spellsButton.addEventListener("click", togglePageDisplay);
 
 function togglePageDisplay() {
 
+    var allMenuButtons = document.getElementsByClassName("menuitem");
+
     var allPages = document.getElementsByClassName("page");
 
     var pageClass = this.classList.item(1);
+
+    for(var i = 0; i < allMenuButtons.length; i++) {
+        allMenuButtons[i].style.backgroundColor = "#314977";
+        allMenuButtons[i].style.boxShadow = "2px 3px 3px black"
+    }
     
     for (var i = 0; i < allPages.length; i++) {
         allPages[i].style.display = "none";
     }
 
-    document.getElementsByClassName(pageClass)[1].style.display = "block";
+    var toggled = document.getElementsByClassName(pageClass)[1];
+
+    toggled.style.display = "block";
+
+    this.style.backgroundColor = "#1b2841";
+    this.style.boxShadow = "none";
 
 };
 // END functionality for allowing menu buttons to toggle between pages
@@ -358,8 +370,6 @@ function generateUpdateFormField(event) {
             newUpdateFormRow.children[3].appendChild(cloneInputField);
         }
 
-        
-
         var lastChildIndex = characterUpdateSubmitForm.children.length - 1;
         
         characterUpdateSubmitForm.insertBefore(newUpdateFormRow, characterUpdateSubmitForm.children[lastChildIndex]);
@@ -368,8 +378,6 @@ function generateUpdateFormField(event) {
 
             removableUpdateRows[i].addEventListener('click', removeUpdateRow);
         }
-
-        //console.log(currentValueOfSelectedAttribute);
     }
 
     xhr.send()
@@ -392,8 +400,6 @@ function removeUpdateRow() {
 
 // BEGIN functionality for submitting dynamic character update form
 
-            // var characterUpdateSubmitForm = document.getElementById("characterupdatesubmitform"); declared above...
-
 characterUpdateSubmitForm.addEventListener("submit", updateCharacterInfo);
 
 function updateCharacterInfo() {
@@ -413,8 +419,6 @@ function updateCharacterInfo() {
     }
 
     var characterUpdateInfoWrapperJSON = JSON.stringify(characterUpdateInfoWrapper);
-
-    console.log(characterUpdateInfoWrapperJSON);
 
     xhr.open( 'POST', 'https://localhost:5003/api/updateCharacterInfo');
 
@@ -446,4 +450,67 @@ function resetCharacterUpdateSubmitForm() {
     characterUpdateSubmitForm.style.display = "none";
 }
 
-// END functionality for submitting dynamic character update form
+// END: functionality for submitting dynamic character update form
+
+// BEGIN: functionality for toggling inventory page form display
+
+var updateInventoryButton = document.getElementById("updateinventorybutton");
+var viewInventoryButton = document.getElementById("viewinventorybutton");
+
+updateInventoryButton.addEventListener("click", toggleInventoryDisplay);
+viewInventoryButton.addEventListener("click", toggleInventoryDisplay);
+
+function toggleInventoryDisplay() {
+
+    var inventoryToggleButtons = document.getElementsByClassName("inventorytoggle");
+
+    var allInventoryForms = document.getElementsByClassName("inventoryform");
+
+    var inventoryFormClass = this.classList.item(1);
+
+    for(var i = 0; i < inventoryToggleButtons.length; i++) {
+        inventoryToggleButtons[i].style.backgroundColor = "#314977";
+        inventoryToggleButtons[i].style.boxShadow = "2px 3px 3px black"
+    }
+    
+    for (var i = 0; i < allInventoryForms.length; i++) {
+        allInventoryForms[i].style.display = "none";
+    }
+
+    document.getElementsByClassName(inventoryFormClass)[1].style.display = "block";
+
+    this.style.backgroundColor = "#1b2841";
+    this.style.boxShadow = "none";
+};
+
+// END: functionality for toggling inventory page form display
+
+// BEGIN: functionality for submitting inventory update form to api
+
+var updateInventoryForm = document.getElementById("updateinventoryform");
+
+updateInventoryForm.addEventListener("submit", updateCharacterInventory);
+
+function updateCharacterInventory() {
+
+    var xhr = new XMLHttpRequest();
+
+    var request = interceptFormSubmit(event, updateInventoryForm);
+
+    console.log(request);
+
+    xhr.open('POST', 'https://localhost:5003/api/updateinventory');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        //handle response here
+        console.log(this.response);
+    }
+
+    xhr.send(request);
+
+}
+
+// END: functionality for submitting inventory update for to api

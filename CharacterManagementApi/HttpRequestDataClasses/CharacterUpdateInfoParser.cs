@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CharacterManagementApi
+namespace CharacterManagementApi.HttpRequestDataClasses
 {
 
     public class CharacterUpdateInfoParser 

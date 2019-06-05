@@ -70,7 +70,7 @@ body {
     padding: 10px;
 }
 
-.newcharacterformrow, .viewcharacterformrow, .updatecharacterrow {
+.newcharacterformrow, .viewcharacterformrow, .updatecharacterrow, .inventoryformrow {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -83,7 +83,7 @@ body {
     margin-bottom: 20px;
 }
 
-.newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn {
+.newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn, .inventoryformcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -103,7 +103,7 @@ body {
     height: 170px;
 }
 
-.newcharacterinput, .viewcharacterinput, .updatecharacterinput {
+.newcharacterinput, .viewcharacterinput, .updatecharacterinput, .updateinventoryinput {
     margin: 5px;
     min-width: 200px;
     border-color: initial; 
@@ -135,7 +135,7 @@ select {
     max-height: 30px;
 }
 
-.newcharactertextarea, .updatecharactertextarea {
+.newcharactertextarea, .updatecharactertextarea, .itemdescriptiontextarea {
     resize: none;
     border-style: inset;
     border-width: 2px;
@@ -183,6 +183,19 @@ select {
     box-shadow: 2px 3px 3px black;
 }
 
+#updateinventorysubmit {
+    margin-top: 60px;
+}
+
 #characterupdatesubmitform {
+    display: none;
+}
+
+#inventorymenutoggle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#viewinventoryform {
     display: none;
 }

@@ -1,16 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace CharacterManagementApi
+namespace CharacterManagementApi.HttpRequestDataClasses
 {
 
     public class CharacterUpdateInfoWrapper 
     {
-
-        //public List<string> DynamicUpdateInfo {get; set;}
-
         public string[] DynamicUpdateInfo {get; set;}
-
-
     }
 }
