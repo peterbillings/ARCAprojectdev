@@ -1,39 +1,36 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using CharacterManagementApi.CharacterManagementDBModel;
+using System.Linq;
 
 namespace CharacterManagementApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ViewCharacterDropDownController : ControllerBase
+    public class PopulateInventoryDropdownController : ControllerBase
     {
         
         // GET api/viewcharacterdropdown
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> Get([FromQuery] string characterName)
         {
             List<string> listOfCharacterNames = new List<string>();
 
             using (var context = new CharacterManagementDBContext())
             {
-                var allCharacterNames = context.CharacterDetails
-                                        .OrderBy(names => names.CharacterName)
-                                        .Select(names => new {names.CharacterName}); //??projection??
+                var characterInventory = context.CharacterInventory
+                                         .Where(items => items.CharacterName == characterName)
+                                         .Select(items => new {items.ItemName});
                                         
-                
-                foreach (var name in allCharacterNames)
+                foreach (var item in characterInventory)
                 {
-                    listOfCharacterNames.Add(name.CharacterName);
+                    listOfCharacterNames.Add(item.ItemName);
                 }
             }
 
             return listOfCharacterNames;
         }
-
     }
 }

@@ -497,16 +497,13 @@ function updateCharacterInventory() {
 
     var request = interceptFormSubmit(event, updateInventoryForm);
 
-    console.log(request);
-
     xhr.open('POST', 'https://localhost:5003/api/updateinventory');
 
     xhr.setRequestHeader("Content-Type", "application/JSON");
 
     xhr.onload = function() {
 
-        //handle response here
-        console.log(this.response);
+        alert(this.response); 
     }
 
     xhr.send(request);
@@ -514,3 +511,85 @@ function updateCharacterInventory() {
 }
 
 // END: functionality for submitting inventory update for to api
+
+// BEGIN: functionality for populating character inventory drop down based on charactername drop down changes
+
+var inventoryViewNameDropdown = document.getElementById("characterinventorytoview");
+
+var inventoryDropdown = document.getElementById("currentcharacterinventory");
+
+inventoryViewNameDropdown.addEventListener("change", populateInventoryDropdown);
+
+function populateInventoryDropdown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', `https://localhost:5003/api/populateinventorydropdown?characterName=${inventoryViewNameDropdown.value}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var characterInventoryArray = JSON.parse(this.response);
+
+        while(inventoryDropdown.children.length > 1) {
+
+            inventoryDropdown.removeChild(inventoryDropdown.children[1]);
+        }
+
+        for (var item of characterInventoryArray){
+
+                var newSelectInput = document.createElement("option");
+
+                newSelectInput.value = item;
+
+                newSelectInput.innerHTML = item;
+
+                inventoryDropdown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+
+
+
+}
+
+// END: functionality for populating character inventory drop down
+
+// BEGIN: functionality for viewing selected item details from selected character's inventory
+
+var itemDetailsView = document.getElementById("itemDetailsView");
+
+var viewInventoryForm = document.getElementById("viewinventoryform");
+
+viewInventoryForm.addEventListener("submit", getSelectedItemDetails);
+
+function getSelectedItemDetails() {
+
+    var xhr = new XMLHttpRequest();
+
+    var viewInventoryFormJSON = interceptFormSubmit(event, viewInventoryForm);
+
+    var viewInventoryFormData = JSON.parse(viewInventoryFormJSON);
+
+    console.log(viewInventoryFormData);
+
+    xhr.open('GET', `https://localhost:5003/api/getSelectedItemDetails?characterName=${viewInventoryFormData.CharacterName}&itemName=${viewInventoryFormData.ItemName}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var itemDetails = JSON.parse(this.response);
+
+        // itemDetailsView.innerHTML = ("");
+        
+    };
+
+    xhr.send();
+
+
+}
+
+// END: functionality for viewing selected item details

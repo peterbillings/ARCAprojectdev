@@ -50,9 +50,9 @@ namespace CharacterManagementApi.Controllers
                                                          .FirstOrDefault(inventory => (inventory.CharacterName == inventoryToUpdate.CharacterName &&
                                                                                        inventory.ItemName == inventoryToUpdate.ItemName));
 
-                        var quantity = characterInventoryToUpdate.ItemQuantity;
+                        var currentQuantity = characterInventoryToUpdate.ItemQuantity;
 
-                        quantity += inventoryToUpdate.ItemQuantity;
+                        characterInventoryToUpdate.ItemQuantity = currentQuantity + inventoryToUpdate.ItemQuantity;
                     }
 
                     context.SaveChanges();
