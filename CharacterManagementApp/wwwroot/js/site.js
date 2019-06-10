@@ -559,7 +559,7 @@ function populateInventoryDropdown() {
 
 // BEGIN: functionality for viewing selected item details from selected character's inventory
 
-var itemDetailsView = document.getElementById("itemDetailsView");
+var itemDetailsView = document.getElementById("itemdetailsview");
 
 var viewInventoryForm = document.getElementById("viewinventoryform");
 
@@ -573,7 +573,7 @@ function getSelectedItemDetails() {
 
     var viewInventoryFormData = JSON.parse(viewInventoryFormJSON);
 
-    console.log(viewInventoryFormData);
+    // console.log(viewInventoryFormData);
 
     xhr.open('GET', `https://localhost:5003/api/getSelectedItemDetails?characterName=${viewInventoryFormData.CharacterName}&itemName=${viewInventoryFormData.ItemName}`);
 
@@ -583,13 +583,100 @@ function getSelectedItemDetails() {
 
         var itemDetails = JSON.parse(this.response);
 
-        // itemDetailsView.innerHTML = ("");
+        // console.log(itemDetails);
+
+        itemDetailsView.innerHTML = (
+                    '<div class="inventoryformrow">' +
+                        '<div class="inventoryviewcolumn">' +
+                            '<label for="inventoryNameView">Character Name</label>' +
+                            `<p class="itemdetailvaluedisplay" id="inventoryNameView">${viewInventoryFormData.CharacterName}</p>` +
+                        '</div>' +
+                        '<div class="inventoryviewcolumn">' +
+                            '<label for="itemNameView">Item Name</label>' +
+                            `<p class="itemdetailvaluedisplay" id="itemNameView">${itemDetails.itemName}</p>` +
+                        '</div>' +
+                        '<div class="inventoryviewcolumn">' +
+                            '<label for="itemValueView">Value (GP)</label>' +
+                            `<p class="itemdetailvaluedisplay" id="itemValueView">${itemDetails.itemValue}</p>` +
+                        '</div>' +
+                        '<div class="inventoryviewcolumn">' +
+                            '<label for="itemQuantityView">Quantity</label>' +
+                            `<p class="itemdetailvaluedisplay" id="itemQuantityView">${itemDetails.itemQuantity}</p>` +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="inventoryformrow">' +
+                        '<div class="inventoryviewcolumn">' +
+                            '<label for="itemDescriptionView">Description</label>' +
+                            `<p class="viewitemdetailtextarea" id="itemDescriptionView">${itemDetails.itemDescription}</p>` +
+                        '</div>' +
+                        '<div class="inventoryviewcolumn">' +
+                             '<p class="itemdetailvaluedisplay" id="incrementquantitybutton">Increment (+1)</p>' +
+                             '<p class="itemdetailvaluedisplay" id="decrementquantitybutton">Decrement (-1)</p>' +
+                        '</div>' +
+                    '</div>'
+        );
+
+        var incrementButton = document.getElementById("incrementquantitybutton");
+
+        var decrementButton = document.getElementById("decrementquantitybutton");
+
+        incrementButton.addEventListener("click", updateItemQuantity);
+
+        decrementButton.addEventListener("click", updateItemQuantity);
         
     };
 
     xhr.send();
-
-
 }
 
 // END: functionality for viewing selected item details
+
+// BEGIN: functionality for updating item quantity (function references in above section for viewing item details)
+
+function updateItemQuantity() {
+
+    var xhr = new XMLHttpRequest();
+
+    var itemQuantity = document.getElementById("itemQuantityView")
+
+    var characterName = document.getElementById("inventoryNameView").innerHTML;
+
+    var itemName = document.getElementById("itemNameView").innerHTML;
+
+    var changeInQuantity;
+
+    if (this.id === "incrementquantitybutton") {
+        
+        changeInQuantity = 1;
+    }
+    else if (this.id === "decrementquantitybutton" && itemQuantity.innerHTML !== "0") {
+
+        changeInQuantity = (-1);
+    }
+    else {
+        changeInQuantity = 0;
+    }
+
+    xhr.open('GET', `https://localhost:5003/api/incrementInventory?characterName=${characterName}&itemName=${itemName}&changeInQuantity=${changeInQuantity}`)
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        console.log(this.response);
+
+        if (this.response === -1) {
+
+            alert("Quantity update failed, please try again");
+        }
+        else {
+
+            itemQuantity.innerHTML = this.response; 
+        }
+    }
+
+    xhr.send();
+
+}
+
+// END: functionality for updating item quantity

@@ -91,7 +91,7 @@ body {
     padding-top: 0px;
 }
 
-.updatecharactersubmitformcolumn {
+.updatecharactersubmitformcolumn, .inventoryviewcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -109,7 +109,7 @@ body {
     border-color: initial; 
 }
 
-.characterdetailvaluedisplay {          /*-->view page*/
+.characterdetailvaluedisplay, .itemdetailvaluedisplay {          /*-->view page & inventory page*/
     background-color: #314977;
     margin: 5px;
     min-width: 200px;
@@ -146,7 +146,7 @@ select {
     min-height: 80px;
 }
 
-.viewcharactertextarea {
+.viewcharactertextarea, .viewitemdetailtextarea {
     background-color: #314977;
     margin: 5px;
     width: 435px;
@@ -193,9 +193,18 @@ select {
 
 #inventorymenutoggle {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 #viewinventoryform {
     display: none;
+}
+
+#itemdetailsview {
+    margin-top: 30px;
+}
+
+#incrementquantitybutton {
+    margin-top: 70px;
+    margin-bottom: 10px;
 }
