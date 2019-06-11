@@ -535,7 +535,78 @@
                 <div id="itemdetailsview"></div>
             </section>
             <!--END: inventory page-->
-            <section class="page spells" id="spellspage">SPELLS (view individual spells, update individual spells)</section>
+
+            <!--BEGIN: spells page-->
+            <section class="page spells" id="spellspage">
+                <div class="spellsformrow" id="spellsmenutoggle">
+                    <p class="menuitem updatespells spellstoggle" id="updatespellsbutton">UPDATE SPELLS</p>
+                    <p class="menuitem viewspells spellstoggle" id="viewspellsbutton">VIEW SPELLS</p>
+                </div>
+                <form class="spellsform updatespells" id="updatespellsform">
+                    <div class="spellsformrow">
+                        <div class="spellsformcolumn">
+                            <label for="characterspellstoupdate">Character Name</label>
+                            <select class="updatespellsinput characternamedropdown" id="characterspellstoupdate" name="CharacterName" required>
+                                <option value="" disabled selected>Character Name</option>
+                            </select>
+                        </div>
+                        <div class="spellsformcolumn">
+                            <label for="spellnamefield">Spell Name</label>
+                            <input class="updatespellsinput" id="spellnamefield" type="text" name="SpellName" maxlength="50" placeholder="Spell Name" required>
+                        </div>
+                        <div class="spellsformcolumn">
+                            <label for="spelllevelfield">Spell Level</label>
+                            <input class="updatespellsinput" id="spelllevelfield" type="number" name="SpellLevel" min="0" max="9" placeholder="Spell Level" required>
+                        </div>
+                    </div>
+                    <div class="spellsformrow">
+                        <div class="spellsformcolumn">
+                            <label for="schoolofmagicfield">School Of Magic</label>
+                            <select class="updatespellsinput" id="schoolofmagicfield" name="SchoolOfMagic" required>
+                                <option value="" disabled selected>School Of Magic</option>
+                                <option value="Abjuration">Abjuration</option>
+                                <option value="Conjuration">Conjuration</option>
+                                <option value="Divination">Divination</option>
+                                <option value="Enchantment">Enchantment</option>
+                                <option value="Evocation">Evocation</option>
+                                <option value="Illusion">Illusion</option>
+                                <option value="Necromancy">Necromancy</option>
+                                <option value="Transmutation">Transmutation</option>
+                            </select>
+                        </div>
+                        <div class="spellsformcolumn">
+                            <label for="spellcastingtimefield">Casting Time</label>
+                            <input class="updatespellsinput" id="spellcastingtimefield" type="text" name="SpellCastingTime" maxlength="20" placeholder="Casting Time" required>
+                        </div>
+                        <div class="spellsformcolumn">
+
+                        </div>
+                    </div>
+                    <div class="spellsformrow">
+                        <div class="spellsformcolumn">
+
+                        </div>
+                        <div class="spellsformcolumn">
+
+                        </div>
+                        <div class="spellsformcolumn">
+
+                        </div>
+                    </div>
+                    <div class="spellsformrow">
+                        <div class="spellsformcolumn">
+
+                        </div>
+                        <div class="spellsformcolumn">
+
+                        </div>
+                    </div>
+                </form>
+                <form class="spellsform viewspells" id="viewspellsform">
+                    <p>View Spells</p>
+                </form>
+            </section>
+            <!--END: spells page-->
         </main>
     </body>
     <script type="text/javascript" src="./js/site.js"></script>

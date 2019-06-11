@@ -550,9 +550,6 @@ function populateInventoryDropdown() {
     }
 
     xhr.send()
-
-
-
 }
 
 // END: functionality for populating character inventory drop down
@@ -573,8 +570,6 @@ function getSelectedItemDetails() {
 
     var viewInventoryFormData = JSON.parse(viewInventoryFormJSON);
 
-    // console.log(viewInventoryFormData);
-
     xhr.open('GET', `https://localhost:5003/api/getSelectedItemDetails?characterName=${viewInventoryFormData.CharacterName}&itemName=${viewInventoryFormData.ItemName}`);
 
     xhr.setRequestHeader("Content-Type", "application/JSON");
@@ -582,8 +577,6 @@ function getSelectedItemDetails() {
     xhr.onload = function() {
 
         var itemDetails = JSON.parse(this.response);
-
-        // console.log(itemDetails);
 
         itemDetailsView.innerHTML = (
                     '<div class="inventoryformrow">' +
@@ -680,3 +673,36 @@ function updateItemQuantity() {
 }
 
 // END: functionality for updating item quantity
+
+// BEGIN: functionality for toggling spells page form display
+
+var updateSpellsButton = document.getElementById("updatespellsbutton");
+var viewSpellsButton = document.getElementById("viewspellsbutton");
+
+updateSpellsButton.addEventListener("click", toggleSpellsDisplay);
+viewSpellsButton.addEventListener("click", toggleSpellsDisplay);
+
+function toggleSpellsDisplay() {
+
+    var spellsToggleButtons = document.getElementsByClassName("spellstoggle");
+
+    var allSpellsForms = document.getElementsByClassName("spellsform");
+
+    var spellsFormClass = this.classList.item(1);
+
+    for(var i = 0; i < spellsToggleButtons.length; i++) {
+        spellsToggleButtons[i].style.backgroundColor = "#314977";
+        spellsToggleButtons[i].style.boxShadow = "2px 3px 3px black"
+    }
+    
+    for (var i = 0; i < allSpellsForms.length; i++) {
+        allSpellsForms[i].style.display = "none";
+    }
+
+    document.getElementsByClassName(spellsFormClass)[1].style.display = "block";
+
+    this.style.backgroundColor = "#1b2841";
+    this.style.boxShadow = "none";
+};
+
+// END: functionality for toggling spells page form display

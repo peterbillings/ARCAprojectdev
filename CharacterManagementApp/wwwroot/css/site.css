@@ -70,7 +70,7 @@ body {
     padding: 10px;
 }
 
-.newcharacterformrow, .viewcharacterformrow, .updatecharacterrow, .inventoryformrow {
+.newcharacterformrow, .viewcharacterformrow, .updatecharacterrow, .inventoryformrow, .spellsformrow {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -83,7 +83,7 @@ body {
     margin-bottom: 20px;
 }
 
-.newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn, .inventoryformcolumn {
+.newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn, .inventoryformcolumn, .spellsformcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -103,7 +103,7 @@ body {
     height: 170px;
 }
 
-.newcharacterinput, .viewcharacterinput, .updatecharacterinput, .updateinventoryinput {
+.newcharacterinput, .viewcharacterinput, .updatecharacterinput, .updateinventoryinput, .updatespellsinput {
     margin: 5px;
     min-width: 200px;
     border-color: initial; 
@@ -191,7 +191,7 @@ select {
     display: none;
 }
 
-#inventorymenutoggle {
+#inventorymenutoggle, #spellsmenutoggle {
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -207,4 +207,8 @@ select {
 #incrementquantitybutton {
     margin-top: 70px;
     margin-bottom: 10px;
+}
+
+#viewspellsform {
+    display: none;
 }
