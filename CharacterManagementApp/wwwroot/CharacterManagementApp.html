@@ -579,32 +579,58 @@
                             <input class="updatespellsinput" id="spellcastingtimefield" type="text" name="SpellCastingTime" maxlength="20" placeholder="Casting Time" required>
                         </div>
                         <div class="spellsformcolumn">
-
+                            <label for="ritualfield">Ritual</label>
+                            <select class="updatespellsinput" id="ritualfield" name="Ritual" required>
+                                <option value="" disabled selected>Ritual</option>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
                         </div>
                     </div>
                     <div class="spellsformrow">
                         <div class="spellsformcolumn">
-
+                            <label for="spellrangefield">Range</label>
+                            <input class="updatespellsinput" id="spellrangefield" type="text" name="SpellRange" maxlength="50" placeholder="Range" required>
                         </div>
                         <div class="spellsformcolumn">
-
+                            <label for="spellcomponentsfield">Components</label>
+                            <input class="updatespellsinput" id="spellcomponentsfield" type="text" name="SpellComponents" maxlength="100" placeholder="Components" required>
                         </div>
                         <div class="spellsformcolumn">
-
+                            <label for="spelldurationfield">Duration</label>
+                            <input class="updatespellsinput" id="spelldurationfield" type="text" name="SpellDuration" maxlength="50" placeholder="Duration" required>
                         </div>
                     </div>
                     <div class="spellsformrow">
                         <div class="spellsformcolumn">
-
+                            <label for="spelldescriptionfield">Spell Description</label>
+                            <textarea class="spellsdescriptiontextarea" id="spelldescriptionfield" name="SpellDescription" maxlength="300" placeholder="Spell Description"></textarea>
                         </div>
                         <div class="spellsformcolumn">
-
+                            <input class="submitbutton" id="addspellsubmit" type="submit" value="Add Spell">
                         </div>
                     </div>
                 </form>
                 <form class="spellsform viewspells" id="viewspellsform">
-                    <p>View Spells</p>
+                    <div class="spellsformrow">
+                        <div class="spellsformcolumn">
+                            <label for="characterspellstoview">Character Name</label>
+                            <select class="updatespellsinput characternamedropdown" id="characterspellstoview" name="CharacterName" required>
+                                <option value="" disabled selected>Character Name</option>
+                            </select>
+                        </div>
+                        <div class="spellsformcolumn">
+                            <label for="currentcharacterspells">Spells</label>
+                            <select class="updatespellsinput characterspellsdropdown" id="currentcharacterspells" name="SpellName" required>
+                                <option value="" disabled selected>Spells</option>
+                            </select>
+                        </div>
+                        <div class="spellsformcolumn">
+                            <input class="submitbutton" id="viewspelldetailssubmit" type="submit" value="View Spell Details">
+                        </div>
+                    </div>
                 </form>
+                <div id="spelldetailsview"></div>
             </section>
             <!--END: spells page-->
         </main>

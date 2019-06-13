@@ -135,7 +135,7 @@ select {
     max-height: 30px;
 }
 
-.newcharactertextarea, .updatecharactertextarea, .itemdescriptiontextarea {
+.newcharactertextarea, .updatecharactertextarea, .itemdescriptiontextarea, .spellsdescriptiontextarea {
     resize: none;
     border-style: inset;
     border-width: 2px;
@@ -183,7 +183,7 @@ select {
     box-shadow: 2px 3px 3px black;
 }
 
-#updateinventorysubmit {
+#updateinventorysubmit, #addspellsubmit {
     margin-top: 60px;
 }
 

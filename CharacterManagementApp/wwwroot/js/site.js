@@ -71,8 +71,7 @@ newCharacterForm.addEventListener("submit", sendNewCharacterInfoToApi);
 
 // The sendNewCharacterInfoToApi function below makes an AJAX call to the character
 // management API to post the submitted new character form info for entry into the database.
-// Upon successful entry into the database, the function notifies the client of success, or on failure
-// gives the reason why.
+// Upon successful entry into the database, or not, the function notifies the client of success or failure
 
 function sendNewCharacterInfoToApi(event) {
 
@@ -86,7 +85,7 @@ function sendNewCharacterInfoToApi(event) {
 
     xhr.onload = function() {
 
-        alert(this.response); // ***change this once database connection and other backend code is finished***
+        alert(this.response);  // maybe determine a better way than alert to notify client
         
         for (var dropdown of existingCharactersDropDown) {
 
@@ -103,7 +102,7 @@ function sendNewCharacterInfoToApi(event) {
 
 // The interceptFormSubmit function below disables the default behavior of 
 // the new character form and captures its entries in a form-data object,
-// which it converts to JSON and returns.  Prior to returning it resets the form
+// which it converts to JSON and returns. Prior to returning it resets the form
 // fields to their default values.
 
 function interceptFormSubmit(event, formName) {
@@ -706,3 +705,73 @@ function toggleSpellsDisplay() {
 };
 
 // END: functionality for toggling spells page form display
+
+// BEGIN: functionality for adding a spell to a character's spell list
+
+var updateSpellsForm = document.getElementById("updatespellsform");
+
+updateSpellsForm.addEventListener("submit", updateCharacterSpells);
+
+function updateCharacterSpells() {
+
+    var xhr = new XMLHttpRequest();
+
+    var request = interceptFormSubmit(event, updateSpellsForm);
+
+    console.log(request);
+
+    xhr.open('POST', 'https://localhost:5003/api/updatespells');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        alert(this.response); 
+    }
+
+    xhr.send(request);
+
+}
+
+// END: functionality for adding a spell to a character's spell list
+
+// BEGIN: functionality for populating character spell drop down based on charactername drop down changes
+
+var spellsViewNameDropdown = document.getElementById("characterspellstoview");
+
+var spellsDropdown = document.getElementById("currentcharacterspells");
+
+spellsViewNameDropdown.addEventListener("change", populateSpellsDropdown);
+
+function populateSpellsDropdown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', `https://localhost:5003/api/populatespellsdropdown?characterName=${spellsViewNameDropdown.value}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+        var characterSpellsArray = JSON.parse(this.response);
+
+        while(spellsDropdown.children.length > 1) {
+
+            spellsDropdown.removeChild(spellsDropdown.children[1]);
+        }
+
+        for (var spell of characterSpellsArray){
+
+                var newSelectInput = document.createElement("option");
+
+                newSelectInput.value = spell;
+
+                newSelectInput.innerHTML = spell;
+
+                spellsDropdown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+
+// END: functionality for populating character spells drop down
