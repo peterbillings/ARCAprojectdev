@@ -12,7 +12,6 @@ namespace CharacterManagementApi.Controllers
     public class PopulateSpellsDropdownController : ControllerBase
     {
         
-        // GET api/viewcharacterdropdown
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get([FromQuery] string characterName)
         {

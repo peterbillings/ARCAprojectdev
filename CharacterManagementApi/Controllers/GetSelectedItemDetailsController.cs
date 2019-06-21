@@ -1,7 +1,4 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using CharacterManagementApi.CharacterManagementDBModel;
 using CharacterManagementApi.HttpRequestDataClasses;
 using System.Linq;

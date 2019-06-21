@@ -775,3 +775,85 @@ function populateSpellsDropdown() {
 }
 
 // END: functionality for populating character spells drop down
+
+// BEGIN: functionality for viewing selected spell details
+
+var spellDetailsView = document.getElementById("spelldetailsview");
+
+var viewSpellsForm = document.getElementById("viewspellsform");
+
+viewSpellsForm.addEventListener("submit", getSelectedSpellDetails);
+
+function getSelectedSpellDetails() {
+
+    var xhr = new XMLHttpRequest();
+
+    var viewSpellsFormJSON = interceptFormSubmit(event, viewSpellsForm);
+
+    var viewSpellsFormData = JSON.parse(viewSpellsFormJSON);
+
+    xhr.open('GET', `https://localhost:5003/api/getSelectedSpellDetails?spellName=${viewSpellsFormData.SpellName}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var spellDetails = JSON.parse(this.response);
+
+        spellDetailsView.innerHTML = (
+            '<div class="spellsformrow">' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellListNameView">Character Name</label>' +
+                    `<p class="spelldetailvaluedisplay" id="inventoryNameView">${viewSpellsFormData.CharacterName}</p>` +
+                '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellNameView">Spell Name</label>' +
+                    `<p class="spelldetailvaluedisplay" id="spellNameView">${spellDetails.spellName}</p>` +
+                '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellLevelView">Spell Level</label>' +
+                    `<p class="spelldetailvaluedisplay" id="spellLevelView">${spellDetails.spellLevel}</p>` +
+                '</div>' +
+            '</div>' +
+            '<div class="spellsformrow">' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="schoolOfMagicView">School Of Magic</label>' +
+                    `<p class="spelldetailvaluedisplay" id="schoolOfMagicView">${spellDetails.schoolOfMagic}</p>` +
+                '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellCastingTimeView">Casting Time</label>' +
+                    `<p class="spelldetailvaluedisplay" id="spellCastingTimeView">${spellDetails.spellCastingTime}</p>` +
+                '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="ritualView">Ritual</label>' +
+                    `<p class="spelldetailvaluedisplay" id="ritualView">${spellDetails.ritual}</p>` +
+                '</div>' +
+            '</div>' +
+            '<div class="spellsformrow">' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellRangeView">Range</label>' +
+                    `<p class="spelldetailvaluedisplay" id="spellRangeView">${spellDetails.spellRange}</p>` +
+                '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellComponentsView">Components</label>' +
+                    `<p class="spelldetailvaluedisplay" id="spellComponentsView">${spellDetails.spellComponents}</p>` +
+                '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellDurationView">Duration</label>' +
+                    `<p class="spelldetailvaluedisplay" id="spellDurationView">${spellDetails.spellDuration}</p>` +
+                '</div>' +
+            '</div>' +
+            '<div class="spellsformrow">' +
+                '<div class="spellsviewcolumn">' +
+                    '<label for="spellDescriptionView">Description</label>' +
+                    `<p class="viewspelldetailtextarea" id="spellDescriptionView">${spellDetails.spellDescription}</p>` +
+                '</div>' +
+            '</div>'
+        );
+        
+    }
+
+    xhr.send();
+}
+
+// END functionality for viewing selected spell details

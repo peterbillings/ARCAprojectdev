@@ -16,7 +16,13 @@
 }
 
 body {
-    background-color: #f0e6d6;
+    /*background-color: #f0e6d6;*/
+
+    background-image: url("./../images/Dirga.jpg");
+
+    -webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
 }
 
 .menu {
@@ -31,6 +37,7 @@ body {
 .menuitem {
     color: #f0e6d6;
     background-color: #314977;
+    /*background-image: radial-gradient( #0768a0, #314977);*/
     min-width: 265px;
     max-width: 350px;
     text-align: center;
@@ -43,12 +50,13 @@ body {
 .page {
     display: none;
     max-width: 950px;
-    min-height: 500px;
+    /*min-height: 500px;*/
     text-align: center;
     color: black;
-    background-color: lightgray;
+    background-color: rgba(240,230,214, .60);
     margin: auto;
-    margin-top: 20px;
+    margin-top: 50px;
+    padding-bottom: 30px;
     box-shadow: 2px 3px 3px black;
     border-top: solid 1px darkgray;
     border-left: solid 1px darkgray;
@@ -91,7 +99,7 @@ body {
     padding-top: 0px;
 }
 
-.updatecharactersubmitformcolumn, .inventoryviewcolumn {
+.updatecharactersubmitformcolumn, .inventoryviewcolumn, .spellsviewcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -109,7 +117,7 @@ body {
     border-color: initial; 
 }
 
-.characterdetailvaluedisplay, .itemdetailvaluedisplay {          /*-->view page & inventory page*/
+.characterdetailvaluedisplay, .itemdetailvaluedisplay, .spelldetailvaluedisplay {          /*-->view page & inventory page*/
     background-color: #314977;
     margin: 5px;
     min-width: 200px;
@@ -146,7 +154,7 @@ select {
     min-height: 80px;
 }
 
-.viewcharactertextarea, .viewitemdetailtextarea {
+.viewcharactertextarea, .viewitemdetailtextarea, .viewspelldetailtextarea {
     background-color: #314977;
     margin: 5px;
     width: 435px;
