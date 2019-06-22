@@ -462,13 +462,23 @@
             <!--BEGIN: character update page-->
             <section class="page update" id="updatepage">
                 <form class="characterupdateform" id="characterupdateformbuilder">
-                    <select class="updatecharacterinput characternamedropdown" id="charactertoupdatedropdown" name="characterName" required>
-                        <option value="" disabled selected>Character Name</option>
-                    </select>
-                    <select class="updatecharacterinput" id="attributetoupdatedropdown" name="characterAttribute" required>
-                        <option value="" disabled selected>Attribute</option>
-                    </select>  
-                    <input class="submitbutton" id="addsectiontoupdateform" type="submit" value="Add To Form">
+                    <div class="updatecharacterrow">
+                        <div class="updatecharacterformcolumn">
+                            <label for="charactertoupdatedropdown">Character Name</label>
+                            <select class="updatecharacterinput characternamedropdown" id="charactertoupdatedropdown" name="characterName" required>
+                                <option value="" disabled selected>Character Name</option>
+                            </select>
+                        </div>
+                        <div class="updatecharacterformcolumn">
+                            <label for="attributetoupdatedropdown">Attribute</label>
+                            <select class="updatecharacterinput" id="attributetoupdatedropdown" name="characterAttribute" required>
+                                <option value="" disabled selected>Attribute</option>
+                            </select>
+                        </div>
+                        <div class="updatecharacterformcolumn">
+                            <input class="submitbutton" id="addsectiontoupdateform" type="submit" value="Add To Form">
+                        </div>
+                    </div>
                 </form>
                 <form class="characterupdateform" id="characterupdatesubmitform">
                     <input class="submitbutton" id="submitCharacterUpdateInfo" type="submit" value="Update">
