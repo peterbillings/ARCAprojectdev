@@ -20,6 +20,7 @@ namespace CharacterManagementApi.CharacterManagementDBModel
         public string SpellDuration { get; set; }
         public string SpellDescription { get; set; }
 
+        public virtual SchoolOfMagic SchoolOfMagicNavigation { get; set; }
         public virtual ICollection<CharacterSpells> CharacterSpells { get; set; }
     }
 }

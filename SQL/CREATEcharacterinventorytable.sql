@@ -14,6 +14,6 @@ CREATE TABLE CharacterInventory
     CONSTRAINT ItemQuantity_Check
 	  CHECK (ItemQuantity >= 0)
 	NOT NULL,
-  CONSTRAINT CharacterName_pk
+  CONSTRAINT CharacterInventory_pk
     PRIMARY KEY (CharacterName, ItemName)
   );

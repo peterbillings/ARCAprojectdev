@@ -1,3 +1,5 @@
+use CharacterManagementDB;
+
 CREATE TABLE CharacterDetails
   (
   CharacterName varchar(50)

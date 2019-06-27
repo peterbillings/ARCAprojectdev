@@ -206,7 +206,7 @@ function getSelectedCharacterInfo(event) {
     xhr.send();
 }
 
-// Below: helper function for resetting the character skill checkboxes each time a new character if viewed
+// Below: helper function for resetting the character skill checkboxes each time a new character is viewed
 
 function resetViewCharacterCheckBoxes() {
 
@@ -219,6 +219,32 @@ function resetViewCharacterCheckBoxes() {
 }
 
 // END functionality for displaying selected character information on view page
+
+// BEGIN functionality for resetting all fields on the character view page to default with the 'reset' button
+
+var resetButton = document.getElementById("viewcharacterreset");
+
+resetButton.addEventListener("click", resetCharacterViewPage)
+
+function resetCharacterViewPage()
+{
+    console.log("resetCharacterView was called");
+
+    resetViewCharacterCheckBoxes();
+
+    var detailAndTextAreaViewFields = document.getElementsByClassName("viewfieldreset");
+
+    var detailAndTextAreaViewLabels = document.getElementsByClassName("viewcharacterlabel");
+
+    for (var i = 0; i < detailAndTextAreaViewFields.length; i++)
+    {
+        var defaultInnerHTML = detailAndTextAreaViewLabels[i].innerHTML;
+
+        detailAndTextAreaViewFields[i].innerHTML = defaultInnerHTML;
+    }
+}
+
+// END functionality for resetting all fields on the character view page
 
 // BEGIN functionality for populating updatable attributes dropdown on update page
 

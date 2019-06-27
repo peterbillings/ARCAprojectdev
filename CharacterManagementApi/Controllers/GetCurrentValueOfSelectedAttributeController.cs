@@ -17,7 +17,7 @@ namespace CharacterManagementApi.Controllers
         public ActionResult<string> Get([FromQuery] string characterName, string characterAttribute)
         {
 
-            // REFLECTION!!!!! Pass a string as a property name to a PropertyInfo for any type
+            // REFLECTION: Pass a string as a property name to a PropertyInfo for any type
             // then get the value of that property for any object of that type.
 
             try 
