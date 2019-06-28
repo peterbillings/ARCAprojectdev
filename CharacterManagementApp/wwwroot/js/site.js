@@ -51,7 +51,8 @@ function togglePageDisplay() {
 
     for(var i = 0; i < allMenuButtons.length; i++) {
         allMenuButtons[i].style.backgroundColor = "#314977";
-        allMenuButtons[i].style.boxShadow = "2px 3px 3px black"
+        allMenuButtons[i].style.boxShadow = "2px 3px 3px black";
+        allMenuButtons[i].style.border = "none";
     }
     
     for (var i = 0; i < allPages.length; i++) {
@@ -64,7 +65,7 @@ function togglePageDisplay() {
 
     this.style.backgroundColor = "#1b2841";
     this.style.boxShadow = "none";
-
+    this.style.border = "1px solid #f0e6d6";
 };
 // END functionality for allowing menu buttons to toggle between pages
 
@@ -679,6 +680,14 @@ viewInventoryButton.addEventListener("click", toggleInventoryDisplay);
 
 function toggleInventoryDisplay() {
 
+    if (this.id === "updateinventorybutton") {
+        itemDetailsView.style.display = "none";
+    }
+    else
+    {
+        itemDetailsView.style.display = "block";
+    }
+
     var inventoryToggleButtons = document.getElementsByClassName("inventorytoggle");
 
     var allInventoryForms = document.getElementsByClassName("inventoryform");
@@ -793,6 +802,8 @@ function getSelectedItemDetails() {
 
     xhr.onload = function() {
 
+        itemDetailsView.style.display = "block";
+
         var itemDetails = JSON.parse(this.response);
 
         itemDetailsView.innerHTML = (
@@ -900,6 +911,14 @@ updateSpellsButton.addEventListener("click", toggleSpellsDisplay);
 viewSpellsButton.addEventListener("click", toggleSpellsDisplay);
 
 function toggleSpellsDisplay() {
+
+    if (this.id === "updatespellsbutton") {
+        spellDetailsView.style.display = "none";
+    }
+    else
+    {
+        spellDetailsView.style.display = "block";
+    }
 
     var spellsToggleButtons = document.getElementsByClassName("spellstoggle");
 
@@ -1017,6 +1036,8 @@ function getSelectedSpellDetails() {
     xhr.onload = function() {
 
         var spellDetails = JSON.parse(this.response);
+
+        spellDetailsView.style.display = "block";
 
         spellDetailsView.innerHTML = (
             '<div class="spellsformrow">' +

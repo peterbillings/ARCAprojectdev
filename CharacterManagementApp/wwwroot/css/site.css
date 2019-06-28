@@ -18,6 +18,9 @@
 body {
     background-color: #f0e6d6;
     background-image: url("./../images/Dirga.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     -webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -62,6 +65,12 @@ body {
 #mainpage {
     display: block;
     padding-top: 50px;
+}
+
+#mainbutton {
+    background-color: #1b2841;
+    box-shadow: none;
+    border: 1px solid #f0e6d6;
 }
 
 #mainpage > ul {
@@ -191,6 +200,9 @@ select {
 
 .buttonhover:hover {
     background-color: #057faf !important;
+    /* color: #be0032 !important; */
+    color: black !important;
+    box-shadow: 4px 5px 5px black !important;
 }
 
 #updateinventorysubmit, #addspellsubmit {
@@ -221,4 +233,22 @@ select {
 
 #viewspellsform {
     display: none;
+}
+
+#itemdetailsview {
+    display: none;
+}
+
+#spellsdetailview {
+    display: none;
+}
+
+#updateinventorybutton {
+    background-color: #1b2841;
+    box-shadow: none;
+}
+
+#updatespellsbutton {
+    background-color: #1b2841;
+    box-shadow: none;
 }
