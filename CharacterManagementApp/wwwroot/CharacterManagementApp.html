@@ -13,12 +13,12 @@
 
         <!--BEGIN: top menu-->
         <header class="menu">
-                    <p class="menuitem main" id="mainbutton">MAIN</p>
-                    <p class="menuitem new" id="newbutton">NEW CHARACTER</p>
-                    <p class="menuitem view" id="viewbutton">VIEW CHARACTER</p>
-                    <p class="menuitem update" id="updatebutton">UPDATE CHARACTER</p>
-                    <p class="menuitem inventory" id="inventorybutton">INVENTORY</p>
-                    <p class="menuitem spells" id="spellsbutton">SPELLS</p>
+                    <p class="menuitem main buttonhover" id="mainbutton">MAIN</p>
+                    <p class="menuitem new buttonhover" id="newbutton">NEW CHARACTER</p>
+                    <p class="menuitem view buttonhover" id="viewbutton">VIEW CHARACTER</p>
+                    <p class="menuitem update buttonhover" id="updatebutton">UPDATE CHARACTER</p>
+                    <p class="menuitem inventory buttonhover" id="inventorybutton">INVENTORY</p>
+                    <p class="menuitem spells buttonhover" id="spellsbutton">SPELLS</p>
         </header>
         <!--END: top menu-->
 
@@ -64,63 +64,20 @@
                             <label for="racefield">Race</label>
                             <select class="newcharacterinput" id="racefield" name="Race" required>
                                 <option value="" disabled selected>Race</option>
-                                <option value="Dragonborn">Dragonborn</option>
-                                <option value="Dwarf">Dwarf</option>
-                                <option value="Elf">Elf</option>
-                                <option value="Gnome">Gnome</option>
-                                <option value="Half Elf">Half Elf</option>
-                                <option value="Half Orc">Half Orc</option>
-                                <option value="Halfling">Halfling</option>
-                                <option value="Human">Human</option>
-                                <option value="Tiefling">Tiefling</option>
                             </select>
                             <label for="characterclassfield">Class</label>
                             <select class="newcharacterinput" id="characterclassfield" name="CharacterClass" required>
                                 <option value="" disabled selected>Class</option>
-                                <option value="Barbarian">Barbarian</option>
-                                <option value="Bard">Bard</option>
-                                <option value="Cleric">Cleric</option>
-                                <option value="Druid">Druid</option>
-                                <option value="Fighter">Fighter</option>
-                                <option value="Monk">Monk</option>
-                                <option value="Paladin">Paladin</option>
-                                <option value="Ranger">Ranger</option>
-                                <option value="Rogue">Rogue</option>
-                                <option value="Sorcerer">Sorcerer</option>
-                                <option value="Warlock">Warlock</option>
-                                <option value="Wizard">Wizard</option>
                             </select>
                         </div>
                         <div class="newcharacterformcolumn field-column">
                             <label for="backgroundfield">Background</label>
                             <select class="newcharacterinput" id="backgroundfield" name="Background" required>
                                 <option value="" disabled selected>Background</option>
-                                <option value="Acolyte">Acolyte</option>
-                                <option value="Charlatan">Charlatan</option>
-                                <option value="Criminal">Criminal</option>
-                                <option value="Entertainer">Entertainer</option>
-                                <option value="Folk Hero">Folk Hero</option>
-                                <option value="Guild Artisan">Guild Artisan</option>
-                                <option value="Hermit">Hermit</option>
-                                <option value="Noble">Noble</option>
-                                <option value="Outlander">Outlander</option>
-                                <option value="Sage">Sage</option>
-                                <option value="Sailor">Sailor</option>
-                                <option value="Soldier">Soldier</option>
-                                <option value="Urchin">Urchin</option>
                             </select>
                             <label for="alignmentfield">Alignment</label>
                             <select class="newcharacterinput" id="alignmentfield" name="Alignment" required>
                                 <option value="" disabled selected>Alignment</option>
-                                <option value="Lawful Good">Lawful Good</option>
-                                <option value="Neutral Good">Neutral Good</option>
-                                <option value="Chaotic Good">Chaotic Good</option>
-                                <option value="Lawful Neutral">Lawful Neutral</option>
-                                <option value="Neutral">Neutral</option>
-                                <option value="Chaotic Neutral">Chaotic Neutral</option>
-                                <option value="Lawful Evil">Lawful Evil</option>
-                                <option value="Neutral Evil">Neutral Evil</option>
-                                <option value="Chaotic Evil">Chaotic Evil</option>
                             </select>
                         </div>
                         <div class="newcharacterformcolumn field-column">
@@ -181,11 +138,6 @@
                             <label for="hitdicefield">Hit Dice</label>
                             <select class="newcharacterinput" id="hitdicefield" name="HitDice" required>
                                 <option value="" disabled selected>Hit Dice</option>
-                                <option value="1d4">1d4</option>
-                                <option value="1d6">1d6</option>
-                                <option value="1d8">1d8</option>
-                                <option value="1d10">1d10</option>
-                                <option value="1d12">1d12</option>
                             </select>
                             <label for="hitdicetotalfield">Hit Dice Total</label>
                             <input class="newcharacterinput" id="hitdicetotalfield" type="number" name="HitDiceTotal" min="1" max="20" placeholder="Hit Dice Total" required>
@@ -272,7 +224,7 @@
                                 <li><input class="newcharactercheckbox" type="checkbox" name="WisdomSave" value="true"> Wisdom Save</li>
                                 <li><input class="newcharactercheckbox" type="checkbox" name="CharismaSave" value="true"> Charisma Save</li>
                             </ul>
-                            <input class="submitbutton" id="newcharactersubmit" type="submit" value="Create Character">
+                            <input class="submitbutton buttonhover" id="newcharactersubmit" type="submit" value="Create Character">
                         </div>
                     </div>
                 </form>
@@ -288,7 +240,7 @@
                                     <option value="" disabled selected>Existing Characters</option>
                             </select>
                         </label>
-                        <input class="submitbutton" id="viewcharactersubmit" type="submit" value="View Character">
+                        <input class="submitbutton buttonhover" id="viewcharactersubmit" type="submit" value="View Character">
                     </div>
                 </form>
                 <div class="viewcharacterformrow">
@@ -452,7 +404,7 @@
                                 <li><input class="viewcharactercheckbox" id="wisdomSaveView" type="checkbox" disabled> Wisdom Save</li>
                                 <li><input class="viewcharactercheckbox" id="charismaSaveView" type="checkbox" disabled> Charisma Save</li>
                             </ul>
-                            <button class="resetviewbutton" id="viewcharacterreset">Reset</button>
+                            <button class="resetviewbutton buttonhover" id="viewcharacterreset">Reset</button>
                         </div>
                     </div>
 
@@ -476,12 +428,12 @@
                             </select>
                         </div>
                         <div class="updatecharacterformcolumn">
-                            <input class="submitbutton" id="addsectiontoupdateform" type="submit" value="Add To Form">
+                            <input class="submitbutton buttonhover" id="addsectiontoupdateform" type="submit" value="Add To Form">
                         </div>
                     </div>
                 </form>
                 <form class="characterupdateform" id="characterupdatesubmitform">
-                    <input class="submitbutton" id="submitCharacterUpdateInfo" type="submit" value="Update">
+                    <input class="submitbutton buttonhover" id="submitCharacterUpdateInfo" type="submit" value="Update">
                 </form>
             </section>
             <!--END: character update page-->
@@ -489,8 +441,8 @@
             <!--BEGIN: inventory page-->
             <section class="page inventory" id="inventorypage">
                 <div class="inventoryformrow" id="inventorymenutoggle">
-                        <p class="menuitem updateinventory inventorytoggle" id="updateinventorybutton">UPDATE INVENTORY</p>
-                        <p class="menuitem viewinventory inventorytoggle" id="viewinventorybutton">VIEW INVENTORY</p>
+                        <p class="menuitem updateinventory inventorytoggle buttonhover" id="updateinventorybutton">UPDATE INVENTORY</p>
+                        <p class="menuitem viewinventory inventorytoggle buttonhover" id="viewinventorybutton">VIEW INVENTORY</p>
                 </div>
                 <form class="inventoryform updateinventory" id="updateinventoryform">
                     <div class="inventoryformrow">
@@ -519,7 +471,7 @@
                             <textarea class="itemdescriptiontextarea" id="itemdescriptionfield" name="ItemDescription" maxlength="300" placeholder="Description"></textarea>
                         </div>
                         <div class="inventoryformcolumn">
-                            <input class="submitbutton" id="updateinventorysubmit" type="submit" value="Update Inventory">
+                            <input class="submitbutton buttonhover" id="updateinventorysubmit" type="submit" value="Update Inventory">
                         </div>
                     </div> 
                 </form>
@@ -538,7 +490,7 @@
                             </select>
                         </div>
                         <div class="inventoryformcolumn">
-                            <input class="submitbutton" id="viewitemdetailssubmit" type="submit" value="View Item Details">
+                            <input class="submitbutton buttonhover" id="viewitemdetailssubmit" type="submit" value="View Item Details">
                         </div>
                     </div>
                 </form>
@@ -574,14 +526,6 @@
                             <label for="schoolofmagicfield">School Of Magic</label>
                             <select class="updatespellsinput" id="schoolofmagicfield" name="SchoolOfMagic" required>
                                 <option value="" disabled selected>School Of Magic</option>
-                                <option value="Abjuration">Abjuration</option>
-                                <option value="Conjuration">Conjuration</option>
-                                <option value="Divination">Divination</option>
-                                <option value="Enchantment">Enchantment</option>
-                                <option value="Evocation">Evocation</option>
-                                <option value="Illusion">Illusion</option>
-                                <option value="Necromancy">Necromancy</option>
-                                <option value="Transmutation">Transmutation</option>
                             </select>
                         </div>
                         <div class="spellsformcolumn">

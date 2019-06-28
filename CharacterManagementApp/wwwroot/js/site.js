@@ -2,8 +2,14 @@
 
 window.onload = function() {
 
+    populateRaceDropDown();
+    populateCharacterClassDropDown();
+    populateBackgroundDropDown();
+    populateAlignmentDropDown();
+    populateHitDiceDropDown();
+    populateSchoolOfMagicDropDown();
     populateExistingCharactersDropDown();
-    populateAttributeToUpdateDropdown();
+    populateAttributeToUpdateDropDown();
 }
 
 // END onload functions
@@ -62,6 +68,192 @@ function togglePageDisplay() {
 };
 // END functionality for allowing menu buttons to toggle between pages
 
+// BEGIN functionality for populating race dropdown menu
+var raceDropDown = document.getElementById('racefield');
+
+function populateRaceDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populateracedropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var raceArray = JSON.parse(this.response);
+
+        for (var race of raceArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = race;
+
+            newSelectInput.innerHTML = race;
+
+            raceDropDown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+// END functionality for populating race dropdown menu
+
+// BEGIN functionality for populating character class dropdown menu
+var characterClassDropDown = document.getElementById('characterclassfield');
+
+function populateCharacterClassDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populatecharacterclassdropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var characterClassArray = JSON.parse(this.response);
+
+        for (var characterClass of characterClassArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = characterClass;
+
+            newSelectInput.innerHTML = characterClass;
+
+            characterClassDropDown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+// END functionality for populating characterclass dropdown menu
+
+// BEGIN functionality for populating background dropdown menu
+
+var backgroundDropDown = document.getElementById('backgroundfield');
+
+function populateBackgroundDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populatebackgrounddropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var backgroundArray = JSON.parse(this.response);
+
+        for (var background of backgroundArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = background;
+
+            newSelectInput.innerHTML = background;
+
+            backgroundDropDown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+// END functionality for populating background dropdown menu
+
+// BEGIN functionality for populating alignment dropdown menu
+var alignmentDropDown = document.getElementById('alignmentfield');
+
+function populateAlignmentDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populatealignmentdropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var alignmentArray = JSON.parse(this.response);
+
+        for (var alignment of alignmentArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = alignment;
+
+            newSelectInput.innerHTML = alignment;
+
+            alignmentDropDown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+// END functionality for populating alignment dropdown menu
+
+// BEGIN functionality for populating hitdice dropdown menu
+var hitDiceDropDown = document.getElementById('hitdicefield');
+
+function populateHitDiceDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populatehitdicedropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var hitDiceArray = JSON.parse(this.response);
+
+        for (var hitdice of hitDiceArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = hitdice;
+
+            newSelectInput.innerHTML = hitdice;
+
+            hitDiceDropDown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+// END functionality for populating hitdice dropdown menu
+
+// BEGIN functionality for populating schoolofmagic dropdown menu
+var schoolOfMagicDropDown = document.getElementById('schoolofmagicfield');
+
+function populateSchoolOfMagicDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populateschoolofmagicdropdown');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var schoolOfMagicArray = JSON.parse(this.response);
+
+        for (var schoolofmagic of schoolOfMagicArray){
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = schoolofmagic;
+
+            newSelectInput.innerHTML = schoolofmagic;
+
+            schoolOfMagicDropDown.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send()
+}
+// END functionality for populating schoolofmagic dropdown menu
 
 // BEGIN functionality for new character form submission
 
@@ -250,7 +442,7 @@ function resetCharacterViewPage()
 
 var characterAttributesDropdown = document.getElementById('attributetoupdatedropdown');
 
-function populateAttributeToUpdateDropdown() {
+function populateAttributeToUpdateDropDown() {
 
     var xhr = new XMLHttpRequest();
 
@@ -336,7 +528,7 @@ function generateUpdateFormField(event) {
 
                 '<div class="updatecharactersubmitformcolumn">' +
                     `<label for="currentTextAreaValue">${characterNameString}'s ${characterAttributeString} (Click to Remove)</label>` +
-                    `<p class="viewcharactertextarea removeupdateformrow" id="currentTextAreaValue">${currentValue}</p>` +
+                    `<p class="viewcharactertextarea removeupdateformrow buttonhover" id="currentTextAreaValue">${currentValue}</p>` +
                 '</div>' +
                 '<div class="updatecharactersubmitformcolumn">' +
                     '<label for="newTextAreaValue">New Value</label>' +
@@ -351,7 +543,7 @@ function generateUpdateFormField(event) {
             
                 '<div class="updatecharactersubmitformcolumn">' +
                     '<label for="charactertoupdate">Name (Click to remove)</label>' +
-                    `<p class="updatecharacterinput characterdetailvaluedisplay removeupdateformrow" id="charactertoupdate">${characterNameString}</p>` +
+                    `<p class="updatecharacterinput characterdetailvaluedisplay removeupdateformrow buttonhover" id="charactertoupdate">${characterNameString}</p>` +
                 '</div>' +
                 '<div class="updatecharactersubmitformcolumn">' +
                     '<label for="attributetoupdate">Attribute</label>' +
@@ -628,8 +820,8 @@ function getSelectedItemDetails() {
                             `<p class="viewitemdetailtextarea" id="itemDescriptionView">${itemDetails.itemDescription}</p>` +
                         '</div>' +
                         '<div class="inventoryviewcolumn">' +
-                             '<p class="itemdetailvaluedisplay" id="incrementquantitybutton">Increment (+1)</p>' +
-                             '<p class="itemdetailvaluedisplay" id="decrementquantitybutton">Decrement (-1)</p>' +
+                             '<p class="itemdetailvaluedisplay buttonhover" id="incrementquantitybutton">Increment (+1)</p>' +
+                             '<p class="itemdetailvaluedisplay buttonhover" id="decrementquantitybutton">Decrement (-1)</p>' +
                         '</div>' +
                     '</div>'
         );

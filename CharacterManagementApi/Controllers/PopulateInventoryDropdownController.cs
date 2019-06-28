@@ -16,7 +16,7 @@ namespace CharacterManagementApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get([FromQuery] string characterName)
         {
-            List<string> listOfCharacterNames = new List<string>();
+            List<string> listOfItemNames = new List<string>();
 
             using (var context = new CharacterManagementDBContext())
             {
@@ -26,11 +26,11 @@ namespace CharacterManagementApi.Controllers
                                         
                 foreach (var item in characterInventory)
                 {
-                    listOfCharacterNames.Add(item.ItemName);
+                    listOfItemNames.Add(item.ItemName);
                 }
             }
 
-            return listOfCharacterNames;
+            return listOfItemNames;
         }
     }
 }
