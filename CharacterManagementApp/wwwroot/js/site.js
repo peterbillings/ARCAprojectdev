@@ -50,9 +50,16 @@ function togglePageDisplay() {
     var pageClass = this.classList.item(1);
 
     for(var i = 0; i < allMenuButtons.length; i++) {
-        allMenuButtons[i].style.backgroundColor = "#314977";
-        allMenuButtons[i].style.boxShadow = "2px 3px 3px black";
-        allMenuButtons[i].style.border = "none";
+
+        var buttonId = allMenuButtons[i].id;
+
+        if (buttonId !== "updateinventorybutton" && buttonId !== "updatespellsbutton" &&
+            buttonId !== "viewinventorybutton" && buttonId !== "viewspellsbutton") {
+                
+            allMenuButtons[i].style.backgroundColor = "#314977";
+            allMenuButtons[i].style.boxShadow = "2px 3px 3px black";
+            allMenuButtons[i].style.border = "none";
+        }
     }
     
     for (var i = 0; i < allPages.length; i++) {
@@ -375,22 +382,31 @@ function getSelectedCharacterInfo(event) {
 
         var characterInfoObject = JSON.parse(this.response);
 
+        var viewCharacterDisplay = document.getElementsByClassName("viewcharacterdisplay")
+
+        for (var row of viewCharacterDisplay)
+        {
+            row.style.display = "flex";
+        }
+
         resetViewCharacterCheckBoxes();
     
         for (var property in characterInfoObject) {
 
-            if (property !== "characterInventory" && property !== "characterSpells") {
+            var targetElement = document.getElementById(`${property}View`);
 
-                var targetElement = document.getElementById(`${property}View`);
+            if (targetElement.className !== "viewcharactercheckbox") {
 
-                if (targetElement.className !== "viewcharactercheckbox") {
+                targetElement.innerHTML = characterInfoObject[property];
+            }
+            else if (characterInfoObject[property] === true) {
 
-                    targetElement.innerHTML = characterInfoObject[property];
-                }
-                else if (characterInfoObject[property] === true) {
+                targetElement.checked = true;
+            }
 
-                    targetElement.checked = true;
-                }
+            if (property === 'charismaSave')
+            {
+                break;
             }
         }
         
@@ -413,15 +429,33 @@ function resetViewCharacterCheckBoxes() {
 
 // END functionality for displaying selected character information on view page
 
+// BEGIN functionality for refreshing selected character information on view page
+
+    var viewCharacterRefresh = document.getElementById("viewcharacterrefresh");
+
+    viewCharacterRefresh.addEventListener("click", refreshCurrentCharacter);
+
+    function refreshCurrentCharacter(event) {
+
+        var existingCharacterDropDown = document.getElementById("viewexistingcharacters");
+
+        var characterNameView = document.getElementById("characterNameView");
+
+        existingCharacterDropDown.value = characterNameView.innerHTML;
+
+        getSelectedCharacterInfo(event);
+    }
+    
+
+// END functionality for refreshing selected character information on view page
+
 // BEGIN functionality for resetting all fields on the character view page to default with the 'reset' button
 
 var resetButton = document.getElementById("viewcharacterreset");
 
 resetButton.addEventListener("click", resetCharacterViewPage)
 
-function resetCharacterViewPage()
-{
-    console.log("resetCharacterView was called");
+function resetCharacterViewPage() {
 
     resetViewCharacterCheckBoxes();
 
@@ -429,11 +463,18 @@ function resetCharacterViewPage()
 
     var detailAndTextAreaViewLabels = document.getElementsByClassName("viewcharacterlabel");
 
+    var viewCharacterDisplay = document.getElementsByClassName("viewcharacterdisplay")
+
     for (var i = 0; i < detailAndTextAreaViewFields.length; i++)
     {
         var defaultInnerHTML = detailAndTextAreaViewLabels[i].innerHTML;
 
         detailAndTextAreaViewFields[i].innerHTML = defaultInnerHTML;
+    }
+
+    for (var row of viewCharacterDisplay)
+    {
+        row.style.display = "none";
     }
 }
 
@@ -457,7 +498,7 @@ function populateAttributeToUpdateDropDown() {
 
         for (var property in emptyCharacterDetailsObject){
 
-            if (property !== "characterInventory" && property !== "characterSpells") {
+            if (property !== "characterInventory" && property !== "characterSpells" && property !== "characterName") {
 
                 var newSelectInput = document.createElement("option");
 
@@ -697,6 +738,7 @@ function toggleInventoryDisplay() {
     for(var i = 0; i < inventoryToggleButtons.length; i++) {
         inventoryToggleButtons[i].style.backgroundColor = "#314977";
         inventoryToggleButtons[i].style.boxShadow = "2px 3px 3px black"
+        inventoryToggleButtons[i].style.border = "none";
     }
     
     for (var i = 0; i < allInventoryForms.length; i++) {
@@ -707,6 +749,7 @@ function toggleInventoryDisplay() {
 
     this.style.backgroundColor = "#1b2841";
     this.style.boxShadow = "none";
+    this.style.border = "1px solid #f0e6d6";
 };
 
 // END: functionality for toggling inventory page form display
@@ -833,6 +876,7 @@ function getSelectedItemDetails() {
                         '<div class="inventoryviewcolumn">' +
                              '<p class="itemdetailvaluedisplay buttonhover" id="incrementquantitybutton">Increment (+1)</p>' +
                              '<p class="itemdetailvaluedisplay buttonhover" id="decrementquantitybutton">Decrement (-1)</p>' +
+                             '<p class="itemdetailvaluedisplay buttonhover" id="itemviewresetbutton">Reset</p>' +
                         '</div>' +
                     '</div>'
         );
@@ -841,9 +885,13 @@ function getSelectedItemDetails() {
 
         var decrementButton = document.getElementById("decrementquantitybutton");
 
+        var itemViewResetButton = document.getElementById("itemviewresetbutton");
+
         incrementButton.addEventListener("click", updateItemQuantity);
 
         decrementButton.addEventListener("click", updateItemQuantity);
+
+        itemViewResetButton.addEventListener("click", resetItemView);
         
     };
 
@@ -902,6 +950,15 @@ function updateItemQuantity() {
 
 // END: functionality for updating item quantity
 
+// BEGIN: functionality for resetting item view
+    
+    function resetItemView() {
+
+        itemDetailsView.style.display = "none";
+    }
+
+// END: functionality for resetting item view
+
 // BEGIN: functionality for toggling spells page form display
 
 var updateSpellsButton = document.getElementById("updatespellsbutton");
@@ -929,6 +986,7 @@ function toggleSpellsDisplay() {
     for(var i = 0; i < spellsToggleButtons.length; i++) {
         spellsToggleButtons[i].style.backgroundColor = "#314977";
         spellsToggleButtons[i].style.boxShadow = "2px 3px 3px black"
+        spellsToggleButtons[i].style.border = "none";
     }
     
     for (var i = 0; i < allSpellsForms.length; i++) {
@@ -939,6 +997,7 @@ function toggleSpellsDisplay() {
 
     this.style.backgroundColor = "#1b2841";
     this.style.boxShadow = "none";
+    this.style.border = "1px solid #f0e6d6";
 };
 
 // END: functionality for toggling spells page form display
@@ -1087,12 +1146,76 @@ function getSelectedSpellDetails() {
                     '<label for="spellDescriptionView">Description</label>' +
                     `<p class="viewspelldetailtextarea" id="spellDescriptionView">${spellDetails.spellDescription}</p>` +
                 '</div>' +
+                '<div class="spellsviewcolumn">' +
+                    '<p class="spelldetailvaluedisplay buttonhover" id="spellviewresetbutton">Reset</p>' +
+                '</div>' +
             '</div>'
         );
-        
+    
+        var spellViewResetButton = document.getElementById("spellviewresetbutton");
+
+        spellViewResetButton.addEventListener("click", resetSpellView);
     }
 
     xhr.send();
 }
 
 // END functionality for viewing selected spell details
+
+// BEGIN functionality for resetting spell details view subpage
+
+function resetSpellView() {
+
+    spellDetailsView.style.display = "none";
+}
+
+// END functionality for resetting spell details view subpage
+
+// BEGIN functionality for toggling utility subpage display
+var instructionsButton = document.getElementById("instructionsbutton");
+var diceButton = document.getElementById("dicebutton");
+var combatButton = document.getElementById("combatbutton");
+var statusButton = document.getElementById("statusbutton");
+var objectivesButton = document.getElementById("objectivesbutton");
+
+var instructionsDisplay = document.getElementById("instructionsdisplay");
+var diceDisplay = document.getElementById("dicedisplay");
+var combatDisplay = document.getElementById("combatdisplay");
+var statusDisplay = document.getElementById("statusdisplay");
+var objectivesDisplay = document.getElementById("objectivesdisplay");
+
+instructionsButton.addEventListener("click", toggleUtilityDisplay);
+diceButton.addEventListener("click", toggleUtilityDisplay);
+combatButton.addEventListener("click", toggleUtilityDisplay);
+statusButton.addEventListener("click", toggleUtilityDisplay);
+objectivesButton.addEventListener("click", toggleUtilityDisplay);
+
+function toggleUtilityDisplay() {
+
+    var allUtilityButtons = document.getElementsByClassName("mainutilitytogglebutton");
+
+    var allUtilityDisplays = document.getElementsByClassName("mainutilitysubpagedisplay");
+
+    var displayClass = this.classList.item(1);
+
+    for(var i = 0; i < allUtilityButtons.length; i++) {
+                
+            allUtilityButtons[i].style.backgroundColor = "#314977";
+            allUtilityButtons[i].style.boxShadow = "2px 3px 3px black";
+            allUtilityButtons[i].style.border = "none";
+    }
+    
+    for (var i = 0; i < allUtilityDisplays.length; i++) {
+
+        allUtilityDisplays[i].style.display = "none";
+    }
+
+    var toggled = document.getElementsByClassName(displayClass)[1];
+
+    toggled.style.display = "block";
+
+    this.style.backgroundColor = "#1b2841";
+    this.style.boxShadow = "none";
+    this.style.border = "1px solid #f0e6d6";
+}
+// END functionality for toggling utility subpage display

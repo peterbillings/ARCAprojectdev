@@ -67,7 +67,34 @@ body {
     padding-top: 50px;
 }
 
-#mainbutton {
+#titleline {
+    animation: changingGradient 5s ease-in-out infinite;
+    background: linear-gradient(-60deg, goldenrod, silver);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    margin-bottom: 30px;
+}
+
+@keyframes changingGradient {
+    0% {
+        background-position: 0 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+#mainbutton, #updateinventorybutton, #updatespellsbutton {
     background-color: #1b2841;
     box-shadow: none;
     border: 1px solid #f0e6d6;
@@ -84,7 +111,7 @@ body {
     padding: 10px;
 }
 
-.newcharacterformrow, .viewcharacterformrow, .updatecharacterrow, .inventoryformrow, .spellsformrow {
+.mainutilityrow, .newcharacterformrow, .viewcharacterformrow, .updatecharacterrow, .inventoryformrow, .spellsformrow {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -92,12 +119,11 @@ body {
     padding-top: 0px;
 }
 
-#viewcharactertoprow {
-    justify-content: center;
-    margin-bottom: 20px;
+#viewcharacterdisplaytoprow {
+    margin-top: 20px;
 }
 
-.newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn, .inventoryformcolumn, .spellsformcolumn {
+.mainutilitycolumn, .newcharacterformcolumn, .viewcharacterformcolumn, .updatecharacterformcolumn, .inventoryformcolumn, .spellsformcolumn {
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -123,7 +149,7 @@ body {
     border-color: initial; 
 }
 
-.characterdetailvaluedisplay, .itemdetailvaluedisplay, .spelldetailvaluedisplay {          /*-->view page & inventory page*/
+.mainutilitytogglebutton, .characterdetailvaluedisplay, .itemdetailvaluedisplay, .spelldetailvaluedisplay {          /*-->view page & inventory page*/
     background-color: #314977;
     margin: 5px;
     min-width: 200px;
@@ -168,6 +194,7 @@ select {
     color: #f0e6d6;
     font-size: 25px;
     min-height: 80px;
+    text-align: left;
     vertical-align: middle;
     box-shadow: 2px 3px 3px black;
 }
@@ -200,7 +227,6 @@ select {
 
 .buttonhover:hover {
     background-color: #057faf !important;
-    /* color: #be0032 !important; */
     color: black !important;
     box-shadow: 4px 5px 5px black !important;
 }
@@ -223,11 +249,12 @@ select {
 }
 
 #itemdetailsview {
+    display: none;
     margin-top: 30px;
 }
 
 #incrementquantitybutton {
-    margin-top: 70px;
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 
@@ -235,20 +262,41 @@ select {
     display: none;
 }
 
-#itemdetailsview {
-    display: none;
-}
-
 #spellsdetailview {
     display: none;
 }
 
-#updateinventorybutton {
-    background-color: #1b2841;
-    box-shadow: none;
+.viewcharacterdisplay {
+    display: none;
 }
 
-#updatespellsbutton {
-    background-color: #1b2841;
-    box-shadow: none;
+#incrementquantitybutton, #decrementquantitybutton {
+    cursor: pointer;
+}
+
+#spellviewresetbutton {
+    margin-top: 100px;
+    cursor: pointer;
+}
+
+#mainutilityrow {
+    justify-content: left;
+}
+
+#mainutilitytogglebuttoncolumn {
+    margin-left: 35px;
+}
+
+#mainutilitysubpagedisplay {
+    border: 2px solid black;
+    width: 600px;
+    margin-left: 20px;
+}
+
+#instructionsdisplay {
+    display: block;
+}
+
+.mainutilitysubpagedisplay {
+    display: none;
 }
