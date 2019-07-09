@@ -21,6 +21,7 @@ namespace CharacterManagementApi.CharacterManagementDBModel
         public virtual DbSet<CharacterDetails> CharacterDetails { get; set; }
         public virtual DbSet<CharacterInventory> CharacterInventory { get; set; }
         public virtual DbSet<CharacterSpells> CharacterSpells { get; set; }
+        public virtual DbSet<CharacterStatus> CharacterStatus { get; set; }
         public virtual DbSet<HitDice> HitDice { get; set; }
         public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<Race> Race { get; set; }
@@ -253,6 +254,39 @@ namespace CharacterManagementApi.CharacterManagementDBModel
                     .HasForeignKey(d => d.SpellName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("CharacterSpells_fk2");
+            });
+
+            modelBuilder.Entity<CharacterStatus>(entity =>
+            {
+                entity.HasKey(e => e.CharacterName)
+                    .HasName("CharacterStatus_pk");
+
+                entity.Property(e => e.CharacterName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Buff)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('None')");
+
+                entity.Property(e => e.CurrentHp).HasColumnName("CurrentHP");
+
+                entity.Property(e => e.Debuff)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('None')");
+
+                entity.Property(e => e.TempHp).HasColumnName("TempHP");
+
+                entity.HasOne(d => d.CharacterNameNavigation)
+                    .WithOne(p => p.CharacterStatus)
+                    .HasForeignKey<CharacterStatus>(d => d.CharacterName)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("CharacterStatus_fk1");
             });
 
             modelBuilder.Entity<HitDice>(entity =>

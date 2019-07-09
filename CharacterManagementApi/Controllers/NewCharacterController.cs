@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using CharacterManagementApi.HttpRequestDataClasses;
 using CharacterManagementApi.CharacterManagementDBModel;
 
 namespace CharacterManagementApi.Controllers
@@ -25,11 +26,21 @@ namespace CharacterManagementApi.Controllers
         [HttpPost]
         public ActionResult<string> Post([FromBody] CharacterDetails newCharacter)
         {
+
+            CharacterStatus newStatus = new CharacterStatus();
+
+            newStatus.CharacterName = newCharacter.CharacterName;
+
+            newStatus.CurrentHp = newCharacter.MaxHp;
+
             try
             {
                 using (var context = new CharacterManagementDBContext())
                 {
                     context.CharacterDetails.Add(newCharacter);
+                    context.SaveChanges();
+
+                    context.CharacterStatus.Add(newStatus);
                     context.SaveChanges();
                 }
             }

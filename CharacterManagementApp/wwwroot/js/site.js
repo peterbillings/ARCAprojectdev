@@ -1219,3 +1219,50 @@ function toggleUtilityDisplay() {
     this.style.border = "1px solid #f0e6d6";
 }
 // END functionality for toggling utility subpage display
+
+// BEGIN functionality for generating dice roll results
+
+var diceRollForm = document.getElementById("dicerollform")
+
+diceRollForm.addEventListener("submit", rollTheDice);
+
+function rollTheDice() {
+
+    var xhr = new XMLHttpRequest();
+
+    var diceRollFormJSON = interceptFormSubmit(event, diceRollForm);
+
+    var diceRollFormData = JSON.parse(diceRollFormJSON);
+
+    xhr.open('GET', `https://localhost:5003/api/rollthedice?totalDice=${diceRollFormData.totalDice}&numberOfSides=${diceRollFormData.numberOfSides}&modifier=${diceRollFormData.modifier}`);
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        var rollDisplay = document.getElementById("dicerolldisplay");
+
+        var resultDisplay = document.getElementById("diceresultdisplay");
+
+        rollDisplay.innerHTML = `Roll: ${diceRollFormData.totalDice}d${diceRollFormData.numberOfSides} + ${diceRollFormData.modifier}`;
+        resultDisplay.innerHTML =  `Result: ${this.response}`;
+
+        document.getElementById("diceresultdisplayrow").style.display = "flex";
+    }
+
+    xhr.send();
+}
+
+// END functionality for generating dice roll results
+
+// BEGIN functionality for resetting dice roll result display
+
+var diceResultDisplay = document.getElementById("diceresultdisplay");
+
+diceResultDisplay.addEventListener("click", resetDiceResultDisplay);
+
+function resetDiceResultDisplay() {
+    
+    document.getElementById("diceresultdisplayrow").style.display = "none";
+}
+// END functionality for resetting dice roll result display

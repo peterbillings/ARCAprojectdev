@@ -24,45 +24,81 @@
 
         <main>
             
-            <!--BEGIN: main page instructions-->
+            <!--BEGIN: main page instructions/utilities-->
             <section class="page main" id="mainpage">
                 <p id="titleline">Dungeons & Dragons 5e <br> Character Management App</p>
                 <div class="mainutilityrow" id="mainutilityrow">
                     <div class="mainutilitycolumn" id="mainutilitytogglebuttoncolumn">
-                        <p class="mainutilitytogglebutton utilityinstructions buttonhover" id="instructionsbutton">Instructions</p>
-                        <p class="mainutilitytogglebutton utilitydice buttonhover" id="dicebutton">Dice</p>
-                        <p class="mainutilitytogglebutton utilitycombat buttonhover" id="combatbutton">Combat</p>
-                        <p class="mainutilitytogglebutton utilitystatus buttonhover" id="statusbutton">Status</p>
-                        <p class="mainutilitytogglebutton utilityobjectives buttonhover" id="objectivesbutton">Objectives</p>
+                        <p class="mainutilitytogglebutton utilityinstructions utilitybutton buttonhover" id="instructionsbutton">Instructions</p>
+                        <p class="mainutilitytogglebutton utilitydice utilitybutton buttonhover" id="dicebutton">Dice</p>
+                        <p class="mainutilitytogglebutton utilitycombat utilitybutton buttonhover" id="combatbutton">Combat</p>
+                        <p class="mainutilitytogglebutton utilitystatus utilitybutton buttonhover" id="statusbutton">Status</p>
+                        <p class="mainutilitytogglebutton utilityobjectives utilitybutton buttonhover" id="objectivesbutton">Objectives</p>
                     </div>
                     <div class="mainutilitycolumn" id="mainutilitysubpagedisplay">
-                        <div class="mainutilitysubpagedisplay utilityinstructions" id="instructionsdisplay">Instructions</div>
-                        <div class="mainutilitysubpagedisplay utilitydice" id="dicedisplay">Dice</div>
-                        <div class="mainutilitysubpagedisplay utilitycombat" id="combatdisplay">Combat</div>
+                        <div class="mainutilitysubpagedisplay utilityinstructions" id="instructionsdisplay">
+                            Instructions
+                        </div>
+                        <div class="mainutilitysubpagedisplay utilitydice" id="dicedisplay">
+                            <form id="dicerollform">
+                                <div class="mainutilityrow">
+                                    <div class="mainutilitycolumn">
+                                        <label for="totaldicefield">Total Dice</label>
+                                        <input class="utilityinput" id="totaldicefield" type="number" name="totalDice" min="1" placeholder="Total Dice" required>
+                                        <label for="numberofsidesfield">Number Of Sides</label>
+                                        <select class="newcharacterinput" id="numberofsidesfield" name="numberOfSides" required>
+                                            <option value="" disabled selected>Number Of Sides</option>
+                                            <option value="4">4</option>
+                                            <option value="6">6</option>
+                                            <option value="8">8</option>
+                                            <option value="10">10</option>
+                                            <option value="12">12</option>
+                                            <option value="20">20</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+                                    <div class="mainutilitycolumn">
+                                        <label for="modifierfield">Modifier</label>
+                                        <input class="utilityinput" id="totaldicefield" type="number" name="modifier" min="-20" max="20" placeholder="Modifier" required>
+                                        <input class="mainutilitysubmitbutton buttonhover" id="dicerollsubmitbutton" type="submit" value="Roll The Dice!">
+                                    </div>
+                                </div>   
+                            </form>
+                            <div class="mainutilityrow" id="diceresultdisplayrow">
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay" id="dicerolldisplay"></p>
+                                </div>
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="diceresultdisplay"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mainutilitysubpagedisplay utilitycombat" id="combatdisplay">
+                            <div class="mainutilityrow">
+                                <form id="characterInitiativeForm">
+                                    <div class="mainutilitycolumn">
+                                        <select class="utilityinput characternamedropdown" id="addcharactertoinitiativelist" name="characterName" required>
+                                            <option value="" disabled selected>Character Name</option>
+                                        </select>
+                                        <input class="utilityinput" id="characterinitiativeroll" type="number" name="characterInitiativeRoll" min="1" max="40" placeholder="Initiative Roll">
+                                        <input class="utilityinput" id="charactercombathp" type="number" name="characterCombatHp" min="0" placeholder="Character HP" required>
+                                        <input class="mainutilitysubmitbutton buttonhover" id="characterInitiativeSubmit" type="submit" value="Add Character">
+                                    </div>
+                                </form>
+                                <form id="characterInitiativeForm">
+                                    <div class="mainutilitycolumn">
+                                        <input class="utilityinput" id="enemyname" type="text" name="enemyName" maxlength="30" placeholder="Enemy Name" required>
+                                        <input class="utilityinput" id="enemyinitiativeroll" type="number" name="enemyInitiativeRoll" min="1" max="40" placeholder="Enemy Initiative" required>
+                                        <input class="utilityinput" id="enemyhp" type="number" name="enemyHp" min="1" placeholder="Enemy HP" required>
+                                        <input class="mainutilitysubmitbutton buttonhover" id="enemyInitiativeSubmit" type="submit" value="Add Enemy">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="mainutilitysubpagedisplay utilitystatus" id="statusdisplay">Status</div>
                         <div class="mainutilitysubpagedisplay utilityobjectives" id="objectivesdisplay">Objectives</div>
                     </div>
                 </div>
-                <!-- <ul>
-                    <li>
-                        <b>New Character:</b> Fill out and submit the character creation form 
-                        to add a new character to the database.
-                    </li>
-                    <li>
-                        <b>View Character:</b> Select an existing character from the drop down menu
-                        to view its information.
-                    </li>
-                    <li>
-                        <b>Update Character:</b> Choose a character and create a custom form for 
-                        updating specific details about it.
-                    </li>
-                    <li>
-                        <b>Inventory:</b> View a character's inventory and add or remove items.
-                    </li>
-                    <li>
-                        <b>Spells:</b> View a character's spell list and add or remove spells.
-                    </li>
-                </ul> -->
             </section>
             <!--END: main page instructions-->
 

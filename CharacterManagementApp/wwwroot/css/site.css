@@ -50,7 +50,6 @@ body {
 .page {
     display: none;
     max-width: 950px;
-    /*min-height: 500px;*/
     text-align: center;
     color: black;
     background-color: rgba(240,230,214, .60);
@@ -94,21 +93,10 @@ body {
     }
 }
 
-#mainbutton, #updateinventorybutton, #updatespellsbutton {
+#mainbutton, #updateinventorybutton, #updatespellsbutton, #instructionsbutton {
     background-color: #1b2841;
     box-shadow: none;
     border: 1px solid #f0e6d6;
-}
-
-#mainpage > ul {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-#mainpage > ul > li {
-    padding: 10px;
 }
 
 .mainutilityrow, .newcharacterformrow, .viewcharacterformrow, .updatecharacterrow, .inventoryformrow, .spellsformrow {
@@ -143,13 +131,14 @@ body {
     height: 170px;
 }
 
-.newcharacterinput, .viewcharacterinput, .updatecharacterinput, .updateinventoryinput, .updatespellsinput {
+.utilityinput, .newcharacterinput, .viewcharacterinput, .updatecharacterinput, .updateinventoryinput, .updatespellsinput {
     margin: 5px;
     min-width: 200px;
-    border-color: initial; 
+    border-color: initial;
 }
 
-.mainutilitytogglebutton, .characterdetailvaluedisplay, .itemdetailvaluedisplay, .spelldetailvaluedisplay {          /*-->view page & inventory page*/
+.mainutilitytogglebutton, .mainutilitysubmitbutton, .utilitydetailvaluedisplay, 
+.characterdetailvaluedisplay, .itemdetailvaluedisplay, .spelldetailvaluedisplay {
     background-color: #314977;
     margin: 5px;
     min-width: 200px;
@@ -159,6 +148,7 @@ body {
     vertical-align: middle;
     box-shadow: 2px 3px 3px black;
     padding-top: 8px;
+    border: none;
 }
 
 label {
@@ -229,6 +219,7 @@ select {
     background-color: #057faf !important;
     color: black !important;
     box-shadow: 4px 5px 5px black !important;
+    cursor: pointer;
 }
 
 #updateinventorysubmit, #addspellsubmit {
@@ -298,5 +289,22 @@ select {
 }
 
 .mainutilitysubpagedisplay {
+    display: none;
+}
+
+.utilitybutton {
+    cursor: pointer;
+}
+
+#dicerollsubmitbutton {
+    margin-top: 33px;
+}
+
+#diceresultdisplay, #dicerolldisplay {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+#diceresultdisplayrow {
     display: none;
 }

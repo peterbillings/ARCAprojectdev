@@ -75,6 +75,7 @@ namespace CharacterManagementApi.CharacterManagementDBModel
         public virtual CharacterClass CharacterClassNavigation { get; set; }
         public virtual HitDice HitDiceNavigation { get; set; }
         public virtual Race RaceNavigation { get; set; }
+        public virtual CharacterStatus CharacterStatus { get; set; }
         public virtual ICollection<CharacterInventory> CharacterInventory { get; set; }
         public virtual ICollection<CharacterSpells> CharacterSpells { get; set; }
     }
