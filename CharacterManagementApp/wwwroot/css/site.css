@@ -308,3 +308,29 @@ select {
 #diceresultdisplayrow {
     display: none;
 }
+
+#initiativedisplaytable {
+    margin-top: 30px;
+}
+
+/* table {
+    border-collapse: collapse;
+} */
+
+table {
+    border-collapse: separate;
+    border-spacing: 25px 15px;
+}
+
+td, th {
+    background-color: #314977;
+    color: #f0e6d6;
+    font-size: 20px;
+    vertical-align: middle;
+    box-shadow: 2px 3px 3px black;
+    border: none;
+}
+
+#initiativedisplaytablewrapper {
+    display: none;
+}

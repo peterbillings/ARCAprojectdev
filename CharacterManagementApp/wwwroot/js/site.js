@@ -1266,3 +1266,75 @@ function resetDiceResultDisplay() {
     document.getElementById("diceresultdisplayrow").style.display = "none";
 }
 // END functionality for resetting dice roll result display
+
+// BEGIN functionality for adding a character or enemy row to the initiative display table
+
+    var characterInitiativeForm = document.getElementById("characterinitiativeform");
+
+    var enemyInitiativeForm = document.getElementById("enemyinitiativeform");
+
+    characterInitiativeForm.addEventListener("submit", addRowToInitiativeDisplayTable);
+
+    enemyInitiativeForm.addEventListener("submit", addRowToInitiativeDisplayTable);
+
+    function addRowToInitiativeDisplayTable() {
+
+        var initiativeFormJSON = interceptFormSubmit(event, this);
+
+        var initiativeFormData = JSON.parse(initiativeFormJSON);
+
+        var name = initiativeFormData.name;
+
+        var initiativeRoll = initiativeFormData.initiativeRoll;
+
+        var combatHp = initiativeFormData.combatHp;
+
+        var initiativeDisplayTable = document.getElementById("initiativedisplaytable");
+
+        var newInitiativeRow = document.createElement("tr");
+
+        document.getElementById("initiativedisplaytablewrapper").style.display = "block";
+
+        newInitiativeRow.innerHTML = (
+            `<td class="initiativeorderdisplay">Order</td>` +
+            `<td class="initiativenamedisplay">${name}</td>` +
+            `<td class="initiativerolldisplay">${initiativeRoll}</td>` +
+            `<td class="initiativehpdisplay" contenteditable=true>${combatHp}`
+        )
+
+        var tableRows = initiativeDisplayTable.children;
+
+        var arrayOfInitiatives = [];
+
+        for (var i = 1; i < tableRows.length; i++)
+        {
+            arrayOfInitiatives.push(tableRows[i].children[2].innerHTML);
+        }
+
+        arrayOfInitiatives.push(initiativeRoll);
+
+        arrayOfInitiatives.sort(function(a, b){return b - a});
+
+        var newIndex = arrayOfInitiatives.indexOf(initiativeRoll);
+
+        if (tableRows.length === 1 || tableRows.length === newIndex) {
+
+            initiativeDisplayTable.appendChild(newInitiativeRow);
+        }
+        else {
+
+            initiativeDisplayTable.insertBefore(newInitiativeRow, tableRows[newIndex + 1]);
+        }
+
+        for (var i = 1; i < tableRows.length; i++)
+        {
+            tableRows[i].children[0].innerHTML = i;
+        }
+        
+
+        // tableRows[tableRows.length - 1].children[0].innerHTML = Array.prototype.indexOf.call(tableRows, tableRows[tableRows.length - 1]);
+
+        //Array.prototype.indexOf.call(parent.children, child);
+    }
+
+// END functionality for adding a character or enemy row to the initiative display table

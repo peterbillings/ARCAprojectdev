@@ -75,24 +75,38 @@
                         </div>
                         <div class="mainutilitysubpagedisplay utilitycombat" id="combatdisplay">
                             <div class="mainutilityrow">
-                                <form id="characterInitiativeForm">
+                                <form id="characterinitiativeform">
                                     <div class="mainutilitycolumn">
-                                        <select class="utilityinput characternamedropdown" id="addcharactertoinitiativelist" name="characterName" required>
+                                        <select class="utilityinput characternamedropdown" id="addcharactertoinitiativelist" name="name" required>
                                             <option value="" disabled selected>Character Name</option>
                                         </select>
-                                        <input class="utilityinput" id="characterinitiativeroll" type="number" name="characterInitiativeRoll" min="1" max="40" placeholder="Initiative Roll">
-                                        <input class="utilityinput" id="charactercombathp" type="number" name="characterCombatHp" min="0" placeholder="Character HP" required>
+                                        <input class="utilityinput" id="characterinitiativeroll" type="number" name="initiativeRoll" min="1" max="40" placeholder="Initiative Roll">
+                                        <input class="utilityinput" id="charactercombathp" type="number" name="combatHp" min="0" placeholder="Character HP" required>
                                         <input class="mainutilitysubmitbutton buttonhover" id="characterInitiativeSubmit" type="submit" value="Add Character">
                                     </div>
                                 </form>
-                                <form id="characterInitiativeForm">
+                                <form id="enemyinitiativeform">
                                     <div class="mainutilitycolumn">
-                                        <input class="utilityinput" id="enemyname" type="text" name="enemyName" maxlength="30" placeholder="Enemy Name" required>
-                                        <input class="utilityinput" id="enemyinitiativeroll" type="number" name="enemyInitiativeRoll" min="1" max="40" placeholder="Enemy Initiative" required>
-                                        <input class="utilityinput" id="enemyhp" type="number" name="enemyHp" min="1" placeholder="Enemy HP" required>
+                                        <input class="utilityinput" id="enemyname" type="text" name="name" maxlength="30" placeholder="Enemy Name" required>
+                                        <input class="utilityinput" id="enemyinitiativeroll" type="number" name="initiativeRoll" min="1" max="40" placeholder="Enemy Initiative" required>
+                                        <input class="utilityinput" id="enemyhp" type="number" name="combatHp" min="1" placeholder="Enemy HP" required>
                                         <input class="mainutilitysubmitbutton buttonhover" id="enemyInitiativeSubmit" type="submit" value="Add Enemy">
                                     </div>
                                 </form>
+                            </div>
+                            <div class="mainutilityrow">
+                                <div class="mainutilitycolumn">
+                                    <div id="initiativedisplaytablewrapper">
+                                        <table id="initiativedisplaytable">
+                                            <tr class="initiativetablerow">
+                                                <th>Order</th>
+                                                <th>Name</th>
+                                                <th>Initiative</th>
+                                                <th>HP</th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="mainutilitysubpagedisplay utilitystatus" id="statusdisplay">Status</div>
