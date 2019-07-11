@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+
 namespace CharacterManagementApi.CharacterManagementDBModel
 {
     public partial class CharacterStatus
@@ -7,9 +9,9 @@ namespace CharacterManagementApi.CharacterManagementDBModel
         public int CurrentHp { get; set; }
         public int TempHp { get; set; }
         public int Gold { get; set; }
-        public int ExhaustionLevel { get; set; }
-        public string Buff { get; set; }
-        public string Debuff { get; set; }
+        public int Exhaustion { get; set; }
+        public string Condition { get; set; }
+        public int Perception { get; set; }
 
         public virtual CharacterDetails CharacterNameNavigation { get; set; }
     }

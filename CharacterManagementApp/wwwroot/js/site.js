@@ -285,13 +285,16 @@ function sendNewCharacterInfoToApi(event) {
 
     xhr.onload = function() {
 
-        alert(this.response);  // maybe determine a better way than alert to notify client
+        alert(this.response);
         
         for (var dropdown of existingCharactersDropDown) {
 
-            dropdown.innerHTML = ('<option value="" disabled selected>' +
-                                                    'Existing Characters' +
-                                                    '</option>');
+            dropdown.innerHTML = (
+                
+                '<option value="" disabled selected>' +
+                'Existing Characters' +
+                '</option>'
+            );
         }
                                                    
         populateExistingCharactersDropDown();
@@ -1296,10 +1299,10 @@ function resetDiceResultDisplay() {
         document.getElementById("initiativedisplaytablewrapper").style.display = "block";
 
         newInitiativeRow.innerHTML = (
-            `<td class="initiativeorderdisplay">Order</td>` +
+            `<td class="initiativeorderdisplay buttonhover">Order</td>` +
             `<td class="initiativenamedisplay">${name}</td>` +
             `<td class="initiativerolldisplay">${initiativeRoll}</td>` +
-            `<td class="initiativehpdisplay" contenteditable=true>${combatHp}`
+            `<td class="initiativehpdisplay" contenteditable=true>${combatHp}</td>`
         )
 
         var tableRows = initiativeDisplayTable.children;
@@ -1329,12 +1332,87 @@ function resetDiceResultDisplay() {
         for (var i = 1; i < tableRows.length; i++)
         {
             tableRows[i].children[0].innerHTML = i;
-        }
-        
 
-        // tableRows[tableRows.length - 1].children[0].innerHTML = Array.prototype.indexOf.call(tableRows, tableRows[tableRows.length - 1]);
+            tableRows[i].children[0].addEventListener("click", removeInitiativeRow);
+        }
 
         //Array.prototype.indexOf.call(parent.children, child);
     }
 
+    function removeInitiativeRow() {
+
+        var initiativeDisplayTableWrapper = document.getElementById("initiativedisplaytablewrapper");
+
+        var initiativeDisplayTable = document.getElementById("initiativedisplaytable");
+
+        var tableRows = initiativeDisplayTable.children;
+
+        this.parentNode.parentNode.removeChild(this.parentNode);
+        
+        if (tableRows.length === 1) {
+
+            initiativeDisplayTableWrapper.style.display = "none";
+        }
+
+        for (var i = 1; i < tableRows.length; i++) {
+
+            tableRows[i].children[0].innerHTML = i;
+        }
+
+    }
+
 // END functionality for adding a character or enemy row to the initiative display table
+
+// BEGIN functionality for adding a character's status to the status display table
+
+    var addCharacterToStatusTableForm = document.getElementById("addcharactertostatustableform");
+
+    addCharacterToStatusTableForm.addEventListener("submit", addCharacterStatus);
+
+    function addCharacterStatus() {
+
+        var xhr = new XMLHttpRequest();
+
+        var characterName = JSON.parse(interceptFormSubmit(event, addCharacterToStatusTableForm)).characterName;
+
+        xhr.open('GET', `https://localhost:5003/api/getcharacterstatus?characterName=${characterName}`);
+
+        xhr.setRequestHeader("Content-Type", "application/JSON");
+
+        xhr.onload = function() {
+
+            var characterStatus = JSON.parse(this.response);
+
+            var statusDisplayTable1 = document.getElementById("statusdisplaytable1");
+
+            var statusDisplayTable2 = document.getElementById("statusdisplaytable2");
+
+            var newRow1 = document.createElement("tr");
+
+            var newRow2 = document.createElement("tr");
+
+            newRow1.innerHTML = (
+
+                `<td>${characterStatus.characterName}</td>` +
+                `<td contenteditable=true>${characterStatus.currentHp}</td>` +
+                `<td contenteditable=true>${characterStatus.tempHp}</td>` +
+                `<td contenteditable=true>${characterStatus.gold}</td>`
+            );
+
+            newRow2.innerHTML = (
+
+                `<td>${characterStatus.characterName}</td>` +
+                `<td>${characterStatus.perception}</td>` +
+                `<td contenteditable=true>${characterStatus.exhaustion}</td>` +
+                `<td contenteditable=true>${characterStatus.condition}</td>`
+            );
+
+            statusDisplayTable1.appendChild(newRow1);
+
+            statusDisplayTable2.appendChild(newRow2);
+        }
+
+        xhr.send();
+    }
+
+// END functionality for adding a character's status to the status display table

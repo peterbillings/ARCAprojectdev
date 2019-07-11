@@ -13,17 +13,16 @@
 
         <!--BEGIN: top menu-->
         <header class="menu">
-                    <p class="menuitem main buttonhover" id="mainbutton">MAIN</p>
-                    <p class="menuitem new buttonhover" id="newbutton">NEW CHARACTER</p>
-                    <p class="menuitem view buttonhover" id="viewbutton">VIEW CHARACTER</p>
-                    <p class="menuitem update buttonhover" id="updatebutton">UPDATE CHARACTER</p>
-                    <p class="menuitem inventory buttonhover" id="inventorybutton">INVENTORY</p>
-                    <p class="menuitem spells buttonhover" id="spellsbutton">SPELLS</p>
+            <p class="menuitem main buttonhover" id="mainbutton">MAIN</p>
+            <p class="menuitem new buttonhover" id="newbutton">NEW CHARACTER</p>
+            <p class="menuitem view buttonhover" id="viewbutton">VIEW CHARACTER</p>
+            <p class="menuitem update buttonhover" id="updatebutton">UPDATE CHARACTER</p>
+            <p class="menuitem inventory buttonhover" id="inventorybutton">INVENTORY</p>
+            <p class="menuitem spells buttonhover" id="spellsbutton">SPELLS</p>
         </header>
         <!--END: top menu-->
 
         <main>
-            
             <!--BEGIN: main page instructions/utilities-->
             <section class="page main" id="mainpage">
                 <p id="titleline">Dungeons & Dragons 5e <br> Character Management App</p>
@@ -109,7 +108,42 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mainutilitysubpagedisplay utilitystatus" id="statusdisplay">Status</div>
+                        <div class="mainutilitysubpagedisplay utilitystatus" id="statusdisplay">
+                            <form id="addcharactertostatustableform">
+                                <div class="mainutilityrow">
+                                    <div class="mainutilitycolumn">
+                                        <select class="utilityinput characternamedropdown" id="addcharactertostatustable" name="characterName" required>
+                                            <option value="" disabled selected>Character Name</option>
+                                        </select>
+                                    </div>
+                                    <div class="mainutilitycolumn">
+                                        <input class="mainutilitysubmitbutton buttonhover" id="addCharacterStatusSubmit" type="submit" value="Add Character">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="mainutilityrow">
+                                    <div class="mainutilitycolumn">
+                                        <div id="statusdisplaytablewrapper">
+                                            <table id="statusdisplaytable1">
+                                                <tr class="statustablerow">
+                                                    <th>Name</th>
+                                                    <th>HP</th>
+                                                    <th>Temp HP</th>
+                                                    <th>Gold</th>
+                                                </tr>
+                                            </table>
+                                            <table id="statusdisplaytable2">
+                                                <tr class="statustablerow">
+                                                    <th>Name</th>
+                                                    <th>Perception</th>
+                                                    <th>Exhaustion</th>
+                                                    <th>Condition</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                         <div class="mainutilitysubpagedisplay utilityobjectives" id="objectivesdisplay">Objectives</div>
                     </div>
                 </div>

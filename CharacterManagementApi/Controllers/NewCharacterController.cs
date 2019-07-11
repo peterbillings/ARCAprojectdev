@@ -29,14 +29,16 @@ namespace CharacterManagementApi.Controllers
 
             newStatus.CurrentHp = newCharacter.MaxHp;
 
+            newStatus.Perception = newCharacter.PassivePerception;
+
             try
             {
                 using (var context = new CharacterManagementDBContext())
                 {
                     context.CharacterDetails.Add(newCharacter);
-                    context.SaveChanges();
 
                     context.CharacterStatus.Add(newStatus);
+                    
                     context.SaveChanges();
                 }
             }

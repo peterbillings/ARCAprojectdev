@@ -32,6 +32,7 @@ namespace CharacterManagementApi.CharacterManagementDBModel
         {
             if (!optionsBuilder.IsConfigured)
             {
+// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=LAPTOP-F2RUMMJU\\SQLEXPRESS;Database=CharacterManagementDB;Trusted_Connection=True;MultipleActiveResultSets=True");
             }
         }
@@ -261,24 +262,23 @@ namespace CharacterManagementApi.CharacterManagementDBModel
                 entity.HasKey(e => e.CharacterName)
                     .HasName("CharacterStatus_pk");
 
+                entity.HasIndex(e => e.CharacterName)
+                    .HasName("cStatus_CharacterName");
+
                 entity.Property(e => e.CharacterName)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Buff)
+                entity.Property(e => e.Condition)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
-                    .HasDefaultValueSql("('None')");
+                    .HasDefaultValueSql("('Normal')");
 
                 entity.Property(e => e.CurrentHp).HasColumnName("CurrentHP");
 
-                entity.Property(e => e.Debuff)
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('None')");
+                entity.Property(e => e.Perception).HasDefaultValueSql("((10))");
 
                 entity.Property(e => e.TempHp).HasColumnName("TempHP");
 
