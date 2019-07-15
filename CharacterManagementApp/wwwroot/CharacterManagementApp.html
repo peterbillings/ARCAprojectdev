@@ -107,6 +107,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mainutilityrow" id="initiativedisplaybottomrow">
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="initiativehpupdatebutton">Update HP</p>
+                                </div>
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="initiativedisplayresetbutton">Reset</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="mainutilitysubpagedisplay utilitystatus" id="statusdisplay">
                             <form id="addcharactertostatustableform">
@@ -122,27 +130,32 @@
                                 </div>
                             </form>
                             <div class="mainutilityrow">
-                                    <div class="mainutilitycolumn">
-                                        <div id="statusdisplaytablewrapper">
-                                            <table id="statusdisplaytable1">
-                                                <tr class="statustablerow">
-                                                    <th>Name</th>
-                                                    <th>HP</th>
-                                                    <th>Temp HP</th>
-                                                    <th>Gold</th>
-                                                </tr>
-                                            </table>
-                                            <table id="statusdisplaytable2">
-                                                <tr class="statustablerow">
-                                                    <th>Name</th>
-                                                    <th>Perception</th>
-                                                    <th>Exhaustion</th>
-                                                    <th>Condition</th>
-                                                </tr>
-                                            </table>
-                                        </div>
+                                <div class="mainutilitycolumn">
+                                    <div id="statusdisplaytablewrapper">
+                                        <table id="statusdisplaytable1">
+                                            <tr class="statustablerow">
+                                                <th>Name</th>
+                                                <th>HP</th>
+                                                <th>Temp HP</th>
+                                                <th>Gold</th>
+                                            </tr>
+                                        </table>
+                                        <table id="statusdisplaytable2">
+                                            <tr class="statustablerow">
+                                                <th>Name</th>
+                                                <th>Perception</th>
+                                                <th>Exhaustion</th>
+                                                <th>Condition</th>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
+                            </div>
+                            <!-- <div class="mainutilityrow">
+                                <div class="mainutilitycolumn">
+                                    <p class="mainutilitysubmitbutton">Update</p>
+                                </div>
+                            </div> -->
                         </div>
                         <div class="mainutilitysubpagedisplay utilityobjectives" id="objectivesdisplay">Objectives</div>
                     </div>
@@ -508,7 +521,11 @@
                         <button class="resetviewbutton buttonhover" id="viewcharacterreset">Reset</button>
                     </div>
                 </div>
-                <!-- </div> -->
+                <div class="viewcharacterformrow viewcharacterdisplay">
+                    <div class="viewcharacterformcolumn">
+                        <p class="characterdetailvaluedisplay buttonhover" id="deletecharacterbutton">Delete</p>
+                    </div>
+                </div>
             </section>
             <!--END: character view page-->
 

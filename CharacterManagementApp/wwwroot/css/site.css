@@ -189,7 +189,6 @@ select {
     box-shadow: 2px 3px 3px black;
 }
 
-
 .newcharactercheckboxwrapper, .viewcharactercheckboxwrapper {
     display: flex;
     flex-direction: column;
@@ -279,7 +278,8 @@ select {
 }
 
 #mainutilitysubpagedisplay {
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    background-color: rgba(	49, 73, 119, 0.3);
     width: 600px;
     margin-left: 20px;
 }
@@ -325,8 +325,23 @@ td, th {
     vertical-align: middle;
     box-shadow: 2px 3px 3px black;
     border: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 130px;
 }
 
 #initiativedisplaytablewrapper {
     display: none;
+}
+
+#initiativedisplaybottomrow {
+    display: none;
+}
+
+#statusdisplaytablewrapper {
+    display: none;
+}
+
+#deletecharacterbutton {
+    margin-top: 30px;
 }

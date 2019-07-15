@@ -1298,6 +1298,8 @@ function resetDiceResultDisplay() {
 
         document.getElementById("initiativedisplaytablewrapper").style.display = "block";
 
+        document.getElementById("initiativedisplaybottomrow").style.display = "flex";
+
         newInitiativeRow.innerHTML = (
             `<td class="initiativeorderdisplay buttonhover">Order</td>` +
             `<td class="initiativenamedisplay">${name}</td>` +
@@ -1343,6 +1345,8 @@ function resetDiceResultDisplay() {
 
         var initiativeDisplayTableWrapper = document.getElementById("initiativedisplaytablewrapper");
 
+        var initiativeDisplayBottomRow = document.getElementById("initiativedisplaybottomrow");
+
         var initiativeDisplayTable = document.getElementById("initiativedisplaytable");
 
         var tableRows = initiativeDisplayTable.children;
@@ -1352,6 +1356,8 @@ function resetDiceResultDisplay() {
         if (tableRows.length === 1) {
 
             initiativeDisplayTableWrapper.style.display = "none";
+
+            initiativeDisplayBottomRow.style.display = "none";
         }
 
         for (var i = 1; i < tableRows.length; i++) {
@@ -1362,6 +1368,32 @@ function resetDiceResultDisplay() {
     }
 
 // END functionality for adding a character or enemy row to the initiative display table
+
+// BEGIN functionality for updating current character HP on the initiative display table
+
+var initiativeHpUpdateButton = document.getElementById("initiativehpupdatebutton");
+
+initiativeHpUpdateButton.addEventListener("click", updateInitiativeCurrentHp);
+
+function updateInitiativeCurrentHp() {
+
+
+}
+
+// END functionality for updating current chracter HP on the initiative display table
+
+// BEGIN functionality for resetting the initiative display table
+
+var initiativeDisplayResetButton = document.getElementById("initiativedisplayresetbutton");
+
+initiativeDisplayResetButton.addEventListener("click", resetInitiativeDisplayTable);
+
+function resetInitiativeDisplayTable() {
+
+
+}
+
+// END functionality for resetting the initiative display table
 
 // BEGIN functionality for adding a character's status to the status display table
 
@@ -1385,6 +1417,8 @@ function resetDiceResultDisplay() {
 
             var statusDisplayTable1 = document.getElementById("statusdisplaytable1");
 
+            var tableRows1 = statusDisplayTable1.children;
+
             var statusDisplayTable2 = document.getElementById("statusdisplaytable2");
 
             var newRow1 = document.createElement("tr");
@@ -1393,7 +1427,7 @@ function resetDiceResultDisplay() {
 
             newRow1.innerHTML = (
 
-                `<td>${characterStatus.characterName}</td>` +
+                `<td class="${characterStatus.characterName} buttonhover">${characterStatus.characterName}</td>` +
                 `<td contenteditable=true>${characterStatus.currentHp}</td>` +
                 `<td contenteditable=true>${characterStatus.tempHp}</td>` +
                 `<td contenteditable=true>${characterStatus.gold}</td>`
@@ -1401,7 +1435,7 @@ function resetDiceResultDisplay() {
 
             newRow2.innerHTML = (
 
-                `<td>${characterStatus.characterName}</td>` +
+                `<td class="${characterStatus.characterName}">${characterStatus.characterName}</td>` +
                 `<td>${characterStatus.perception}</td>` +
                 `<td contenteditable=true>${characterStatus.exhaustion}</td>` +
                 `<td contenteditable=true>${characterStatus.condition}</td>`
@@ -1410,9 +1444,93 @@ function resetDiceResultDisplay() {
             statusDisplayTable1.appendChild(newRow1);
 
             statusDisplayTable2.appendChild(newRow2);
+
+            document.getElementById("statusdisplaytablewrapper").style.display = "block";
+
+            for (var i = 1; i < tableRows1.length; i++)
+            {
+                tableRows1[i].children[0].addEventListener("click", removeStatusRow);
+            }
         }
 
         xhr.send();
     }
 
+    function removeStatusRow() {
+
+        var statusDisplayTableWrapper = document.getElementById("statusdisplaytablewrapper");
+
+        var statusDisplayTable1 = document.getElementById("statusdisplaytable1");
+
+        var statusDisplayTable2 = document.getElementById("statusdisplaytable2");
+
+        var tableRows1 = statusDisplayTable1.children;
+
+        var tableRows2 = statusDisplayTable2.children;
+
+        for (var i = 0; i < tableRows2.length; i++) {
+
+            if (this.classList[0] === tableRows2[i].children[0].classList[0])
+            {
+                tableRows2[i].parentNode.removeChild(tableRows2[i]);
+
+                break;
+            }
+        }
+
+        this.parentNode.parentNode.removeChild(this.parentNode);
+        
+        if (tableRows1.length === 1) {
+
+            statusDisplayTableWrapper.style.display = "none";
+        }
+    }
+
 // END functionality for adding a character's status to the status display table
+
+// BEGIN functionality for deleting a character on the view character page
+
+    var deleteCharacterButton = document.getElementById("deletecharacterbutton");
+
+    deleteCharacterButton.addEventListener("click", deleteCharacter);
+
+    function deleteCharacter() {
+
+        var characterName = document.getElementById("characterNameView").innerHTML;
+
+        if(confirm(`Are you sure you want to delete ${characterName}?`)) {
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', `https://localhost:5003/api/deletecharacter?characterName=${characterName}`);
+
+            xhr.setRequestHeader("Content-Type", "application/JSON");
+
+            xhr.onload = function() {
+
+                alert(this.response);
+
+                for (var dropdown of existingCharactersDropDown) {
+
+                    dropdown.innerHTML = (
+                        
+                        '<option value="" disabled selected>' +
+                        'Existing Characters' +
+                        '</option>'
+                    );
+                }
+                                                           
+                populateExistingCharactersDropDown();
+
+                resetCharacterViewPage();
+            }
+
+            xhr.send();
+        }
+        else {
+
+            return;
+        }
+    }
+
+// END functioanality for deleting a character on the view character page
