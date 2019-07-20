@@ -176,7 +176,7 @@ select {
     min-height: 80px;
 }
 
-.viewcharactertextarea, .viewitemdetailtextarea, .viewspelldetailtextarea {
+.viewcharactertextarea, .viewitemdetailtextarea, .viewspelldetailtextarea, .viewquestlogdetailtextarea {
     background-color: #314977;
     margin: 5px;
     width: 435px;
@@ -278,7 +278,6 @@ select {
 }
 
 #mainutilitysubpagedisplay {
-    /* border: 2px solid black; */
     background-color: rgba(	49, 73, 119, 0.3);
     width: 600px;
     margin-left: 20px;
@@ -334,7 +333,8 @@ td, th {
     display: none;
 }
 
-#initiativedisplaybottomrow {
+#initiativedisplaybottomrow, #statusdisplaybottomrow {
+    margin-top: 30px;
     display: none;
 }
 
@@ -344,4 +344,16 @@ td, th {
 
 #deletecharacterbutton {
     margin-top: 30px;
+}
+
+#questlogwrapper, #questlogtoprow {
+    margin-top: 30px;
+}
+
+#questlogdisplay {
+    white-space: pre;
+}
+
+#questlogidtracker {
+    display: none;
 }

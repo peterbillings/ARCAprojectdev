@@ -24,6 +24,7 @@ namespace CharacterManagementApi.CharacterManagementDBModel
         public virtual DbSet<CharacterStatus> CharacterStatus { get; set; }
         public virtual DbSet<HitDice> HitDice { get; set; }
         public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<QuestLog> QuestLog { get; set; }
         public virtual DbSet<Race> Race { get; set; }
         public virtual DbSet<SchoolOfMagic> SchoolOfMagic { get; set; }
         public virtual DbSet<Spells> Spells { get; set; }
@@ -314,6 +315,21 @@ namespace CharacterManagementApi.CharacterManagementDBModel
                 entity.Property(e => e.ItemDescription)
                     .IsRequired()
                     .HasMaxLength(300)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<QuestLog>(entity =>
+            {
+                entity.HasKey(e => e.LogEntryId)
+                    .HasName("PK__QuestLog__6996C08F69542C26");
+
+                entity.Property(e => e.LogEntryId).HasColumnName("LogEntry_ID");
+
+                entity.Property(e => e.EntryDate).HasColumnType("date");
+
+                entity.Property(e => e.EntryText)
+                    .IsRequired()
+                    .HasMaxLength(1000)
                     .IsUnicode(false);
             });
 

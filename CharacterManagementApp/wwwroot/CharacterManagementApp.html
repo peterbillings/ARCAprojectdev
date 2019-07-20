@@ -32,11 +32,22 @@
                         <p class="mainutilitytogglebutton utilitydice utilitybutton buttonhover" id="dicebutton">Dice</p>
                         <p class="mainutilitytogglebutton utilitycombat utilitybutton buttonhover" id="combatbutton">Combat</p>
                         <p class="mainutilitytogglebutton utilitystatus utilitybutton buttonhover" id="statusbutton">Status</p>
-                        <p class="mainutilitytogglebutton utilityobjectives utilitybutton buttonhover" id="objectivesbutton">Objectives</p>
+                        <p class="mainutilitytogglebutton utilitylog utilitybutton buttonhover" id="logbutton">Quest Log</p>
                     </div>
                     <div class="mainutilitycolumn" id="mainutilitysubpagedisplay">
                         <div class="mainutilitysubpagedisplay utilityinstructions" id="instructionsdisplay">
-                            Instructions
+                            <div class="mainutilityrow">
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay">Main</p>
+                                    <p class="utilitydetailvaluedisplay">New Character</p>
+                                    <p class="utilitydetailvaluedisplay">View Character</p>
+                                </div>
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay">Update Character</p>
+                                    <p class="utilitydetailvaluedisplay">Inventory</p>
+                                    <p class="utilitydetailvaluedisplay">Spells</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="mainutilitysubpagedisplay utilitydice" id="dicedisplay">
                             <form id="dicerollform">
@@ -151,17 +162,43 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="mainutilityrow">
+                            <div class="mainutilityrow" id="statusdisplaybottomrow">
                                 <div class="mainutilitycolumn">
-                                    <p class="mainutilitysubmitbutton">Update</p>
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="statusupdatebutton">Update Status</p>
                                 </div>
-                            </div> -->
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="statusdisplayresetbutton">Reset</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mainutilitysubpagedisplay utilityobjectives" id="objectivesdisplay">Objectives</div>
+                        <div class="mainutilitysubpagedisplay utilitylog" id="logdisplay">
+                            <div class="mainutilityrow" id="questlogtoprow">
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="updatequestlogbutton">Update</p>
+                                </div>
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="newentryquestlogbutton">New Entry</p>
+                                </div>
+                            </div>
+                            <div class="mainutilityrow">
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="previousquestlogbutton">&lt&lt Previous</p>
+                                </div>
+                                <div class="mainutilitycolumn">
+                                    <p class="utilitydetailvaluedisplay buttonhover" id="nextquestlogbutton">Next &gt&gt</p>
+                                </div>
+                            </div>
+                            <div class="mainutilityrow" id="questlogwrapper">
+                                <div class="mainutilitycolumn">
+                                    <p id="questlogidtracker">currentID</p>
+                                    <p class="viewquestlogdetailtextarea" id="questlogdisplay" contenteditable="true">Quest Log</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!--END: main page instructions-->
+            <!--END: main page instructions/utilities-->
 
             <!--BEGIN: new character input form section-->
             <section class="page new" id="newpage"> 

@@ -10,6 +10,7 @@ window.onload = function() {
     populateSchoolOfMagicDropDown();
     populateExistingCharactersDropDown();
     populateAttributeToUpdateDropDown();
+    getLatestQuestLogEntry();
 }
 
 // END onload functions
@@ -1179,19 +1180,19 @@ var instructionsButton = document.getElementById("instructionsbutton");
 var diceButton = document.getElementById("dicebutton");
 var combatButton = document.getElementById("combatbutton");
 var statusButton = document.getElementById("statusbutton");
-var objectivesButton = document.getElementById("objectivesbutton");
+var logButton = document.getElementById("logbutton");
 
 var instructionsDisplay = document.getElementById("instructionsdisplay");
 var diceDisplay = document.getElementById("dicedisplay");
 var combatDisplay = document.getElementById("combatdisplay");
 var statusDisplay = document.getElementById("statusdisplay");
-var objectivesDisplay = document.getElementById("objectivesdisplay");
+var logDisplay = document.getElementById("logdisplay");
 
 instructionsButton.addEventListener("click", toggleUtilityDisplay);
 diceButton.addEventListener("click", toggleUtilityDisplay);
 combatButton.addEventListener("click", toggleUtilityDisplay);
 statusButton.addEventListener("click", toggleUtilityDisplay);
-objectivesButton.addEventListener("click", toggleUtilityDisplay);
+logButton.addEventListener("click", toggleUtilityDisplay);
 
 function toggleUtilityDisplay() {
 
@@ -1377,7 +1378,33 @@ initiativeHpUpdateButton.addEventListener("click", updateInitiativeCurrentHp);
 
 function updateInitiativeCurrentHp() {
 
+    var nameAndCurrentHp = [];
 
+    var initiativeDisplayTable = document.getElementById("initiativedisplaytable");
+
+    var tableRows = initiativeDisplayTable.children;
+
+    for (var i = 1; i < tableRows.length; i++) {
+
+        var name = tableRows[i].children[1].innerHTML;
+
+        var currentHp = tableRows[i].children[3].innerHTML;
+
+        nameAndCurrentHp.push(`${name}_${currentHp}`);
+    }
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'https://localhost:5003/api/updateinitiativecurrenthp');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        alert(this.response);
+    }
+
+    xhr.send(JSON.stringify(nameAndCurrentHp));
 }
 
 // END functionality for updating current chracter HP on the initiative display table
@@ -1390,7 +1417,20 @@ initiativeDisplayResetButton.addEventListener("click", resetInitiativeDisplayTab
 
 function resetInitiativeDisplayTable() {
 
+    var initiativeDisplayTableWrapper = document.getElementById("initiativedisplaytablewrapper");
 
+    var initiativeDisplayBottomRow = document.getElementById("initiativedisplaybottomrow");
+
+    var initiativeDisplayTable = document.getElementById("initiativedisplaytable");
+
+    while (initiativeDisplayTable.children.length > 1) {
+
+        initiativeDisplayTable.removeChild(initiativeDisplayTable.children[1]);
+    }
+
+    initiativeDisplayTableWrapper.style.display = "none";
+
+    initiativeDisplayBottomRow.style.display = "none";
 }
 
 // END functionality for resetting the initiative display table
@@ -1447,6 +1487,8 @@ function resetInitiativeDisplayTable() {
 
             document.getElementById("statusdisplaytablewrapper").style.display = "block";
 
+            document.getElementById("statusdisplaybottomrow").style.display = "flex";
+
             for (var i = 1; i < tableRows1.length; i++)
             {
                 tableRows1[i].children[0].addEventListener("click", removeStatusRow);
@@ -1459,6 +1501,8 @@ function resetInitiativeDisplayTable() {
     function removeStatusRow() {
 
         var statusDisplayTableWrapper = document.getElementById("statusdisplaytablewrapper");
+
+        var statusDisplayBottomRow = document.getElementById("statusdisplaybottomrow");
 
         var statusDisplayTable1 = document.getElementById("statusdisplaytable1");
 
@@ -1483,10 +1527,97 @@ function resetInitiativeDisplayTable() {
         if (tableRows1.length === 1) {
 
             statusDisplayTableWrapper.style.display = "none";
+
+            statusDisplayBottomRow.style.display = "none";
         }
     }
 
 // END functionality for adding a character's status to the status display table
+
+// BEGIN functionality for resetting the status display table
+
+var statusDisplayResetButton = document.getElementById("statusdisplayresetbutton");
+
+statusDisplayResetButton.addEventListener("click", resetStatusDisplay);
+
+function resetStatusDisplay() {
+
+    var statusDisplayTable1 = document.getElementById("statusdisplaytable1");
+
+    var statusDisplayTable2 = document.getElementById("statusdisplaytable2");
+
+    var statusDisplayTableWrapper = document.getElementById("statusdisplaytablewrapper");
+
+    var statusDisplayBottomRow = document.getElementById("statusdisplaybottomrow");
+
+    while (statusDisplayTable1.children.length > 1) {
+
+        statusDisplayTable1.removeChild(statusDisplayTable1.children[1]);
+
+        statusDisplayTable2.removeChild(statusDisplayTable2.children[1]);
+    }
+
+    statusDisplayTableWrapper.style.display = "none";
+
+    statusDisplayBottomRow.style.display = "none";
+}
+
+// END functionality for resetting the status display table
+
+// BEGIN functionality for updating character statuses on the status display table
+
+var statusUpdateButton = document.getElementById("statusupdatebutton");
+
+statusUpdateButton.addEventListener("click", updateCharacterStatus);
+
+function updateCharacterStatus() {
+
+    var statusDisplayTable1 = document.getElementById("statusdisplaytable1");
+
+    var statusDisplayTable2 = document.getElementById("statusdisplaytable2");
+
+    var tableRows1 = statusDisplayTable1.children;
+
+    var tableRows2 = statusDisplayTable2.children;
+
+    var statusUpdateInfo = [];
+
+    for (var i = 1; i < tableRows1.length; i++) {
+
+        var characterName = tableRows1[i].children[0].innerHTML;
+
+        var currentHp = tableRows1[i].children[1].innerHTML;
+
+        var tempHp = tableRows1[i].children[2].innerHTML;
+
+        var gold = tableRows1[i].children[3].innerHTML;
+
+        var exhaustion = tableRows2[i].children[2].innerHTML;
+
+        var condition = tableRows2[i].children[3].innerHTML;
+
+        var status = `${characterName}_${currentHp}_${tempHp}_${gold}_${exhaustion}_${condition}`;
+
+        statusUpdateInfo.push(status);
+    }
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'https://localhost:5003/api/updatecharacterstatus');
+
+    xhr.setRequestHeader("Content-Type", "application/JSON");
+
+    xhr.onload = function() {
+
+        alert(this.response);
+    }
+
+    console.log(statusUpdateInfo);
+
+    xhr.send(JSON.stringify(statusUpdateInfo));
+}
+
+// END functionality for updating character statuses on the status display table
 
 // BEGIN functionality for deleting a character on the view character page
 
@@ -1533,4 +1664,195 @@ function resetInitiativeDisplayTable() {
         }
     }
 
-// END functioanality for deleting a character on the view character page
+// END functionality for deleting a character on the view character page
+
+// BEGIN functionality for fetching the latest quest log entry upon page loading
+
+function getLatestQuestLogEntry() {
+
+    var questLogIdTracker = document.getElementById("questlogidtracker");
+
+    var questLogDisplay = document.getElementById("questlogdisplay");
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/getlatestquestlogentry');
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        var latestLogEntry = JSON.parse(this.response);
+
+        var logText = latestLogEntry.entryText;
+
+        var logDate = latestLogEntry.entryDate.substring(0, 10);
+
+        var logId = latestLogEntry.logEntryId;
+
+        questLogIdTracker.innerHTML = logId;
+
+        console.log(logText);
+
+        questLogDisplay.innerHTML = (
+
+            `${logDate}: <br>` +
+            `${logText}`
+        );
+    }
+
+    xhr.send();
+}
+
+// END functionality for fetching the latest quest log entry upon page loading
+
+// BEGIN functionality for navigating between next and previous quest log entries
+
+
+
+var previousQuestLogButton = document.getElementById("previousquestlogbutton");
+
+var nextQuestLogButton = document.getElementById("nextquestlogbutton");
+
+previousQuestLogButton.addEventListener("click", getAdjacentQuestLogEntry);
+
+nextQuestLogButton.addEventListener("click", getAdjacentQuestLogEntry);
+
+function getAdjacentQuestLogEntry() {
+
+    var questLogIdTracker = document.getElementById("questlogidtracker");
+
+    var questLogDisplay = document.getElementById("questlogdisplay");
+
+    var currentLogEntryId = questLogIdTracker.innerHTML;
+
+    var xhr = new XMLHttpRequest();
+
+    var nextOrPrevious = this.id.substring(0, this.id.length - 14);
+
+    xhr.open('GET', `https://localhost:5003/api/getadjacentquestlogentry?currentId=${currentLogEntryId}&nextOrPrevious=${nextOrPrevious}`);
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        var adjacentLogEntry = JSON.parse(this.response);
+
+        var logText = adjacentLogEntry.entryText;
+
+        var logDate = adjacentLogEntry.entryDate.substring(0, 10);
+
+        var logId = adjacentLogEntry.logEntryId;
+
+        if (logId !== 0) {
+
+            questLogIdTracker.innerHTML = logId;
+
+            questLogDisplay.innerHTML = (
+
+                `${logDate}: <br>` +
+                `${logText}`
+            );
+        }
+        else {
+
+            return;
+        }
+    }
+
+    xhr.send();
+}
+
+// END functionality for navigating between next and previous quest log entries
+
+// BEGIN functionality for updating current quest log entry
+
+var updateQuestLogButton = document.getElementById("updatequestlogbutton");
+
+updateQuestLogButton.addEventListener("click", updateCurrentQuestLogEntry);
+
+function updateCurrentQuestLogEntry() {
+
+    if(confirm("Please confirm your modification to the log entry.")) {
+        
+        var questLogIdTracker = document.getElementById("questlogidtracker");
+
+        var questLogDisplay = document.getElementById("questlogdisplay");
+
+        var currentLogEntryId = questLogIdTracker.innerHTML;
+        
+        var logEntryUpdate = questLogDisplay.innerHTML.substring(16);
+
+        var xhr = new XMLHttpRequest();
+
+        var questLogUpdate = `${currentLogEntryId}_${logEntryUpdate}`;
+
+        xhr.open('POST', 'https://localhost:5003/api/updatecurrentquestlogentry');
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+        }
+
+        xhr.send(JSON.stringify(questLogUpdate));
+    }
+    else {
+        return;
+    }
+}
+
+// END functionality for updating current quest log entry
+
+// BEGIN functionality for creating a new quest log entry
+
+var newEntryQuestLogButton = document.getElementById("newentryquestlogbutton");
+
+newEntryQuestLogButton.addEventListener("click", createNewQuestLogEntry);
+
+function createNewQuestLogEntry() {
+
+    if(confirm("Please confirm creating a new log entry.")) {
+
+        var questLogIdTracker = document.getElementById("questlogidtracker");
+
+        var questLogDisplay = document.getElementById("questlogdisplay");
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'https://localhost:5003/api/createnewquestlogentry');
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            var newLogEntryTemplate = JSON.parse(this.response);
+
+            var newEntryId = newLogEntryTemplate.logEntryId;
+
+            var newEntryDate = newLogEntryTemplate.entryDate.substring(0, 10);
+
+            var newEntryText = newLogEntryTemplate.entryText;
+
+            if (newEntryId !== 0) {
+
+                questLogIdTracker.innerHTML = newEntryId;
+
+                questLogDisplay.innerHTML = (
+
+                    `${newEntryDate}: <br>` +
+                    `${newEntryText}`
+                );
+            }
+            else {
+
+                return;
+            }
+        }
+
+        xhr.send();
+    }
+}
+
+// END functionality for creating a new quest log entry
