@@ -357,3 +357,7 @@ td, th {
 #questlogidtracker {
     display: none;
 }
+
+#utilityinstructionslist {
+    margin-top: 30px;
+}

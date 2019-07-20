@@ -1692,8 +1692,6 @@ function getLatestQuestLogEntry() {
 
         questLogIdTracker.innerHTML = logId;
 
-        console.log(logText);
-
         questLogDisplay.innerHTML = (
 
             `${logDate}: <br>` +
