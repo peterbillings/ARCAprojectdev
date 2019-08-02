@@ -865,7 +865,7 @@ function getSelectedItemDetails() {
                         '</div>' +
                         '<div class="inventoryviewcolumn">' +
                             '<label for="itemValueView">Value (GP)</label>' +
-                            `<p class="itemdetailvaluedisplay" id="itemValueView">${itemDetails.itemValue}</p>` +
+                            `<p class="itemdetailvaluedisplay" id="itemValueView" contenteditable="true">${itemDetails.itemValue}</p>` +
                         '</div>' +
                         '<div class="inventoryviewcolumn">' +
                             '<label for="itemQuantityView">Quantity</label>' +
@@ -875,13 +875,19 @@ function getSelectedItemDetails() {
                     '<div class="inventoryformrow">' +
                         '<div class="inventoryviewcolumn">' +
                             '<label for="itemDescriptionView">Description</label>' +
-                            `<p class="viewitemdetailtextarea" id="itemDescriptionView">${itemDetails.itemDescription}</p>` +
+                            `<p class="viewitemdetailtextarea" id="itemDescriptionView" contenteditable="true">${itemDetails.itemDescription}</p>` +
                         '</div>' +
                         '<div class="inventoryviewcolumn">' +
                              '<p class="itemdetailvaluedisplay buttonhover" id="incrementquantitybutton">Increment (+1)</p>' +
                              '<p class="itemdetailvaluedisplay buttonhover" id="decrementquantitybutton">Decrement (-1)</p>' +
+                             '<p class="itemdetailvaluedisplay buttonhover" id="updateitemdetailsbutton">Update Details</p>' +
                              '<p class="itemdetailvaluedisplay buttonhover" id="itemviewresetbutton">Reset</p>' +
                         '</div>' +
+                    '</div>' +
+                    '<div class="inventoryformrow" style="margin-top: 30px">' +
+                        '<p class="itemdetailvaluedisplay buttonhover" id="removefrominventorybutton">Remove</p>' +
+                        '<p class="itemdetailvaluedisplay buttonhover" id="removefromallinventoriesbutton">Remove All</p>' +
+                        '<p class="itemdetailvaluedisplay buttonhover" id="deleteitembutton">Delete Item</p>' +
                     '</div>'
         );
 
@@ -891,11 +897,27 @@ function getSelectedItemDetails() {
 
         var itemViewResetButton = document.getElementById("itemviewresetbutton");
 
+        var updateItemDetailsButton = document.getElementById("updateitemdetailsbutton");
+
+        var removeFromInventoryButton = document.getElementById("removefrominventorybutton");
+
+        var removeFromAllInventoriesButton = document.getElementById("removefromallinventoriesbutton");
+
+        var deleteItemButton = document.getElementById("deleteitembutton");
+
         incrementButton.addEventListener("click", updateItemQuantity);
 
         decrementButton.addEventListener("click", updateItemQuantity);
 
         itemViewResetButton.addEventListener("click", resetItemView);
+
+        updateItemDetailsButton.addEventListener("click", updateItemDetails);
+
+        removeFromInventoryButton.addEventListener("click", removeFromInventory);
+
+        removeFromAllInventoriesButton.addEventListener("click", removeFromAllInventories);
+
+        deleteItemButton.addEventListener("click", deleteItem);
         
     };
 
@@ -910,7 +932,7 @@ function updateItemQuantity() {
 
     var xhr = new XMLHttpRequest();
 
-    var itemQuantity = document.getElementById("itemQuantityView")
+    var itemQuantity = document.getElementById("itemQuantityView");
 
     var characterName = document.getElementById("inventoryNameView").innerHTML;
 
@@ -930,13 +952,13 @@ function updateItemQuantity() {
         changeInQuantity = 0;
     }
 
-    xhr.open('GET', `https://localhost:5003/api/incrementInventory?characterName=${characterName}&itemName=${itemName}&changeInQuantity=${changeInQuantity}`)
+    xhr.open('GET', `https://localhost:5003/api/incrementInventory?characterName=${characterName}&itemName=${itemName}&changeInQuantity=${changeInQuantity}`);
 
     xhr.setRequestHeader("Content-Type", "application/JSON");
 
     xhr.onload = function() {
 
-        console.log(this.response);
+        // console.log(this.response);
 
         if (this.response === -1) {
 
@@ -953,6 +975,113 @@ function updateItemQuantity() {
 }
 
 // END: functionality for updating item quantity
+
+// BEGIN: functionality for updating selected item details
+
+function updateItemDetails() {
+
+    var itemDetailsUpdate = {
+
+        "ItemName" : document.getElementById("itemNameView").innerHTML,
+
+        "ItemDescription" : document.getElementById("itemDescriptionView").innerHTML,
+
+        "ItemValue" : document.getElementById("itemValueView").innerHTML
+    };
+
+    var request = JSON.stringify(itemDetailsUpdate);
+
+    console.log(request);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'https://localhost:5003/api/updateItemDetails');
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        alert(this.response);
+    }
+
+    xhr.send(request);
+}
+// END: functionality for updating selected item details
+
+// BEGIN: functionality for removing/deleting selected item
+
+function removeFromInventory() {
+
+    if (confirm("Are you sure you want to remove this item?")) {
+
+        var itemName = document.getElementById("itemNameView").innerHTML;
+
+        var characterName = document.getElementById("inventoryNameView").innerHTML;
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', `https://localhost:5003/api/removeFromInventory?characterName=${characterName}&itemName=${itemName}`);
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            resetItemView();
+        }
+
+        xhr.send();
+    }
+}
+
+function removeFromAllInventories() {
+
+    if (confirm("Are you sure you want to remove this item from all characters' inventories?")) {
+
+        var itemName = document.getElementById("itemNameView").innerHTML;
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', `https://localhost:5003/api/removeFromAllInventories?itemName=${itemName}`);
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            resetItemView();
+        }
+
+        xhr.send();
+    }
+}
+
+function deleteItem() {
+
+    var itemName = document.getElementById("itemNameView").innerHTML;
+
+    if (confirm(`Are you sure? This will delete ${itemName} from all inventories and the database entirely!`)) {
+        
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', `https://localhost:5003/api/deleteItem?itemName=${itemName}`);
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            resetItemView();
+        }
+
+        xhr.send();
+    }
+}
+
+// END: functionality for removing/deleting selected item 
 
 // BEGIN: functionality for resetting item view
     
@@ -1017,8 +1146,6 @@ function updateCharacterSpells() {
     var xhr = new XMLHttpRequest();
 
     var request = interceptFormSubmit(event, updateSpellsForm);
-
-    console.log(request);
 
     xhr.open('POST', 'https://localhost:5003/api/updatespells');
 
@@ -1106,7 +1233,7 @@ function getSelectedSpellDetails() {
             '<div class="spellsformrow">' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellListNameView">Character Name</label>' +
-                    `<p class="spelldetailvaluedisplay" id="inventoryNameView">${viewSpellsFormData.CharacterName}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="spellListNameView">${viewSpellsFormData.CharacterName}</p>` +
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellNameView">Spell Name</label>' +
@@ -1114,57 +1241,122 @@ function getSelectedSpellDetails() {
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellLevelView">Spell Level</label>' +
-                    `<p class="spelldetailvaluedisplay" id="spellLevelView">${spellDetails.spellLevel}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="spellLevelView" contenteditable="true">${spellDetails.spellLevel}</p>` +
                 '</div>' +
             '</div>' +
             '<div class="spellsformrow">' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="schoolOfMagicView">School Of Magic</label>' +
-                    `<p class="spelldetailvaluedisplay" id="schoolOfMagicView">${spellDetails.schoolOfMagic}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="schoolOfMagicView" contenteditable="true">${spellDetails.schoolOfMagic}</p>` +
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellCastingTimeView">Casting Time</label>' +
-                    `<p class="spelldetailvaluedisplay" id="spellCastingTimeView">${spellDetails.spellCastingTime}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="spellCastingTimeView" contenteditble="true">${spellDetails.spellCastingTime}</p>` +
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="ritualView">Ritual</label>' +
-                    `<p class="spelldetailvaluedisplay" id="ritualView">${spellDetails.ritual}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="ritualView" contenteditable="true">${spellDetails.ritual}</p>` +
                 '</div>' +
             '</div>' +
             '<div class="spellsformrow">' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellRangeView">Range</label>' +
-                    `<p class="spelldetailvaluedisplay" id="spellRangeView">${spellDetails.spellRange}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="spellRangeView" contenteditable="true">${spellDetails.spellRange}</p>` +
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellComponentsView">Components</label>' +
-                    `<p class="spelldetailvaluedisplay" id="spellComponentsView">${spellDetails.spellComponents}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="spellComponentsView" contenteditable="true">${spellDetails.spellComponents}</p>` +
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellDurationView">Duration</label>' +
-                    `<p class="spelldetailvaluedisplay" id="spellDurationView">${spellDetails.spellDuration}</p>` +
+                    `<p class="spelldetailvaluedisplay" id="spellDurationView" contenteditable="true">${spellDetails.spellDuration}</p>` +
                 '</div>' +
             '</div>' +
             '<div class="spellsformrow">' +
                 '<div class="spellsviewcolumn">' +
                     '<label for="spellDescriptionView">Description</label>' +
-                    `<p class="viewspelldetailtextarea" id="spellDescriptionView">${spellDetails.spellDescription}</p>` +
+                    `<p class="viewspelldetailtextarea" id="spellDescriptionView" contenteditable="true">${spellDetails.spellDescription}</p>` +
                 '</div>' +
                 '<div class="spellsviewcolumn">' +
                     '<p class="spelldetailvaluedisplay buttonhover" id="spellviewresetbutton">Reset</p>' +
+                    '<p class="spelldetailvaluedisplay buttonhover" id="spelldetailsupdatebutton">Update Details</p>' +
                 '</div>' +
+            '</div>' +
+            '<div class="inventoryformrow" style="margin-top: 30px">' +
+                '<p class="itemdetailvaluedisplay buttonhover" id="removefromspelllistbutton">Remove</p>' +
+                '<p class="itemdetailvaluedisplay buttonhover" id="removefromallspelllistsbutton">Remove All</p>' +
+                '<p class="itemdetailvaluedisplay buttonhover" id="deletespellbutton">Delete Spell</p>' +
             '</div>'
+
         );
     
         var spellViewResetButton = document.getElementById("spellviewresetbutton");
 
+        var spellDetailsUpdateButton = document.getElementById("spelldetailsupdatebutton");
+
+        var removeFromSpellListButton = document.getElementById("removefromspelllistbutton");
+
+        var removeFromAllSpellListsButton = document.getElementById("removefromallspelllistsbutton");
+
+        var deleteSpellButton = document.getElementById("deletespellbutton");
+
         spellViewResetButton.addEventListener("click", resetSpellView);
+
+        spellDetailsUpdateButton.addEventListener("click", updateSpellDetails);
+
+        removeFromSpellListButton.addEventListener("click", removeFromSpellList);
+
+        removeFromAllSpellListsButton.addEventListener("click", removeFromAllSpellLists);
+
+        deleteSpellButton.addEventListener("click", deleteSpell);
     }
 
     xhr.send();
 }
 
 // END functionality for viewing selected spell details
+
+function updateSpellDetails() {
+
+}
+
+// BEGIN functionality for updating selected spell details
+
+// END functionality for updating selected spell details
+
+function removeFromSpellList() {
+
+    var characterName = document.getElementById("spellListNameView").innerHTML;
+
+    var spellName = document.getElementById("spellNameView").innerHTML;
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', `https://localhost:5003/api/removeFromSpellList?characterName=${characterName}&spellName=${spellName}`);
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        alert(this.response);
+
+        resetSpellView();
+    }
+
+    xhr.send();
+}
+
+function removeFromAllSpellLists() {
+
+}
+
+function deleteSpell() {
+    
+}
+
+// BEGIN functionality for removing/deleting selected spell
+
+// END functionality for removing/deleting selected spell
 
 // BEGIN functionality for resetting spell details view subpage
 
@@ -1854,3 +2046,28 @@ function createNewQuestLogEntry() {
 }
 
 // END functionality for creating a new quest log entry
+
+// BEGIN functionality for expanding and collapsing instructions tab
+
+var instructionsExpandButton = document.getElementById("utilityinstructionsexpand");
+
+var instructionsCollapseButton = document.getElementById("utilityinstructionscollapse");
+
+var instructionsSubPage = document.getElementById("utilityinstructionslist");
+
+instructionsExpandButton.addEventListener("click", expandInstructions);
+
+instructionsCollapseButton.addEventListener("click", collapseInstructions);
+
+function expandInstructions() {
+
+    instructionsSubPage.style.maxHeight = "none";
+}
+
+function collapseInstructions() {
+
+    instructionsSubPage.style.maxHeight = "250px";
+}
+
+
+// END functionality for expanding and collapsing instructions tab

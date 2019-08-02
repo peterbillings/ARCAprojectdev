@@ -23,6 +23,10 @@ namespace CharacterManagementApi.Controllers
                     var selectedCharacter = context.CharacterDetails
                                             .FirstOrDefault(details => details.CharacterName == characterName);
 
+                    context.CharacterInventory.RemoveRange(context.CharacterInventory.Where(item => item.CharacterName == characterName));
+
+                    context.CharacterSpells.RemoveRange(context.CharacterSpells.Where(spell => spell.CharacterName == characterName));
+
                     context.CharacterDetails.Remove(selectedCharacter);
 
                     context.SaveChanges();

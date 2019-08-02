@@ -265,7 +265,7 @@ select {
 }
 
 #spellviewresetbutton {
-    margin-top: 100px;
+    margin-top: 75px;
     cursor: pointer;
 }
 
@@ -360,4 +360,5 @@ td, th {
 
 #utilityinstructionslist {
     margin-top: 30px;
+    max-height: 250px;
 }
