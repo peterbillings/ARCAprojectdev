@@ -991,8 +991,6 @@ function updateItemDetails() {
 
     var request = JSON.stringify(itemDetailsUpdate);
 
-    console.log(request);
-
     var xhr = new XMLHttpRequest();
 
     xhr.open('POST', 'https://localhost:5003/api/updateItemDetails');
@@ -1087,7 +1085,7 @@ function deleteItem() {
     
     function resetItemView() {
 
-        itemDetailsView.style.display = "none";
+        itemDetailsView.innerHTML = null;
     }
 
 // END: functionality for resetting item view
@@ -1316,11 +1314,47 @@ function getSelectedSpellDetails() {
 
 // END functionality for viewing selected spell details
 
+// BEGIN functionality for updating selected spell details
+
 function updateSpellDetails() {
 
-}
+    var spellDetailsUpdate = {
 
-// BEGIN functionality for updating selected spell details
+        "SpellName" : document.getElementById("spellNameView").innerHTML,
+
+        "SpellLevel" : document.getElementById("spellLevelView").innerHTML,
+
+        "SchoolOfMagic" : document.getElementById("schoolOfMagicView").innerHTML,
+
+        "SpellCastingTime" : document.getElementById("spellCastingTimeView").innerHTML,
+
+        "Ritual" : document.getElementById("ritualView").innerHTML,
+
+        "SpellRange" : document.getElementById("spellRangeView").innerHTML,
+
+        "SpellComponents" : document.getElementById("spellComponentsView").innerHTML,
+
+        "SpellDuration" : document.getElementById("spellDurationView").innerHTML,
+
+        "SpellDescription" : document.getElementById("spellDescriptionView").innerHTML
+    };
+
+    var request = JSON.stringify(spellDetailsUpdate);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'https://localhost:5003/api/updateSpellDetails');
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        alert(this.response);
+    }
+
+    xhr.send(request);
+
+}
 
 // END functionality for updating selected spell details
 
@@ -1332,26 +1366,67 @@ function removeFromSpellList() {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', `https://localhost:5003/api/removeFromSpellList?characterName=${characterName}&spellName=${spellName}`);
+    if (confirm("Are you sure you want to remove this spell?")) {
 
-    xhr.setRequestHeader("Content-Type", "Application/JSON");
+        xhr.open('GET', `https://localhost:5003/api/removeFromSpellList?characterName=${characterName}&spellName=${spellName}`);
 
-    xhr.onload = function() {
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
 
-        alert(this.response);
+        xhr.onload = function() {
 
-        resetSpellView();
+            alert(this.response);
+
+            resetSpellView();
+        }
+
+        xhr.send();
     }
-
-    xhr.send();
 }
 
 function removeFromAllSpellLists() {
 
+    var spellName = document.getElementById("spellNameView").innerHTML;
+
+    var xhr = new XMLHttpRequest();
+
+    if (confirm("Are you sure you want to remove this spell from all characters' spell lists?")) {
+
+        xhr.open('GET', `https://localhost:5003/api/removeFromAllSpellLists?spellName=${spellName}`);
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            resetSpellView();
+        }
+
+        xhr.send();
+    }
 }
 
 function deleteSpell() {
-    
+
+    var spellName = document.getElementById("spellNameView").innerHTML;
+
+    var xhr = new XMLHttpRequest();
+
+    if (confirm("Are you sure you want to remove this spell and all related records from the database entirely?")) {
+
+        xhr.open('GET', `https://localhost:5003/api/deleteSpell?spellName=${spellName}`);
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            resetSpellView();
+        }
+
+        xhr.send();
+    }
 }
 
 // BEGIN functionality for removing/deleting selected spell
@@ -1362,7 +1437,7 @@ function deleteSpell() {
 
 function resetSpellView() {
 
-    spellDetailsView.style.display = "none";
+    spellDetailsView.innerHTML = null;
 }
 
 // END functionality for resetting spell details view subpage
@@ -1846,6 +1921,22 @@ function updateCharacterStatus() {
                 populateExistingCharactersDropDown();
 
                 resetCharacterViewPage();
+
+                if(document.getElementById("inventoryNameView") !== null) {
+
+                    if(document.getElementById("inventoryNameView").innerHTML == characterName) {
+
+                        resetItemView();
+                    }
+                }
+
+                if(document.getElementById("spellListNameView") !== null) {
+
+                    if(document.getElementById("spellListNameView").innerHTML == characterName) {
+
+                        resetSpellView();
+                    }
+                }
             }
 
             xhr.send();
