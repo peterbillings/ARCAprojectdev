@@ -11,6 +11,8 @@ window.onload = function() {
     populateExistingCharactersDropDown();
     populateAttributeToUpdateDropDown();
     getLatestQuestLogEntry();
+
+    // generateRandomStats();
 }
 
 // END onload functions
@@ -328,6 +330,25 @@ function interceptFormSubmit(event, formName) {
 
 
 // END functionality for new character form submission
+
+// BEGIN functionality for generating random character stats on the new character form page
+
+function generateRandomStats() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/generateRandomStats');
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        console.log(this.response);
+    }
+
+    xhr.send();
+}
+// END functionality for generating random character stats on the new character for page
 
 // BEGIN functionality for populating existing character dropdown menus on all pages
 
