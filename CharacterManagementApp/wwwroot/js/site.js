@@ -333,6 +333,10 @@ function interceptFormSubmit(event, formName) {
 
 // BEGIN functionality for generating random character stats on the new character form page
 
+var generateRandomStatsButton = document.getElementById("generaterandomstatsbutton");
+
+generateRandomStatsButton.addEventListener("click", generateRandomStats);
+
 function generateRandomStats() {
 
     var xhr = new XMLHttpRequest();
@@ -343,12 +347,110 @@ function generateRandomStats() {
 
     xhr.onload = function() {
 
-        console.log(this.response);
+        var randomStats = JSON.parse(this.response);
+
+        document.getElementById("racefield").value = randomStats.race;
+
+        document.getElementById("characterclassfield").value = randomStats.characterClass;
+
+        document.getElementById("backgroundfield").value = randomStats.background;
+
+        document.getElementById("alignmentfield").value = randomStats.alignment;
+
+        document.getElementById("characterlevelfield").value = randomStats.characterLevel;
+
+        document.getElementById("experiencefield").value = randomStats.experience;
+
+        document.getElementById("strengthfield").value = randomStats.strength;
+
+        document.getElementById("strengthmodfield").value = randomStats.strengthMod;
+
+        document.getElementById("dexterityfield").value = randomStats.dexterity;
+
+        document.getElementById("dexteritymodfield").value = randomStats.dexterityMod;
+
+        document.getElementById("constitutionfield").value = randomStats.constitution;
+
+        document.getElementById("constitutionmodfield").value = randomStats.constitutionMod;
+
+        document.getElementById("intelligencefield").value = randomStats.intelligence;
+
+        document.getElementById("intelligencemodfield").value = randomStats.intelligenceMod;
+
+        document.getElementById("wisdomfield").value = randomStats.wisdom;
+
+        document.getElementById("wisdommodfield").value = randomStats.wisdomMod;
+
+        document.getElementById("charismafield").value = randomStats.charisma;
+
+        document.getElementById("charismamodfield").value = randomStats.charismaMod;
+
+        document.getElementById("maxhpfield").value = randomStats.maxHp;
+
+        document.getElementById("hitdicefield").value = randomStats.hitDice;
+
+        document.getElementById("hitdicetotalfield").value = randomStats.hitDiceTotal;
+
+        document.getElementById("proficiencybonusfield").value = randomStats.proficiencyBonus;
+
+        document.getElementById("passiveperceptionfield").value = randomStats.passivePerception;
+
+        document.getElementById("initiativefield").value = randomStats.initiative;
+
+        document.getElementById("speedfield").value = randomStats.speed;
+
+        document.getElementById("personalitytraitsfield").value = randomStats.personalityTraits;
+
+        document.getElementById("idealsfield").value = randomStats.ideals;
+
+        document.getElementById("bondsfield").value = randomStats.bonds;
+
+        document.getElementById("flawsfield").value = randomStats.flaws;
+
+        document.getElementById("additionalfeaturesfield").value = randomStats.additionalFeatures;
+
+        document.getElementById("languagesfield").value = randomStats.languages;
+
+        var allNewCharacterCheckBoxes = document.getElementsByClassName("newcharactercheckbox");
+
+        for (var checkbox of allNewCharacterCheckBoxes) {
+
+            checkbox.checked = false;
+        }
+
+        for (var property in randomStats) {
+
+            if(randomStats[property] === true) {
+
+                for (var checkbox of allNewCharacterCheckBoxes) {
+
+                    if (`${property}Field` === checkbox.id) {
+
+                        checkbox.checked = true;
+                    }
+                }
+            }
+        }
+        
     }
 
     xhr.send();
 }
 // END functionality for generating random character stats on the new character for page
+
+// BEGIN functionality for resetting the new character form
+
+var resetNewCharacterFormButton = document.getElementById("resetnewcharacterformbutton");
+
+resetNewCharacterFormButton.addEventListener("click", resetNewCharacterForm)
+
+function resetNewCharacterForm()
+{
+    var newCharacterForm = document.getElementById("newcharacterform");
+
+    newCharacterForm.reset();
+}
+// END functionality for resetting the new character form
 
 // BEGIN functionality for populating existing character dropdown menus on all pages
 
@@ -779,6 +881,100 @@ function toggleInventoryDisplay() {
 
 // END: functionality for toggling inventory page form display
 
+// BEGIN: functionality for modifying inventory update form for completely new items
+
+var createNewItemToggleButton = document.getElementById("createnewitemtogglebutton");
+
+createNewItemToggleButton.addEventListener("click", modifyInventoryUpdateFormForNewItem)
+
+function modifyInventoryUpdateFormForNewItem() {
+
+    var inventoryUpdateItemNameWrapper = document.getElementById("inventoryupdateitemnamewrapper");
+
+    inventoryUpdateItemNameWrapper.innerHTML = (
+
+        '<label for="itemnamefield">Item Name</label>' +
+        ' <input class="updateinventoryinput" id="itemnamefield" type="text" name="ItemName" maxlength="50" placeholder="Item Name" required>'
+    );
+
+    var itemValueField = document.getElementById("itemvaluefield");
+
+    var itemQuantityField = document.getElementById("itemquantityfield");
+
+    var itemDescriptionField = document.getElementById("itemdescriptionfield");
+
+    itemValueField.disabled = false;
+    itemDescriptionField.disabled = false;
+
+    itemValueField.required = true;
+    itemDescriptionField.required = true;
+}
+// END: functionality for modifying inventory update form for completely new items
+
+// BEGIN: functionality for modifying inventory update for existing items
+
+var selectExistingItemToggleButton = document.getElementById("selectexistingitemtogglebutton");
+
+selectExistingItemToggleButton.addEventListener("click", modifyInventoryUpdateFormForExistingItems);
+
+function modifyInventoryUpdateFormForExistingItems() {
+
+    var inventoryUpdateItemNameWrapper = document.getElementById("inventoryupdateitemnamewrapper");
+
+    inventoryUpdateItemNameWrapper.innerHTML = (
+
+        '<label for="itemnamefield">Item Name</label>' +
+        '<select class="updateinventoryinput existingItemsDropDown" id="itemnamefield" name="ItemName" required>' +
+            '<option value="" disabled selected>Item Name</option>' +
+        '</select>'
+    );
+
+    var itemValueField = document.getElementById("itemvaluefield");
+
+    var itemQuantityField = document.getElementById("itemquantityfield");
+
+    var itemDescriptionField = document.getElementById("itemdescriptionfield");
+
+    itemValueField.required = false;
+    itemDescriptionField.required = false;
+
+    itemValueField.disabled = true;
+    itemDescriptionField.disabled = true;
+
+    populateExistingItemsDropDown();
+}
+
+function populateExistingItemsDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populateExistingItemsDropDown');
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        var allItems = JSON.parse(this.response);
+
+        var itemNameField = document.getElementById("itemnamefield");
+
+        for (var item of allItems) {
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = item;
+
+            newSelectInput.innerHTML = item;
+
+            itemNameField.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send();
+}
+
+// END: functionality for modifying inventory update form for existing items
+
 // BEGIN: functionality for submitting inventory update form to api
 
 var updateInventoryForm = document.getElementById("updateinventoryform");
@@ -1000,30 +1196,33 @@ function updateItemQuantity() {
 // BEGIN: functionality for updating selected item details
 
 function updateItemDetails() {
+    
+    if(confirm("Are you sure you want to update this item's information?")) {
 
-    var itemDetailsUpdate = {
+        var itemDetailsUpdate = {
 
-        "ItemName" : document.getElementById("itemNameView").innerHTML,
+            "ItemName" : document.getElementById("itemNameView").innerHTML,
 
-        "ItemDescription" : document.getElementById("itemDescriptionView").innerHTML,
+            "ItemDescription" : document.getElementById("itemDescriptionView").innerHTML,
 
-        "ItemValue" : document.getElementById("itemValueView").innerHTML
-    };
+            "ItemValue" : document.getElementById("itemValueView").innerHTML
+        };
 
-    var request = JSON.stringify(itemDetailsUpdate);
+        var request = JSON.stringify(itemDetailsUpdate);
 
-    var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://localhost:5003/api/updateItemDetails');
+        xhr.open('POST', 'https://localhost:5003/api/updateItemDetails');
 
-    xhr.setRequestHeader("Content-Type", "Application/JSON");
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
 
-    xhr.onload = function() {
+        xhr.onload = function() {
 
-        alert(this.response);
+            alert(this.response);
+        }
+
+        xhr.send(request);
     }
-
-    xhr.send(request);
 }
 // END: functionality for updating selected item details
 
@@ -1153,6 +1352,144 @@ function toggleSpellsDisplay() {
 };
 
 // END: functionality for toggling spells page form display
+
+// BEGIN:  functionality for modifying spells update form for completely new spells
+
+var createNewSpellToggleButton = document.getElementById("createnewspelltogglebutton");
+
+createNewSpellToggleButton.addEventListener("click", modifySpellUpdateFormForNewSpell)
+
+function modifySpellUpdateFormForNewSpell() {
+
+    var spellUpdateSpellNameWrapper = document.getElementById("spellupdatespellnamewrapper");
+
+    spellUpdateSpellNameWrapper.innerHTML = (
+
+        '<label for="spellnamefield">Spell Name</label>' +
+        ' <input class="updatespellinput" id="spellnamefield" type="text" name="SpellName" maxlength="50" placeholder="Spell Name" required>'
+    );
+
+    var spellLevelField = document.getElementById("spelllevelfield");
+
+    var schoolOfMagicField = document.getElementById("schoolofmagicfield");
+
+    var spellCastingTimeField = document.getElementById("spellcastingtimefield");
+
+    var ritualField = document.getElementById("ritualfield");
+
+    var spellRangeField = document.getElementById("spellrangefield");
+
+    var spellComponentsField = document.getElementById("spellcomponentsfield");
+
+    var spellDurationField = document.getElementById("spelldurationfield");
+
+    var spellDescriptionField = document.getElementById("spelldescriptionfield");
+
+    spellLevelField.disabled = false;
+    schoolOfMagicField.disabled = false;
+    spellCastingTimeField.disabled = false;
+    ritualField.disabled = false;
+    spellRangeField.disabled = false;
+    spellComponentsField.disabled = false;
+    spellDurationField.disabled = false;
+    spellDescriptionField.disabled = false;
+
+    spellLevelField.required = true;
+    schoolOfMagicField.required = true;
+    spellCastingTimeField.required = true;
+    ritualField.required = true;
+    spellRangeField.required = true;
+    spellComponentsField.required = true;
+    spellDurationField.required = true;
+    spellDescriptionField.required = true;
+}
+// END: functionality for modifying spells update form for completely new spells
+
+// BEGIN: functionality for modifying spells update for existing spells
+
+var selectExistingSpellToggleButton = document.getElementById("selectexistingspelltogglebutton");
+
+selectExistingSpellToggleButton.addEventListener("click", modifySpellUpdateFormForExistingSpells);
+
+function modifySpellUpdateFormForExistingSpells() {
+
+    var spellUpdateSpellNameWrapper = document.getElementById("spellupdatespellnamewrapper");
+
+    spellUpdateSpellNameWrapper.innerHTML = (
+
+        '<label for="spellnamefield">Spell Name</label>' +
+        '<select class="updatespellinput existingSpellsDropDown" id="spellnamefield" name="SpellName" required>' +
+            '<option value="" disabled selected>Spell Name</option>' +
+        '</select>'
+    );
+
+    var spellLevelField = document.getElementById("spelllevelfield");
+
+    var schoolOfMagicField = document.getElementById("schoolofmagicfield");
+
+    var spellCastingTimeField = document.getElementById("spellcastingtimefield");
+
+    var ritualField = document.getElementById("ritualfield");
+
+    var spellRangeField = document.getElementById("spellrangefield");
+
+    var spellComponentsField = document.getElementById("spellcomponentsfield");
+
+    var spellDurationField = document.getElementById("spelldurationfield");
+
+    var spellDescriptionField = document.getElementById("spelldescriptionfield");
+
+    spellLevelField.required = false;
+    schoolOfMagicField.required = false;
+    spellCastingTimeField.required = false;
+    ritualField.required = false;
+    spellRangeField.required = false;
+    spellComponentsField.required = false;
+    spellDurationField.required = false;
+    spellDescriptionField.required = false;
+
+    spellLevelField.disabled = true;
+    schoolOfMagicField.disabled = true;
+    spellCastingTimeField.disabled = true;
+    ritualField.disabled = true;
+    spellRangeField.disabled = true;
+    spellComponentsField.disabled = true;
+    spellDurationField.disabled = true;
+    spellDescriptionField.disabled = true;
+
+    populateExistingSpellsDropDown();
+}
+
+function populateExistingSpellsDropDown() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://localhost:5003/api/populateExistingSpellsDropDown');
+
+    xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+    xhr.onload = function() {
+
+        var allSpells = JSON.parse(this.response);
+
+        var spellNameField = document.getElementById("spellnamefield");
+
+        for (var spell of allSpells) {
+
+            var newSelectInput = document.createElement("option");
+
+            newSelectInput.value = spell;
+
+            newSelectInput.innerHTML = spell;
+
+            spellNameField.appendChild(newSelectInput);
+        }
+    }
+
+    xhr.send();
+}
+
+// END: functionality for modifying spells update form for existing spells
 
 // BEGIN: functionality for adding a spell to a character's spell list
 
@@ -1339,42 +1676,44 @@ function getSelectedSpellDetails() {
 
 function updateSpellDetails() {
 
-    var spellDetailsUpdate = {
+    if(confirm("Are you sure you want to update this spell's information?")) {
 
-        "SpellName" : document.getElementById("spellNameView").innerHTML,
+        var spellDetailsUpdate = {
 
-        "SpellLevel" : document.getElementById("spellLevelView").innerHTML,
+            "SpellName" : document.getElementById("spellNameView").innerHTML,
 
-        "SchoolOfMagic" : document.getElementById("schoolOfMagicView").innerHTML,
+            "SpellLevel" : document.getElementById("spellLevelView").innerHTML,
 
-        "SpellCastingTime" : document.getElementById("spellCastingTimeView").innerHTML,
+            "SchoolOfMagic" : document.getElementById("schoolOfMagicView").innerHTML,
 
-        "Ritual" : document.getElementById("ritualView").innerHTML,
+            "SpellCastingTime" : document.getElementById("spellCastingTimeView").innerHTML,
 
-        "SpellRange" : document.getElementById("spellRangeView").innerHTML,
+            "Ritual" : document.getElementById("ritualView").innerHTML,
 
-        "SpellComponents" : document.getElementById("spellComponentsView").innerHTML,
+            "SpellRange" : document.getElementById("spellRangeView").innerHTML,
 
-        "SpellDuration" : document.getElementById("spellDurationView").innerHTML,
+            "SpellComponents" : document.getElementById("spellComponentsView").innerHTML,
 
-        "SpellDescription" : document.getElementById("spellDescriptionView").innerHTML
-    };
+            "SpellDuration" : document.getElementById("spellDurationView").innerHTML,
 
-    var request = JSON.stringify(spellDetailsUpdate);
+            "SpellDescription" : document.getElementById("spellDescriptionView").innerHTML
+        };
 
-    var xhr = new XMLHttpRequest();
+        var request = JSON.stringify(spellDetailsUpdate);
 
-    xhr.open('POST', 'https://localhost:5003/api/updateSpellDetails');
+        var xhr = new XMLHttpRequest();
 
-    xhr.setRequestHeader("Content-Type", "Application/JSON");
+        xhr.open('POST', 'https://localhost:5003/api/updateSpellDetails');
 
-    xhr.onload = function() {
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
 
-        alert(this.response);
+        xhr.onload = function() {
+
+            alert(this.response);
+        }
+
+        xhr.send(request);
     }
-
-    xhr.send(request);
-
 }
 
 // END functionality for updating selected spell details

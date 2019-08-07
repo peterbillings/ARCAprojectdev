@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using CharacterManagementApi.CharacterManagementDBModel;
 using CharacterManagementApi.HttpRequestDataClasses;
+using System.Reflection;
 
 namespace CharacterManagementApi.Controllers
 {
@@ -18,6 +19,8 @@ namespace CharacterManagementApi.Controllers
 
             RandomStatGenerator randomStats = new RandomStatGenerator();
 
+            RandomSkillsGenerator randomSkills = new RandomSkillsGenerator();
+
             randomCharacter.Race = randomStats.Race;
 
             randomCharacter.CharacterClass = randomStats.CharacterClass;
@@ -25,6 +28,8 @@ namespace CharacterManagementApi.Controllers
             randomCharacter.Background = randomStats.Background;
 
             randomCharacter.Alignment = randomStats.Alignment;
+
+            randomCharacter.CharacterLevel = (short)randomStats.CharacterLevel;
 
             randomCharacter.Experience = randomStats.Experience;
 
@@ -79,6 +84,20 @@ namespace CharacterManagementApi.Controllers
             randomCharacter.AdditionalFeatures = randomStats.AdditionalFeatures;
 
             randomCharacter.Languages = randomStats.Languages;
+
+            foreach (string skill in randomSkills.RandomSkills)
+            {
+                PropertyInfo skillToUpdate = randomCharacter.GetType().GetProperty(skill);
+
+                skillToUpdate.SetValue(randomCharacter, true, null);
+            }
+
+            foreach (string savingThrow in randomStats.SavingThrows)
+            {
+                PropertyInfo savingThrowToUpdate = randomCharacter.GetType().GetProperty(savingThrow);
+
+                savingThrowToUpdate.SetValue(randomCharacter, true, null);
+            }
 
             return randomCharacter;
         }

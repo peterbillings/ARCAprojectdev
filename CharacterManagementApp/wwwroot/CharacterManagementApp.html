@@ -239,7 +239,11 @@
             <!--END: main page instructions/utilities-->
 
             <!--BEGIN: new character input form section-->
-            <section class="page new" id="newpage"> 
+            <section class="page new" id="newpage">
+                <div class="newcharacterformrow" style="margin-top: 20px;">
+                    <p class="characterdetailvaluedisplay buttonhover" id="generaterandomstatsbutton">Random Stats</p>
+                    <p class="characterdetailvaluedisplay buttonhover" id="resetnewcharacterformbutton">Reset</p>
+                </div>
                 <form id="newcharacterform">
                     <div class="newcharacterformrow">
                         <div class="newcharacterformcolumn field-column">
@@ -334,13 +338,13 @@
                             <label for="proficiencybonusfield">Proficiency Bonus</label>
                             <input class="newcharacterinput" id="proficiencybonusfield" type="number" name="ProficiencyBonus" min="2" max="6" step="2" placeholder="Proficiency Bonus" required>
                             <label for="passiveperception">Passive Perception</label>
-                            <input class="newcharacterinput" id="passiveperception" type="number" name="PassivePerception" min="0" max="30" placeholder="Passive Perception" required>
+                            <input class="newcharacterinput" id="passiveperceptionfield" type="number" name="PassivePerception" min="0" max="30" placeholder="Passive Perception" required>
                         </div>
                         <div class="newcharacterformcolumn field-column">
                             <label for="initiativefield">Initiative</label>
                             <input class="newcharacterinput" id="initiativefield" type="number" name="Initiative" min="-10" max="10" placeholder="Initiative" required>
                             <label for="speed">Speed</label>
-                            <input class="newcharacterinput" id="speed" type="number" name="Speed" min="0" placeholder="Speed" required>
+                            <input class="newcharacterinput" id="speedfield" type="number" name="Speed" min="0" placeholder="Speed" required>
                         </div>
                     </div>
                     <div class="newcharacterformrow">
@@ -377,40 +381,40 @@
                         <div class="newcharacterformcolumn">
                             <label for="skills1field">Skills</label>
                             <ul class="newcharactercheckboxwrapper" id="skills1field">
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Acrobatics" value="true"> Acrobatics</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="AnimalHandling" value="true"> Animal Handling</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Arcana" value="true"> Arcana</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Athletics" value="true"> Athletics</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Deception" value="true"> Deception</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="History" value="true"> History</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Insight" value="true"> Insight</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Intimidation" value="true"> Intimidation</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Investigation" value="true"> Investigation</li>
+                                <li><input class="newcharactercheckbox" id="acrobaticsField" type="checkbox" name="Acrobatics" value="true"> Acrobatics</li>
+                                <li><input class="newcharactercheckbox" id="animalHandlingField" type="checkbox" name="AnimalHandling" value="true"> Animal Handling</li>
+                                <li><input class="newcharactercheckbox" id="arcanaField" type="checkbox" name="Arcana" value="true"> Arcana</li>
+                                <li><input class="newcharactercheckbox" id="athleticsField" type="checkbox" name="Athletics" value="true"> Athletics</li>
+                                <li><input class="newcharactercheckbox" id="deceptionField" type="checkbox" name="Deception" value="true"> Deception</li>
+                                <li><input class="newcharactercheckbox" id="historyField" type="checkbox" name="History" value="true"> History</li>
+                                <li><input class="newcharactercheckbox" id="insightField" type="checkbox" name="Insight" value="true"> Insight</li>
+                                <li><input class="newcharactercheckbox" id="intimidationField" type="checkbox" name="Intimidation" value="true"> Intimidation</li>
+                                <li><input class="newcharactercheckbox" id="investigationField" type="checkbox" name="Investigation" value="true"> Investigation</li>
                             </ul>
                         </div>
                         <div class="newcharacterformcolumn">
                             <label for="skills2field">Skills cont.</label>
                             <ul class="newcharactercheckboxwrapper" id="skills2field">
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Medicine" value="true"> Medicine</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Nature" value="true"> Nature</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Perception" value="true"> Perception</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Performance" value="true"> Performance</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Persuasion" value="true"> Persuasion</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Religion" value="true"> Religion</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="SleightOfHand" value="true"> Sleight of Hand</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Stealth" value="true"> Stealth</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="Survival" value="true"> Survival</li>
+                                <li><input class="newcharactercheckbox" id="medicineField" type="checkbox" name="Medicine" value="true"> Medicine</li>
+                                <li><input class="newcharactercheckbox" id="natureField" type="checkbox" name="Nature" value="true"> Nature</li>
+                                <li><input class="newcharactercheckbox" id="perceptionField" type="checkbox" name="Perception" value="true"> Perception</li>
+                                <li><input class="newcharactercheckbox" id="performanceField" type="checkbox" name="Performance" value="true"> Performance</li>
+                                <li><input class="newcharactercheckbox" id="persuasionField" type="checkbox" name="Persuasion" value="true"> Persuasion</li>
+                                <li><input class="newcharactercheckbox" id="religionField" type="checkbox" name="Religion" value="true"> Religion</li>
+                                <li><input class="newcharactercheckbox" id="sleightOfHandField" type="checkbox" name="SleightOfHand" value="true"> Sleight of Hand</li>
+                                <li><input class="newcharactercheckbox" id="stealthField" type="checkbox" name="Stealth" value="true"> Stealth</li>
+                                <li><input class="newcharactercheckbox" id="survivalField" type="checkbox" name="Survival" value="true"> Survival</li>
                             </ul>
                         </div>
                         <div class="newcharacterformcolumn">
                             <label for="savingthrowsfield">Saving Throws</label>
                             <ul class="newcharactercheckboxwrapper" id="savingthrowsfield">
-                                <li><input class="newcharactercheckbox" type="checkbox" name="StrengthSave" value="true"> Strength Save</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="DexteritySave" value="true"> Dexterity Save</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="ConstitutionSave" value="true"> Constitution Save</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="IntelligenceSave" value="true"> Intelligence Save</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="WisdomSave" value="true"> Wisdom Save</li>
-                                <li><input class="newcharactercheckbox" type="checkbox" name="CharismaSave" value="true"> Charisma Save</li>
+                                <li><input class="newcharactercheckbox" id="strengthSaveField" type="checkbox" name="StrengthSave" value="true"> Strength Save</li>
+                                <li><input class="newcharactercheckbox" id="dexteritySaveField" type="checkbox" name="DexteritySave" value="true"> Dexterity Save</li>
+                                <li><input class="newcharactercheckbox" id="constitutionSaveField" type="checkbox" name="ConstitutionSave" value="true"> Constitution Save</li>
+                                <li><input class="newcharactercheckbox" id="intelligenceSaveField" type="checkbox" name="IntelligenceSave" value="true"> Intelligence Save</li>
+                                <li><input class="newcharactercheckbox" id="wisdomSaveField" type="checkbox" name="WisdomSave" value="true"> Wisdom Save</li>
+                                <li><input class="newcharactercheckbox" id="charismaSaveField" type="checkbox" name="CharismaSave" value="true"> Charisma Save</li>
                             </ul>
                             <input class="submitbutton buttonhover" id="newcharactersubmit" type="submit" value="Create Character">
                         </div>
@@ -634,8 +638,8 @@
             <!--BEGIN: inventory page-->
             <section class="page inventory" id="inventorypage">
                 <div class="inventoryformrow" id="inventorymenutoggle">
-                        <p class="menuitem updateinventory inventorytoggle buttonhover" id="updateinventorybutton">UPDATE INVENTORY</p>
-                        <p class="menuitem viewinventory inventorytoggle buttonhover" id="viewinventorybutton">VIEW INVENTORY</p>
+                    <p class="menuitem updateinventory inventorytoggle buttonhover" id="updateinventorybutton">UPDATE INVENTORY</p>
+                    <p class="menuitem viewinventory inventorytoggle buttonhover" id="viewinventorybutton">VIEW INVENTORY</p>
                 </div>
                 <form class="inventoryform updateinventory" id="updateinventoryform">
                     <div class="inventoryformrow">
@@ -645,7 +649,7 @@
                                 <option value="" disabled selected>Character Name</option>
                             </select>
                         </div>
-                        <div class="inventoryformcolumn">
+                        <div class="inventoryformcolumn" id="inventoryupdateitemnamewrapper">
                             <label for="itemnamefield">Item Name</label>
                             <input class="updateinventoryinput" id="itemnamefield" type="text" name="ItemName" maxlength="50" placeholder="Item Name" required>
                         </div>
@@ -666,6 +670,10 @@
                         <div class="inventoryformcolumn">
                             <input class="submitbutton buttonhover" id="updateinventorysubmit" type="submit" value="Update Inventory">
                         </div>
+                    </div>
+                    <div class="inventoryformrow" style="margin-top: 30px;">
+                        <p class="itemdetailvaluedisplay buttonhover" id="createnewitemtogglebutton">New Item</p>
+                        <p class="itemdetailvaluedisplay buttonhover" id="selectexistingitemtogglebutton">Existing Item</p>
                     </div> 
                 </form>
                 <form class="inventoryform viewinventory" id="viewinventoryform">
@@ -705,7 +713,7 @@
                                 <option value="" disabled selected>Character Name</option>
                             </select>
                         </div>
-                        <div class="spellsformcolumn">
+                        <div class="spellsformcolumn" id="spellupdatespellnamewrapper">
                             <label for="spellnamefield">Spell Name</label>
                             <input class="updatespellsinput" id="spellnamefield" type="text" name="SpellName" maxlength="50" placeholder="Spell Name" required>
                         </div>
@@ -756,6 +764,10 @@
                         <div class="spellsformcolumn">
                             <input class="submitbutton buttonhover" id="addspellsubmit" type="submit" value="Add Spell">
                         </div>
+                    </div>
+                    <div class="spellsformrow" style="margin-top: 30px;">
+                        <p class="spelldetailvaluedisplay buttonhover" id="createnewspelltogglebutton">New Spell</p>
+                        <p class="spelldetailvaluedisplay buttonhover" id="selectexistingspelltogglebutton">Existing Spell</p>
                     </div>
                 </form>
                 <form class="spellsform viewspells" id="viewspellsform">

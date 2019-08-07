@@ -39,6 +39,7 @@ namespace CharacterManagementApi.HttpRequestDataClasses
         public string Flaws { get; set; }
         public string AdditionalFeatures { get; set; }
         public string Languages { get; set; }
+        public string[] SavingThrows {get; set;}
 
         public RandomStatGenerator()
         {
@@ -107,6 +108,10 @@ namespace CharacterManagementApi.HttpRequestDataClasses
             this.AdditionalFeatures = "Add anything else interesting about yourself!";
 
             this.Languages = "Common";
+
+            this.SavingThrows = new string[2];
+
+            DetermineSavingThrows(this.SavingThrows, randomAbilityScores);
         }
 
         private string RandomRace()
@@ -263,6 +268,50 @@ namespace CharacterManagementApi.HttpRequestDataClasses
             return speeds[random.Next(speeds.Length)];
         }
 
+        private void DetermineSavingThrows(string[] savingThrows, List<int> abilityScores)
+        {
+            string[] allSaves = new string[6]
+            {
+                "StrengthSave",
+                "DexteritySave",
+                "ConstitutionSave",
+                "IntelligenceSave",
+                "WisdomSave",
+                "CharismaSave"
+            };
 
+            int[] sortedScores = new int[6];
+
+            for (int i = 0; i < 6; i++)
+            {
+                sortedScores[i] = abilityScores[i];
+            }
+
+            Array.Sort(sortedScores);
+
+            int firstSaveIndex = 0;
+
+            for (int i = 0; i < 6; i++)
+            {
+                if(sortedScores[5] == abilityScores[i])
+                {
+                    savingThrows[0] = allSaves[i];
+
+                    firstSaveIndex = i;
+
+                    break;
+                }
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                if(sortedScores[4] == abilityScores[i] && i != firstSaveIndex)
+                {
+                    savingThrows[1] = allSaves[i];
+
+                    break;
+                }
+            }
+        }
     }
 }
