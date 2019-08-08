@@ -27,6 +27,8 @@ namespace CharacterManagementApi.Controllers
 
                     context.CharacterSpells.RemoveRange(context.CharacterSpells.Where(spell => spell.CharacterName == characterName));
 
+                    context.CharacterStatus.RemoveRange(context.CharacterStatus.Where(status => status.CharacterName == characterName));
+
                     context.CharacterDetails.Remove(selectedCharacter);
 
                     context.SaveChanges();

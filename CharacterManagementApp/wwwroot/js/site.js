@@ -11,8 +11,6 @@ window.onload = function() {
     populateExistingCharactersDropDown();
     populateAttributeToUpdateDropDown();
     getLatestQuestLogEntry();
-
-    // generateRandomStats();
 }
 
 // END onload functions
@@ -396,6 +394,8 @@ function generateRandomStats() {
         document.getElementById("passiveperceptionfield").value = randomStats.passivePerception;
 
         document.getElementById("initiativefield").value = randomStats.initiative;
+
+        document.getElementById("armorclassfield").value = randomStats.armorClass;
 
         document.getElementById("speedfield").value = randomStats.speed;
 
@@ -899,8 +899,6 @@ function modifyInventoryUpdateFormForNewItem() {
 
     var itemValueField = document.getElementById("itemvaluefield");
 
-    var itemQuantityField = document.getElementById("itemquantityfield");
-
     var itemDescriptionField = document.getElementById("itemdescriptionfield");
 
     itemValueField.disabled = false;
@@ -930,8 +928,6 @@ function modifyInventoryUpdateFormForExistingItems() {
     );
 
     var itemValueField = document.getElementById("itemvaluefield");
-
-    var itemQuantityField = document.getElementById("itemquantityfield");
 
     var itemDescriptionField = document.getElementById("itemdescriptionfield");
 
@@ -2497,6 +2493,70 @@ function createNewQuestLogEntry() {
 }
 
 // END functionality for creating a new quest log entry
+
+// BEGIN functionality for deleting current quest log entry
+
+var deleteCurrentQuestLogEntryButton = document.getElementById("deletecurrentquestlogentrybutton");
+
+deleteCurrentQuestLogEntryButton.addEventListener("click", deleteCurrentQuestLogEntry);
+
+function deleteCurrentQuestLogEntry() {
+
+    if(confirm("Are you sure you want to delete this log entry?")) {
+
+        var questLogIdTracker = document.getElementById("questlogidtracker");
+
+        var questLogId = questLogIdTracker.innerHTML;
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', `https://localhost:5003/api/deleteCurrentQuestLogEntry?questLogId=${questLogId}`);
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            getLatestQuestLogEntry();
+        }
+
+        xhr.send();
+
+    }
+
+}
+
+// END functionality for deleting current quest log entry
+
+// BEGIN functionality for deleting all quest log entries
+
+var deleteAllQuestLogEntriesButton = document.getElementById("deleteallquestlogentriesbutton");
+
+deleteAllQuestLogEntriesButton.addEventListener("click", deleteAllQuestLogEntries);
+
+function deleteAllQuestLogEntries() {
+
+    if(confirm("This will delete the entire quest log. Are you sure?")) {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'https://localhost:5003/api/deleteAllQuestLogEntries');
+
+        xhr.setRequestHeader("Content-Type", "Application/JSON");
+
+        xhr.onload = function() {
+
+            alert(this.response);
+
+            getLatestQuestLogEntry();
+        }
+
+        xhr.send();
+    }
+}
+
+// END functionality for deleting all quest log entries
 
 // BEGIN functionality for expanding and collapsing instructions tab
 

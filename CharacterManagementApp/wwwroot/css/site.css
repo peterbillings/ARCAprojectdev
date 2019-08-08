@@ -31,7 +31,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    max-width: 900px;
+    max-width: 950px;
     margin: auto;
 }
 
@@ -49,7 +49,7 @@ body {
 
 .page {
     display: none;
-    max-width: 950px;
+    max-width: 1000px;
     text-align: center;
     color: black;
     background-color: rgba(240,230,214, .60);
@@ -128,12 +128,13 @@ body {
 }
 
 .field-column, .view-column {
-    height: 170px;
+    min-height: 170px;
 }
 
 .utilityinput, .newcharacterinput, .viewcharacterinput, .updatecharacterinput, .updateinventoryinput, .updatespellsinput {
     margin: 5px;
     min-width: 200px;
+    max-width: 222px;
     border-color: initial;
 }
 
@@ -142,9 +143,10 @@ body {
     background-color: #314977;
     margin: 5px;
     min-width: 200px;
+    max-width: 222px;
     color: #f0e6d6;
     font-size: 25px;
-    height: 45px;
+    min-height: 45px;
     vertical-align: middle;
     box-shadow: 2px 3px 3px black;
     padding-top: 8px;
@@ -180,7 +182,6 @@ select {
     background-color: #314977;
     margin: 5px;
     width: 435px;
-    min-width: 225px;
     color: #f0e6d6;
     font-size: 25px;
     min-height: 80px;
@@ -348,10 +349,6 @@ td, th {
 
 #questlogwrapper, #questlogtoprow {
     margin-top: 30px;
-}
-
-#questlogdisplay {
-    white-space: pre;
 }
 
 #questlogidtracker {
